@@ -7,4 +7,6 @@ module it.unife.lp {
     opens it.unife.lp.view to javafx.fxml;
 
     exports it.unife.lp;
+    exports it.unife.lp.model;
+    exports it.unife.lp.view;
 }

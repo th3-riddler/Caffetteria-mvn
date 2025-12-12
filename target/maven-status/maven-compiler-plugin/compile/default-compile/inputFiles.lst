@@ -1,4 +1,8 @@
-/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/PrimaryController.java
-/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/SecondaryController.java
+/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/view/MenuOverviewController.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/module-info.java
-/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/App.java
+/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/model/Articolo.java
+/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/MainApp.java
+/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/model/MetodoPagamento.java
+/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/model/VoceOrdine.java
+/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/model/Ordine.java
+/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/view/RootLayoutController.java

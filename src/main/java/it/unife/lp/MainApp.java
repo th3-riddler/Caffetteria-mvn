@@ -6,47 +6,101 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 import it.unife.lp.model.Articolo;
+import it.unife.lp.view.MenuOverviewController;
+import it.unife.lp.view.RootLayoutController;
 
 /**
  * JavaFX App
  */
 public class MainApp extends Application {
 
-    private static Scene scene;
+    private Stage primaryStage;
     private BorderPane rootLayout;
     private ObservableList<Articolo> articoli = FXCollections.observableArrayList();
 
     public MainApp() {
         // Sample data
-        articoli.add(new Articolo("Espresso", "Caffè espresso classico", 1.50, 100));
-        articoli.add(new Articolo("Cappuccino", "Caffè con latte e schiuma", 2.50, 80));
-        articoli.add(new Articolo("Latte Macchiato", "Latte con una spruzzata di caffè", 2.80, 60));
-        articoli.add(new Articolo("Cornetto Vuoto", "Cornetto semplice", 1.20, 150));
-        articoli.add(new Articolo("Cornetto alla Crema", "Cornetto ripieno di crema", 1.50, 120));
-        articoli.add(new Articolo("Torta al Cioccolato", "Fetta di torta al cioccolato", 3.00, 50));
-        articoli.add(new Articolo("Torta di Mele", "Fetta di torta di mele", 2.80, 40));
-        articoli.add(new Articolo("Succo d'Arancia", "Bicchiere di succo d'arancia fresco", 2.00, 70));
-        articoli.add(new Articolo("Torta Salata", "Fetta di torta salata con verdure", 3.50, 30));
-        articoli.add(new Articolo("Panino Prosciutto e Formaggio", "Panino con prosciutto e formaggio", 4.00, 90));
-        articoli.add(new Articolo("Acqua Naturale", "Bottiglia di acqua naturale", 1.00, 200));
-        articoli.add(new Articolo("Acqua Frizzante", "Bottiglia di acqua frizzante", 1.20, 180));
+        articoli.addAll(new Articolo("Espresso", "Caffè espresso classico", 1.50, 100),
+                        new Articolo("Cappuccino", "Caffè con latte e schiuma", 2.50, 80),
+                        new Articolo("Latte Macchiato", "Latte con una spruzzata di caffè", 2.80, 60),
+                        new Articolo("Cornetto Vuoto", "Cornetto semplice", 1.20, 150),
+                        new Articolo("Cornetto alla Crema", "Cornetto ripieno di crema", 1.50, 120),
+                        new Articolo("Torta al Cioccolato", "Fetta di torta al cioccolato", 3.00, 50),
+                        new Articolo("Torta di Mele", "Fetta di torta di mele", 2.80, 40),
+                        new Articolo("Succo d'Arancia", "Bicchiere di succo d'arancia fresco", 2.00, 70),
+                        new Articolo("Torta Salata", "Fetta di torta salata con verdure", 3.50, 30),
+                        new Articolo("Panino Prosciutto e Formaggio", "Panino con prosciutto e formaggio", 4.00, 90),
+                        new Articolo("Acqua Naturale", "Bottiglia di acqua naturale", 1.00, 200),
+                        new Articolo("Acqua Frizzante", "Bottiglia di acqua frizzante", 1.20, 180));
+    }
+
+    /**
+     * Gets the articles observable list
+     * @return ObservableList of Articolo
+     */
+    public ObservableList<Articolo> getArticoli() {
+        return articoli;
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("AddressApp");
+        initRootLayout();
+        showMenuOverview();
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    public void initRootLayout() {
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
+            rootLayout = (BorderPane) loader.load();
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+
+            // Give the controller access to the main app.
+            RootLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // Try to load last opened person file.
+        // File file = getPersonFilePath();
+        // if (file != null) {
+        //     loadPersonDataFromFile(file);
+        // }
+    }
+
+    /**
+     * Shows the menu overview inside the root layout.
+     */
+    public void showMenuOverview() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/MenuOverview.fxml"));
+            BorderPane menuOverview = (BorderPane) loader.load();
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(menuOverview);
+            // Give the controller access to the main app.
+            MenuOverviewController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
@@ -55,7 +109,7 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 
 }
