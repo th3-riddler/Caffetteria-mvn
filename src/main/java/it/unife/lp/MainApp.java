@@ -9,12 +9,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 
 import it.unife.lp.model.Articolo;
+import it.unife.lp.view.ItemEditDialogController;
 import it.unife.lp.view.MenuOverviewController;
 import it.unife.lp.view.RootLayoutController;
 
@@ -40,7 +42,7 @@ public class MainApp extends Application {
                         new Articolo("Torta Salata", "Fetta di torta salata con verdure", 3.50, 30),
                         new Articolo("Panino Prosciutto e Formaggio", "Panino con prosciutto e formaggio", 4.00, 90),
                         new Articolo("Acqua Naturale", "Bottiglia di acqua naturale", 1.00, 200),
-                        new Articolo("Acqua Frizzante", "Bottiglia di acqua frizzante", 1.20, 180));
+                        new Articolo("Acqua Frizzante", "Bottiglia di acqua frizzante", 1.00, 200));
     }
 
     /**
@@ -103,9 +105,36 @@ public class MainApp extends Application {
         }
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+    public boolean showItemEditDialog(Articolo articolo, String descrizioneDialog) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/ItemEditDialog.fxml"));
+            BorderPane page = (BorderPane) loader.load();
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle(descrizioneDialog);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            ItemEditDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setItem(articolo);
+            controller.setDescrizionDialog(descrizioneDialog);
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
 
     public static void main(String[] args) {

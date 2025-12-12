@@ -3,6 +3,8 @@ package it.unife.lp.view;
 import it.unife.lp.MainApp;
 import it.unife.lp.model.Articolo;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -13,7 +15,7 @@ public class MenuOverviewController {
     @FXML
     private TableColumn<Articolo, String> nomeArticoloColumn;
     @FXML
-    private TableColumn<Articolo, Number> prezzoArticoloColumn;
+    private TableColumn<Articolo, String> prezzoArticoloColumn;
     @FXML
     private Label nomeLabel;
     @FXML
@@ -32,7 +34,12 @@ public class MenuOverviewController {
     private void initialize() {
         // Initialize the items table with the columns.
         nomeArticoloColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
-        prezzoArticoloColumn.setCellValueFactory(cellData -> cellData.getValue().prezzoProperty());
+        prezzoArticoloColumn.setCellValueFactory(cellData -> 
+            javafx.beans.binding.Bindings.createStringBinding(
+            () -> String.format("%.2f €", cellData.getValue().prezzoProperty().get()),
+            cellData.getValue().prezzoProperty()
+            )
+        );
         // Clear item details.
         showItemDetails(null);
         // Listen for selection changes and show the item details when changed.
@@ -49,8 +56,54 @@ public class MenuOverviewController {
     private void showItemDetails(Articolo articolo) {
         nomeLabel.setText(articolo != null ? articolo.getNome() : "");
         descrizioneLabel.setText(articolo != null ? articolo.getDescrizione() : "");
-        prezzoLabel.setText(articolo != null ? String.valueOf(articolo.getPrezzo()) : "");
+        prezzoLabel.setText(articolo != null ? String.format("%.2f €", articolo.getPrezzo()) : "");
         stoccaggioLabel.setText(articolo != null ? String.valueOf(articolo.getStoccaggio()) : "");
+    }
+
+    @FXML
+    private void handleNewItem() {
+        Articolo articoloTmp = new Articolo();
+        boolean okClicked = mainApp.showItemEditDialog(articoloTmp, "Nuovo Articolo");
+        if (okClicked) {
+            mainApp.getArticoli().add(articoloTmp);
+        }
+    }
+
+    @FXML
+    private void handleDeleteItem() {
+        int selectedIndex = articoliTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            articoliTable.getItems().remove(selectedIndex);
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("Nessuna Selezione");
+            alert.setHeaderText("Nessun Articolo Selezionato");
+            alert.setContentText("Per favore seleziona un articolo dalla tabella.");
+
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void handleEditItem() {
+        Articolo selectedItem = articoliTable.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            boolean okClicked = mainApp.showItemEditDialog(selectedItem, "Modifica Articolo");
+            if (okClicked) {
+                showItemDetails(selectedItem);
+            }
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("Nessuna Selezione");
+            alert.setHeaderText("Nessun Articolo Selezionato");
+            alert.setContentText("Per favore seleziona un articolo dalla tabella.");
+
+            alert.showAndWait();
+        }
     }
 
 }

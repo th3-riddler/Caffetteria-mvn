@@ -13,6 +13,8 @@ public class Articolo {
     private final DoubleProperty prezzo;
     private final IntegerProperty stoccaggio;
 
+    public Articolo() { this("", "", 0.0, 0); }
+    
     /**
      * Constructor for Articolo
      * 
@@ -27,6 +29,7 @@ public class Articolo {
         this.prezzo = new SimpleDoubleProperty(prezzo);
         this.stoccaggio = new SimpleIntegerProperty(stoccaggio);
     }
+
 
     public String getNome() { return this.nome.get(); }
     public StringProperty nomeProperty() { return this.nome; }
