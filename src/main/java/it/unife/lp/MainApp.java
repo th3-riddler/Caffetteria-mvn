@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 
 import it.unife.lp.model.Articolo;
+import it.unife.lp.model.Ordine;
 import it.unife.lp.view.ItemEditDialogController;
 import it.unife.lp.view.MenuOverviewController;
 import it.unife.lp.view.RootLayoutController;
@@ -28,6 +29,7 @@ public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private ObservableList<Articolo> articoli = FXCollections.observableArrayList();
+    private ObservableList<Ordine> ordini = FXCollections.observableArrayList();
 
     public MainApp() {
         // Sample data
@@ -43,6 +45,8 @@ public class MainApp extends Application {
                         new Articolo("Panino Prosciutto e Formaggio", "Panino con prosciutto e formaggio", 4.00, 90),
                         new Articolo("Acqua Naturale", "Bottiglia di acqua naturale", 1.00, 200),
                         new Articolo("Acqua Frizzante", "Bottiglia di acqua frizzante", 1.00, 200));
+
+        ordini.addAll(new Ordine(1), new Ordine(2), new Ordine(3));
     }
 
     /**
@@ -51,6 +55,14 @@ public class MainApp extends Application {
      */
     public ObservableList<Articolo> getArticoli() {
         return articoli;
+    }
+
+    /**
+     * Gets the orders observable list
+     * @return ObservableList of Ordine
+     */
+    public ObservableList<Ordine> getOrdini() {
+        return ordini;
     }
 
     @Override
@@ -91,12 +103,28 @@ public class MainApp extends Application {
      */
     public void showMenuOverview() {
         try {
-            // Load person overview.
+            // Load menu overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/MenuOverview.fxml"));
             BorderPane menuOverview = (BorderPane) loader.load();
-            // Set person overview into the center of root layout.
+            // Set menu overview into the center of root layout.
             rootLayout.setCenter(menuOverview);
+            // Give the controller access to the main app.
+            MenuOverviewController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showOrdiniView() {
+        try {
+            // Load Ordini view.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/OrdiniView.fxml"));
+            BorderPane ordiniView = (BorderPane) loader.load();
+            // Set ordini view into the center of root layout.
+            rootLayout.setCenter(ordiniView);
             // Give the controller access to the main app.
             MenuOverviewController controller = loader.getController();
             controller.setMainApp(this);

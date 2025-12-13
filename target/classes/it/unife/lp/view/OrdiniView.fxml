@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unife.lp.view.OrdiniViewController">
+   <left>
+      <TableView fx:id="ordiniLeftTable" prefHeight="400.0" prefWidth="242.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="idOrdineLeftColumn" prefWidth="48.0" text="ID" />
+          <TableColumn fx:id="dataOrdineLeftColumn" prefWidth="72.0" text="Data" />
+            <TableColumn fx:id="totaleOrdineLeftColumn" prefWidth="55.0" text="Totale" />
+            <TableColumn fx:id="statoOrdineLeftColumn" prefWidth="73.0" text="Stato" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Dettaglio Ordine" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </Label>
+            <GridPane prefHeight="70.0" prefWidth="338.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="54.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="284.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="ID:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label text="Data:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label text="Stato:" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="idLabel" text="Label" GridPane.columnIndex="1" />
+                  <Label fx:id="dataLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="statoLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <TableView fx:id="vociOrdineRightTable" prefHeight="181.0" prefWidth="338.0">
+              <columns>
+                <TableColumn fx:id="nomeVoceRightColumn" prefWidth="114.0" text="Nome" />
+                <TableColumn fx:id="prezzoUnitarioVoceRightColumn" prefWidth="79.0" text="Prezzo cad." />
+                  <TableColumn fx:id="quantitaVoceRightColumn" prefWidth="66.0" text="Quantità" />
+                  <TableColumn fx:id="prezzoTotaleVoceRightColumn" prefWidth="77.0" text="Prezzo tot." />
+              </columns>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="338.0">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <children>
+                  <Label text="Sconto:" />
+                  <Label fx:id="scontoLabel" text="Label">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Region prefHeight="26.0" prefWidth="138.0" />
+                  <Label text="Totale:">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="totaleLabel" text="Label">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <ButtonBar prefHeight="40.0" prefWidth="200.0">
+              <buttons>
+                <Button mnemonicParsing="false" text="Paga" />
+                  <Button mnemonicParsing="false" text="Ricevuta" />
+                  <Button mnemonicParsing="false" text="Rimuovi" />
+              </buttons>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </ButtonBar>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>

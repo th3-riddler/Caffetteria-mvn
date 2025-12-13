@@ -27,6 +27,16 @@ public class RootLayoutController {
         this.mainApp = mainApp;
     }
 
+    @FXML
+    private void handleShowMenuOverview() {
+        mainApp.showMenuOverview();
+    }
+
+    @FXML
+    private void handleShowOrdiniView() {
+        mainApp.showOrdiniView();
+    }
+
     // /**
     //  * Creates an empty address book.
     //  */

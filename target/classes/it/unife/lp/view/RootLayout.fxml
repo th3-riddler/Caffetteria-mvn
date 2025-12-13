@@ -15,17 +15,12 @@
          </padding>
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="108.0" text="Caffetteria" textAlignment="CENTER" />
-            <Button mnemonicParsing="false" text="Menù" textAlignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#handleShowMenuOverview" text="Menù" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Ordini" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" text="Pagamenti" textAlignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#handleShowOrdiniView" text="Ordini" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

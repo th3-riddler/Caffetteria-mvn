@@ -10,6 +10,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Ordine {
@@ -55,6 +57,11 @@ public class Ordine {
     public LocalDateTime getDataOra() { return this.dataOra.get(); }
     public ObjectProperty<LocalDateTime> dataOraProperty() { return this.dataOra; }
     public void setDataOra(LocalDateTime dataOra) { this.dataOra.set(dataOra); }
+
+    public LocalDate getData() { return this.dataOra.get().toLocalDate(); }
+    public ObjectProperty<LocalDate> dataProperty() {
+        return new SimpleObjectProperty<>(this.dataOra.get().toLocalDate());
+    }
 
     public ObservableList<VoceOrdine> getVoci() { return this.voci; }
 
