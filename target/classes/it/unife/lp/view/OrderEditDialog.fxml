@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unife.lp.view.OrderEditDialogController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unife.lp.view.OrderEditDialogController">
    <left>
       <TableView fx:id="articoliLeftTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
@@ -65,7 +65,7 @@
                         <Insets />
                      </HBox.margin>
                   </HBox>
-                  <Region prefHeight="70.0" prefWidth="147.0" />
+                  <Region prefHeight="59.0" prefWidth="174.0" />
                   <Label text="Totale:" />
                   <Label fx:id="totaleLabel" text="Label" />
                </children>
@@ -75,9 +75,26 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="addItemButton" mnemonicParsing="false" onAction="#handleAddItem" text="Aggiungi" />
-                  <Button fx:id="removeItemButton" mnemonicParsing="false" onAction="#handleRemoveItem" text="Rimuovi" />
-                  <Region prefHeight="100.0" prefWidth="102.0" />
+                  <HBox alignment="CENTER_LEFT" prefWidth="250.0" spacing="10.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Button fx:id="addItemButton" mnemonicParsing="false" onAction="#handleAddItem" text="Aggiungi" />
+                              <Button fx:id="removeItemButton" mnemonicParsing="false" onAction="#handleRemoveItem" text="Rimuovi" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="quantitaBox" alignment="CENTER_LEFT" spacing="5.0">
+                           <children>
+                              <Label text="Quant." />
+                              <TextField fx:id="quantitaField" prefHeight="26.0" prefWidth="45.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <Region prefHeight="59.0" prefWidth="26.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancella" />

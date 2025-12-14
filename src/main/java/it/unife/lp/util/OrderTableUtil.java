@@ -24,7 +24,12 @@ public class OrderTableUtil {
                 cellData.getValue().getArticolo().prezzoProperty()
             )
         );
-        quantitaCol.setCellValueFactory(cellData -> cellData.getValue().quantitaProperty());
+        
+        // Chacks that the quantity does not exceed the available stock
+        quantitaCol.setCellValueFactory(cellData -> cellData.getValue().getQuantita() <= cellData.getValue().getArticolo().getStoccaggio() ?
+            cellData.getValue().quantitaProperty() :
+            cellData.getValue().getArticolo().stoccaggioProperty()
+        );
 
         // Uses Bindings to format the total price values as strings with the euro symbol in order to keep them updated if the price of the article or the quantity changes
         prezzoTotaleCol.setCellValueFactory(cellData -> 

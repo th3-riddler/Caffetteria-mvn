@@ -55,6 +55,11 @@ public class OrderEditDialogController {
     private Button removeItemButton; // Button to remove item from the order
 
     @FXML
+    private HBox quantitaBox; // Box containing quantity label and text field
+    @FXML
+    private TextField quantitaField;
+
+    @FXML
     private void initialize() {
         // Initialize the items table with the columns.
         nomeArticoloLeftTableColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
@@ -75,10 +80,11 @@ public class OrderEditDialogController {
             }
         });
 
+        // The addItemButton is visible only when an item is selected on the left table and no item is selected on the right table
         addItemButton.visibleProperty().bind(
             Bindings.and(
-                articoliLeftTable.getSelectionModel().selectedItemProperty().isNotNull(),
-                vociOrdineRightTable.getSelectionModel().selectedItemProperty().isNull()
+                articoliLeftTable.getSelectionModel().selectedItemProperty().isNotNull(), // An item is selected on the left
+                vociOrdineRightTable.getSelectionModel().selectedItemProperty().isNull() // No item is selected on the right
             )
         );
 
@@ -86,23 +92,42 @@ public class OrderEditDialogController {
             addItemButton.visibleProperty()
         );
 
+        // The removeItemButton is visible only when an item is selected on the right table and no item is selected on the left table
         removeItemButton.visibleProperty().bind(
-            vociOrdineRightTable.getSelectionModel().selectedItemProperty().isNotNull()
+            Bindings.and(
+                vociOrdineRightTable.getSelectionModel().selectedItemProperty().isNotNull(), // An item is selected on the right
+                articoliLeftTable.getSelectionModel().selectedItemProperty().isNull() // No item is selected on the left
+            )
         );
 
         removeItemButton.managedProperty().bind(
             removeItemButton.visibleProperty()
         );
 
+        quantitaBox.visibleProperty().bind(
+            Bindings.or(
+                articoliLeftTable.getSelectionModel().selectedItemProperty().isNotNull(),
+                vociOrdineRightTable.getSelectionModel().selectedItemProperty().isNotNull()
+            )
+        );
+        
+        quantitaBox.managedProperty().bind(
+            quantitaBox.visibleProperty()
+        );
+
+        // Listeners to clear selection on the opposite table when an item is selected
         vociOrdineRightTable.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue != null) {
                 articoliLeftTable.getSelectionModel().clearSelection();
+                quantitaField.setText("1");
             }
         });
 
+        // Listener to clear selection on the opposite table when an item is selected
         articoliLeftTable.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue != null) {
                 vociOrdineRightTable.getSelectionModel().clearSelection();
+                quantitaField.setText("1");
             }
         });
     }
@@ -126,20 +151,61 @@ public class OrderEditDialogController {
     @FXML
     private void handleCancel() { /* TODO */ }
     
+    private boolean isQuantitaValid() {
+        String errorMessage = "";
+        try {
+            int quantita = Integer.parseInt(quantitaField.getText());
+            if (quantita < 1) {
+                errorMessage += "La quantità deve essere un numero intero positivo.\n";
+            }
+
+        } catch (NumberFormatException e) {
+            errorMessage += "La quantità deve essere un numero intero valido.\n";
+        }
+
+        if (errorMessage.isEmpty()) {
+            return true;
+        } else {
+            // Show the error message.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(dialogStage);
+            alert.setTitle("Input non valido");
+            alert.setHeaderText("Correggi i campi non validi");
+            alert.setContentText(errorMessage);
+            alert.showAndWait();
+            return false;
+        }
+    }
+
     @FXML
     private void handleAddItem() {
         Articolo selectedArticolo = articoliLeftTable.getSelectionModel().getSelectedItem();
         if (selectedArticolo != null) {
+            int quantitaDaAggiungere = isQuantitaValid() ? Integer.parseInt(quantitaField.getText()) : 1;
+
+            if (quantitaDaAggiungere > selectedArticolo.getStoccaggio()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.initOwner(dialogStage);
+                alert.setTitle("Input non valido");
+                alert.setHeaderText("Correggi i campi non validi");
+                alert.setContentText("La quantità richiesta supera lo stoccaggio disponibile (" + selectedArticolo.getStoccaggio() + ").\n");
+                alert.showAndWait();
+                return;
+            }
+
+            System.out.println("Adding quantity: " + quantitaDaAggiungere + " of article: " + selectedArticolo.getNome());
             ordine.getVoci().stream()
                 .filter(voce -> voce.getArticolo().equals(selectedArticolo))
                 .findFirst()
                 .ifPresentOrElse(
-                    voce -> voce.setQuantita(voce.getQuantita() + 1),
+                    voce -> voce.setQuantita(voce.getQuantita() + quantitaDaAggiungere),
                     () -> {
-                        VoceOrdine nuovaVoce = new VoceOrdine(selectedArticolo, 1);
+                        VoceOrdine nuovaVoce = new VoceOrdine(selectedArticolo, quantitaDaAggiungere);
                         ordine.aggiungiVoce(nuovaVoce);
                     }
                 );
+            
+            
         }
     }
 
@@ -147,10 +213,22 @@ public class OrderEditDialogController {
     private void handleRemoveItem() {
         VoceOrdine selectedVoce = vociOrdineRightTable.getSelectionModel().getSelectedItem();
         if (selectedVoce != null) {
-            if (selectedVoce.getQuantita() > 1) {
-                selectedVoce.setQuantita(selectedVoce.getQuantita() - 1);
-            } else {
+            int quantitaDaRimuovere = isQuantitaValid() ? Integer.parseInt(quantitaField.getText()) : 1;
+
+            if (quantitaDaRimuovere > selectedVoce.getQuantita()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.initOwner(dialogStage);
+                alert.setTitle("Input non valido");
+                alert.setHeaderText("Correggi i campi non validi");
+                alert.setContentText("La quantità da rimuovere supera la quantità presente nell'ordine (" + selectedVoce.getQuantita() + ").\n");
+                alert.showAndWait();
+                return;
+            }
+
+            if (quantitaDaRimuovere == selectedVoce.getQuantita()) {
                 ordine.rimuoviVoce(selectedVoce);
+            } else {
+                selectedVoce.setQuantita(selectedVoce.getQuantita() - quantitaDaRimuovere);
             }
         }
     }
