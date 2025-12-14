@@ -130,7 +130,13 @@ public class OrdiniViewController {
 
     @FXML
     private void handleNewOrder() {
-        Ordine ordineTmp = new Ordine(10);
+        // Finds the next available ID based on the existing orders
+        int nextId = mainApp.getOrdini().stream()
+                .mapToInt(Ordine::getId)
+                .max()
+                .orElse(0) + 1;
+
+        Ordine ordineTmp = new Ordine(nextId);
         boolean saveClicked = mainApp.showOrderEditDialog(ordineTmp, "Nuovo Ordine");
         if (saveClicked) {
             mainApp.getOrdini().add(ordineTmp);

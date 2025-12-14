@@ -3,6 +3,7 @@ package it.unife.lp.view;
 import it.unife.lp.model.Articolo;
 import it.unife.lp.model.Ordine;
 import it.unife.lp.model.VoceOrdine;
+import it.unife.lp.util.AlertsUtil;
 import it.unife.lp.util.OrderTableUtil;
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
@@ -136,10 +137,13 @@ public class OrderEditDialogController {
         articoliLeftTable.setItems(articoli);
     }
 
+    public boolean isSaveClicked() {
+        return saveClicked;
+    }
+
     @FXML
     private void handleSaveOrder() {
-        if (isInputValidtoSave()) {
-            ordine.setScontoPercentuale(Double.parseDouble(scontoPercentualeField.getText()));
+        if (isOrderValidtoSave()) {
             saveClicked = true;
             dialogStage.close();
         }
@@ -181,31 +185,45 @@ public class OrderEditDialogController {
     private void handleAddItem() {
         Articolo selectedArticolo = articoliLeftTable.getSelectionModel().getSelectedItem();
         if (selectedArticolo != null) {
-            int quantitaDaAggiungere = isQuantitaValid() ? Integer.parseInt(quantitaField.getText()) : 1;
+            // If the quantity is not valid, returns
+            if (!isQuantitaValid()) { return; }
 
-            if (quantitaDaAggiungere > selectedArticolo.getStoccaggio()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.initOwner(dialogStage);
-                alert.setTitle("Input non valido");
-                alert.setHeaderText("Correggi i campi non validi");
-                alert.setContentText("La quantità richiesta supera lo stoccaggio disponibile (" + selectedArticolo.getStoccaggio() + ").\n");
-                alert.showAndWait();
-                return;
-            }
+            // Else, gets the quantity to add
+            int quantitaDaAggiungere = Integer.parseInt(quantitaField.getText());
+
+            
 
             System.out.println("Adding quantity: " + quantitaDaAggiungere + " of article: " + selectedArticolo.getNome());
             ordine.getVoci().stream()
                 .filter(voce -> voce.getArticolo().equals(selectedArticolo))
                 .findFirst()
                 .ifPresentOrElse(
-                    voce -> voce.setQuantita(voce.getQuantita() + quantitaDaAggiungere),
+                    voce -> {
+                        if (quantitaDaAggiungere + voce.getQuantita() > selectedArticolo.getStoccaggio()) {
+                            AlertsUtil.alertWarning(
+                                dialogStage,
+                                "Input non valido",
+                                "Correggi i campi non validi",
+                                "La quantità richiesta supera lo stoccaggio disponibile (" + selectedArticolo.getStoccaggio() + ").\n"
+                            );
+                            return;
+                        }
+                        voce.setQuantita(voce.getQuantita() + quantitaDaAggiungere);
+                    },
                     () -> {
+                        if (quantitaDaAggiungere > selectedArticolo.getStoccaggio()) {
+                            AlertsUtil.alertWarning(
+                                dialogStage,
+                                "Input non valido",
+                                "Correggi i campi non validi",
+                                "La quantità richiesta supera lo stoccaggio disponibile (" + selectedArticolo.getStoccaggio() + ").\n"
+                            );
+                            return;
+                        }
                         VoceOrdine nuovaVoce = new VoceOrdine(selectedArticolo, quantitaDaAggiungere);
                         ordine.aggiungiVoce(nuovaVoce);
                     }
                 );
-            
-            
         }
     }
 
@@ -213,7 +231,11 @@ public class OrderEditDialogController {
     private void handleRemoveItem() {
         VoceOrdine selectedVoce = vociOrdineRightTable.getSelectionModel().getSelectedItem();
         if (selectedVoce != null) {
-            int quantitaDaRimuovere = isQuantitaValid() ? Integer.parseInt(quantitaField.getText()) : 1;
+            // If the quantity is not valid, returns
+            if (!isQuantitaValid()) { return; }
+
+            // Else, gets the quantity to add
+            int quantitaDaRimuovere = Integer.parseInt(quantitaField.getText());
 
             if (quantitaDaRimuovere > selectedVoce.getQuantita()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -225,11 +247,7 @@ public class OrderEditDialogController {
                 return;
             }
 
-            if (quantitaDaRimuovere == selectedVoce.getQuantita()) {
-                ordine.rimuoviVoce(selectedVoce);
-            } else {
-                selectedVoce.setQuantita(selectedVoce.getQuantita() - quantitaDaRimuovere);
-            }
+            ordine.rimuoviVoce(selectedVoce, quantitaDaRimuovere);
         }
     }
 
@@ -267,8 +285,11 @@ public class OrderEditDialogController {
     );
     }
 
-    private boolean isInputValidtoSave() {
+    private boolean isOrderValidtoSave() {
         String errorMessage = "";
+        if (ordine.getVoci().isEmpty()) {
+            errorMessage += "L'ordine deve contenere almeno una voce.\n";
+        }
         try {
             double sconto = Double.parseDouble(scontoPercentualeField.getText());
             if (sconto < 0 || sconto > 100) {

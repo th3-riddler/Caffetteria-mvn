@@ -115,11 +115,11 @@ public class Ordine {
      * Removes an item from the order
      * @param voce
      */
-    public void rimuoviVoce(VoceOrdine voce) {
-        if (voce.getQuantita() > 1) {
-            voce.setQuantita(voce.getQuantita() - 1);
-        } else {
+    public void rimuoviVoce(VoceOrdine voce, int quantita) {
+        if (quantita >= voce.getQuantita()) {
             this.voci.remove(voce);
+        } else {
+            voce.setQuantita(voce.getQuantita() - quantita);
         }
         calcolaTotale();
     }

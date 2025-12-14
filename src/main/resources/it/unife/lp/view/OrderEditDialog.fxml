@@ -95,12 +95,15 @@
                      </padding>
                   </HBox>
                   <Region prefHeight="59.0" prefWidth="26.0" />
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                  <HBox alignment="CENTER" prefHeight="59.0" prefWidth="211.0" spacing="10.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancella" />
                         <Button mnemonicParsing="false" onAction="#handleSaveOrder" text="Salva" />
                         <Button mnemonicParsing="false" onAction="#handlePayOrder" text="Paga" />
                      </children>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
                   </HBox>
                </children>
                <VBox.margin>

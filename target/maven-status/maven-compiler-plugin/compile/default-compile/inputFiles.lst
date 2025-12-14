@@ -2,6 +2,7 @@
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/MainApp.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/view/OrdiniViewController.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/view/OrderEditDialogController.java
+/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/util/AlertsUtil.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/util/DateUtil.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/model/VoceOrdine.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/model/Ordine.java
