@@ -19,6 +19,7 @@ import it.unife.lp.model.Articolo;
 import it.unife.lp.model.Ordine;
 import it.unife.lp.view.ItemEditDialogController;
 import it.unife.lp.view.MenuOverviewController;
+import it.unife.lp.view.OrdiniViewController;
 import it.unife.lp.view.RootLayoutController;
 
 /**
@@ -47,6 +48,20 @@ public class MainApp extends Application {
                         new Articolo("Acqua Frizzante", "Bottiglia di acqua frizzante", 1.00, 200));
 
         ordini.addAll(new Ordine(1), new Ordine(2), new Ordine(3));
+        ordini.get(0).setVoci(FXCollections.observableArrayList(
+            new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
+            new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
+            new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
+            new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
+            new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
+            new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
+            new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
+            new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
+            new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
+            new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
+            new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
+            new it.unife.lp.model.VoceOrdine(articoli.get(3), 1)
+        ));
     }
 
     /**
@@ -126,7 +141,7 @@ public class MainApp extends Application {
             // Set ordini view into the center of root layout.
             rootLayout.setCenter(ordiniView);
             // Give the controller access to the main app.
-            MenuOverviewController controller = loader.getController();
+            OrdiniViewController controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();

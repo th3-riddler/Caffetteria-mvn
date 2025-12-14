@@ -64,6 +64,11 @@ public class Ordine {
     }
 
     public ObservableList<VoceOrdine> getVoci() { return this.voci; }
+    public void setVoci(ObservableList<VoceOrdine> voci) { 
+        this.voci.clear();
+        this.voci.addAll(voci);
+        calcolaTotale();
+    }
 
     public double getSconto() { return this.scontoPercentuale.get(); }
     public DoubleProperty scontoProperty() { return this.scontoPercentuale; }

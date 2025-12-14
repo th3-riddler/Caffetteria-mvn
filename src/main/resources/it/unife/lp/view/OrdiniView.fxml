@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unife.lp.view.OrdiniViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unife.lp.view.OrdiniViewController">
    <left>
       <TableView fx:id="ordiniLeftTable" prefHeight="400.0" prefWidth="242.0" BorderPane.alignment="CENTER">
         <columns>
@@ -32,17 +34,44 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Dettaglio Ordine" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font size="26.0" />
-               </font>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
-               <padding>
-                  <Insets bottom="5.0" />
-               </padding>
-            </Label>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Dettaglio Ordine" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                  </Label>
+                  <Region prefHeight="42.0" prefWidth="62.0" />
+                  <HBox fx:id="orderActionsHBox" alignment="CENTER" spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/edit.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/delete.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
             <GridPane prefHeight="70.0" prefWidth="338.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="54.0" />
@@ -88,9 +117,9 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="338.0">
+            <HBox alignment="CENTER" prefHeight="29.0" prefWidth="338.0">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
                <children>
                   <Label text="Sconto:" />
@@ -98,8 +127,11 @@
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
                   </Label>
-                  <Region prefHeight="26.0" prefWidth="138.0" />
+                  <Region prefHeight="18.0" prefWidth="157.0" />
                   <Label text="Totale:">
                      <HBox.margin>
                         <Insets left="5.0" />
@@ -107,19 +139,23 @@
                   </Label>
                   <Label fx:id="totaleLabel" text="Label">
                      <HBox.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0" right="10.0" />
                      </HBox.margin>
                   </Label>
                </children>
+               <padding>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </padding>
             </HBox>
-            <ButtonBar prefHeight="40.0" prefWidth="200.0">
+            <ButtonBar prefHeight="40.0" prefWidth="423.0">
               <buttons>
-                <Button mnemonicParsing="false" text="Paga" />
+                <Button mnemonicParsing="false" prefHeight="26.0" text="Nuovo" />
+                  <Region prefHeight="40.0" prefWidth="200.0" />
+                  <Button mnemonicParsing="false" text="Paga" />
                   <Button mnemonicParsing="false" text="Ricevuta" />
-                  <Button mnemonicParsing="false" text="Rimuovi" />
               </buttons>
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top="5.0" />
                </VBox.margin>
             </ButtonBar>
          </children>

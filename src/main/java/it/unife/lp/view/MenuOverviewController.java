@@ -2,6 +2,7 @@ package it.unife.lp.view;
 
 import it.unife.lp.MainApp;
 import it.unife.lp.model.Articolo;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -35,9 +36,9 @@ public class MenuOverviewController {
         // Initialize the items table with the columns.
         nomeArticoloColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
         prezzoArticoloColumn.setCellValueFactory(cellData -> 
-            javafx.beans.binding.Bindings.createStringBinding(
-            () -> String.format("%.2f €", cellData.getValue().prezzoProperty().get()),
-            cellData.getValue().prezzoProperty()
+            Bindings.createStringBinding(
+                () -> String.format("%.2f €", cellData.getValue().getPrezzo()),
+                cellData.getValue().prezzoProperty()
             )
         );
         // Clear item details.
