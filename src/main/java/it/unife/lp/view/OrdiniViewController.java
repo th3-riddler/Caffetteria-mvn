@@ -51,7 +51,11 @@ public class OrdiniViewController {
     private Label totaleLabel;
 
     @FXML
-    private HBox orderActionsHBox; // HBox containing actions related to the selected order (Edit and Delete Buttons)
+    private HBox editDeleteOrderHbox; // HBox containing actions related to the selected order (Edit and Delete Buttons)
+    @FXML
+    private HBox payReciptOrderHbox;
+    @FXML
+    private HBox newOrderHbox;
 
     private MainApp mainApp;
 
@@ -82,11 +86,19 @@ public class OrdiniViewController {
                 .addListener((obs, oldValue, newValue) -> showOrderDetails(newValue));
 
         // Binds the visibility of the order actions HBox to whether an order is selected in the left table
-        orderActionsHBox.visibleProperty().bind(
+        editDeleteOrderHbox.visibleProperty().bind(
             ordiniLeftTable.getSelectionModel().selectedItemProperty().isNotNull()
         );
         // Binds the management of the order actions HBox to whether an order is selected in the left table (so that it doesn't take up space when not visible)
-        orderActionsHBox.managedProperty().bind(
+        editDeleteOrderHbox.managedProperty().bind(
+            ordiniLeftTable.getSelectionModel().selectedItemProperty().isNotNull()
+        );
+
+        payReciptOrderHbox.visibleProperty().bind(
+            ordiniLeftTable.getSelectionModel().selectedItemProperty().isNotNull()
+        );
+
+        payReciptOrderHbox.managedProperty().bind(
             ordiniLeftTable.getSelectionModel().selectedItemProperty().isNotNull()
         );
     }

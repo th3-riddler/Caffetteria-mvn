@@ -48,7 +48,7 @@
                      </padding>
                   </Label>
                   <Region prefHeight="42.0" prefWidth="62.0" />
-                  <HBox fx:id="orderActionsHBox" alignment="CENTER" spacing="10.0">
+                  <HBox fx:id="editDeleteOrderHbox" alignment="CENTER" spacing="10.0">
                      <children>
                         <Button mnemonicParsing="false">
                            <graphic>
@@ -147,17 +147,21 @@
                   <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </padding>
             </HBox>
-            <ButtonBar prefHeight="40.0" prefWidth="423.0">
-              <buttons>
-                <Button mnemonicParsing="false" prefHeight="26.0" text="Nuovo" />
-                  <Region prefHeight="40.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" text="Paga" />
-                  <Button mnemonicParsing="false" text="Ricevuta" />
-              </buttons>
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </ButtonBar>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" VBox.vgrow="ALWAYS">
+                <children>
+                    <Button mnemonicParsing="false" text="Nuovo" />
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <HBox fx:id="payReciptOrderHbox" alignment="CENTER_RIGHT" spacing="15.0">
+                        <children>
+                            <Button mnemonicParsing="false" text="Paga" />
+                            <Button mnemonicParsing="false" text="Ricevuta" />
+                        </children>
+                    </HBox>
+                </children>
+                <padding>
+                    <Insets left="0.0" right="0.0"/>
+                </padding>
+            </HBox>
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />

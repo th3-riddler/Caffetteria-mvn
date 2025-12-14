@@ -62,6 +62,7 @@ public class MainApp extends Application {
             new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
             new it.unife.lp.model.VoceOrdine(articoli.get(3), 1)
         ));
+        ordini.get(0).setScontoPercentuale(10);
     }
 
     /**
