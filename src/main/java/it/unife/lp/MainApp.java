@@ -19,6 +19,7 @@ import it.unife.lp.model.Articolo;
 import it.unife.lp.model.Ordine;
 import it.unife.lp.view.ItemEditDialogController;
 import it.unife.lp.view.MenuOverviewController;
+import it.unife.lp.view.OrderEditDialogController;
 import it.unife.lp.view.OrdiniViewController;
 import it.unife.lp.view.RootLayoutController;
 
@@ -163,11 +164,38 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            // Set the person into the controller.
             ItemEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setItem(articolo);
             controller.setDescrizionDialog(descrizioneDialog);
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean showOrderEditDialog(Ordine ordine, String descrizioneDialog) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/OrderEditDialog.fxml"));
+            BorderPane page = (BorderPane) loader.load();
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle(descrizioneDialog);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            OrderEditDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setItem(ordine);
+            controller.setDescrizionDialog(descrizioneDialog);
+            controller.setArticoli(this.getArticoli());
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
             return controller.isOkClicked();

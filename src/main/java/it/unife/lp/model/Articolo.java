@@ -46,5 +46,48 @@ public class Articolo {
     public int getStoccaggio() { return this.stoccaggio.get(); }
     public IntegerProperty stoccaggioProperty() { return this.stoccaggio; }
     public void setStoccaggio(int stoccaggio) { this.stoccaggio.set(stoccaggio); }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+        result = prime * result + ((descrizione == null) ? 0 : descrizione.hashCode());
+        result = prime * result + ((prezzo == null) ? 0 : prezzo.hashCode());
+        result = prime * result + ((stoccaggio == null) ? 0 : stoccaggio.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Articolo other = (Articolo) obj;
+        if (nome == null) {
+            if (other.nome != null)
+                return false;
+        } else if (!nome.equals(other.nome))
+            return false;
+        if (descrizione == null) {
+            if (other.descrizione != null)
+                return false;
+        } else if (!descrizione.equals(other.descrizione))
+            return false;
+        if (prezzo == null) {
+            if (other.prezzo != null)
+                return false;
+        } else if (!prezzo.equals(other.prezzo))
+            return false;
+        if (stoccaggio == null) {
+            if (other.stoccaggio != null)
+                return false;
+        } else if (!stoccaggio.equals(other.stoccaggio))
+            return false;
+        return true;
+    }
     
 }

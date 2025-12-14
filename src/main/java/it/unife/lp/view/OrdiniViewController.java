@@ -7,8 +7,8 @@ import it.unife.lp.model.Articolo;
 import it.unife.lp.model.Ordine;
 import it.unife.lp.model.VoceOrdine;
 import it.unife.lp.util.DateUtil;
+import it.unife.lp.util.OrderTableUtil;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -53,9 +53,7 @@ public class OrdiniViewController {
     @FXML
     private HBox editDeleteOrderHbox; // HBox containing actions related to the selected order (Edit and Delete Buttons)
     @FXML
-    private HBox payReciptOrderHbox;
-    @FXML
-    private HBox newOrderHbox;
+    private HBox payReciptOrderHbox; // HBox containing actions related to the selected order (Pay and Receipt Buttons)
 
     private MainApp mainApp;
 
@@ -116,32 +114,27 @@ public class OrdiniViewController {
         scontoLabel.setText(ordine != null ? String.format("%.2f %%", ordine.getSconto()) : "");
         totaleLabel.setText(ordine != null ? String.format("%.2f €", ordine.getPrezzoTotale()) : "");
 
-        if (ordine != null) {  }
-
-        if (ordine != null) { populateItemsTable(ordine); }
+        if (ordine != null) { 
+            OrderTableUtil.populateItemsTable(
+                    vociOrdineRightTable,
+                    nomeVoceRightColumn,
+                    prezzoUnitarioVoceRightColumn,
+                    quantitaVoceRightColumn,
+                    prezzoTotaleVoceRightColumn,
+                    ordine
+            );
+        } else {
+            vociOrdineRightTable.setItems(null);
+        }
     }
 
-    private void populateItemsTable(Ordine ordine) {
-        nomeVoceRightColumn.setCellValueFactory(cellData -> cellData.getValue().getArticolo().nomeProperty());
-
-        // Uses Bindings to format the price values as strings with the euro symbol in order to keep them updated if the price of the article changes
-        prezzoUnitarioVoceRightColumn.setCellValueFactory(cellData -> 
-            Bindings.createStringBinding(
-                () -> String.format("%.2f €", cellData.getValue().getArticolo().getPrezzo()),
-                cellData.getValue().getArticolo().prezzoProperty()
-            )
-        );
-        quantitaVoceRightColumn.setCellValueFactory(cellData -> cellData.getValue().quantitaProperty());
-
-        // Uses Bindings to format the total price values as strings with the euro symbol in order to keep them updated if the price of the article or the quantity changes
-        prezzoTotaleVoceRightColumn.setCellValueFactory(cellData -> 
-            Bindings.createStringBinding(
-                () -> String.format("%.2f €", cellData.getValue().getPrezzoTotale()),
-                cellData.getValue().prezzoTotaleProperty()
-            )
-        );
-        vociOrdineRightTable.setItems(ordine.getVoci());
-        scontoLabel.setText(String.format("%.2f %%", ordine.getSconto()));
-        totaleLabel.setText(String.format("%.2f €", ordine.getPrezzoTotale()));
+    @FXML
+    private void handleNewOrder() {
+        Ordine ordineTmp = new Ordine(10);
+        boolean saveClicked = mainApp.showOrderEditDialog(ordineTmp, "Nuovo Ordine");
+        if (saveClicked) {
+            mainApp.getOrdini().add(ordineTmp);
+        }
     }
+
 }

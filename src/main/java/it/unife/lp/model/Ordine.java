@@ -116,7 +116,11 @@ public class Ordine {
      * @param voce
      */
     public void rimuoviVoce(VoceOrdine voce) {
-        this.voci.remove(voce);
+        if (voce.getQuantita() > 1) {
+            voce.setQuantita(voce.getQuantita() - 1);
+        } else {
+            this.voci.remove(voce);
+        }
         calcolaTotale();
     }
 
@@ -144,6 +148,7 @@ public class Ordine {
 
         // Finds the amount to pay without the discount
         double totaleSenzaSconto = this.voci.stream().mapToDouble(VoceOrdine::getPrezzoTotale).sum();
+        System.out.println("Totale senza sconto: " + totaleSenzaSconto);
 
         // Applies the discount 
         this.prezzoTotale.set(totaleSenzaSconto * (1 - this.scontoPercentuale.get() / 100.0));
