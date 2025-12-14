@@ -195,7 +195,9 @@ public class MainApp extends Application {
             controller.setDialogStage(dialogStage);
             controller.setItem(ordine);
             controller.setDescrizionDialog(descrizioneDialog);
-            controller.setArticoli(this.getArticoli());
+            controller.setOrderId(ordine.getId());
+
+            controller.setMainApp(this);
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
             return controller.isSaveClicked();

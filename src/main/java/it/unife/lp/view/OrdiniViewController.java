@@ -62,6 +62,7 @@ public class OrdiniViewController {
         // Initializes the orders table with the columns.
         idOrdineLeftColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
         dataOrdineLeftColumn.setCellValueFactory(cellData -> cellData.getValue().dataProperty());
+        
         totaleOrdineLeftColumn.setCellValueFactory(cellData -> 
             Bindings.createStringBinding(
                 () -> String.format("%.2f €", cellData.getValue().getPrezzoTotale()),
@@ -142,5 +143,29 @@ public class OrdiniViewController {
             mainApp.getOrdini().add(ordineTmp);
         }
     }
+
+    @FXML
+    private void handleEditOrder() {
+        Ordine selectedOrdine = ordiniLeftTable.getSelectionModel().getSelectedItem();
+
+        if (selectedOrdine != null) {
+            boolean saveClicked = mainApp.showOrderEditDialog(selectedOrdine, "Modifica Ordine");
+            if (saveClicked) {
+                showOrderDetails(selectedOrdine);
+            } 
+        }
+    }
+
+    // @FXML
+    // private void handlePayOrder() {
+    //     Ordine selectedOrdine = ordiniLeftTable.getSelectionModel().getSelectedItem();
+
+    //     if (selectedOrdine != null) {
+    //         boolean isPaymentSuccessful = mainApp.showOrderPaymentDialog(selectedOrdine);
+    //         if (isPaymentSuccessful) {
+    //             showOrderDetails(selectedOrdine);
+    //         } 
+    //     }
+    // }
 
 }

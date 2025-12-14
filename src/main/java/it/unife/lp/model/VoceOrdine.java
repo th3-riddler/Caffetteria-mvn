@@ -29,4 +29,8 @@ public class VoceOrdine {
     public double getPrezzoTotale() { return this.prezzoTotale.get(); }
     public DoubleProperty prezzoTotaleProperty() { return this.prezzoTotale; }
     
+    public VoceOrdine copy() {
+        return new VoceOrdine(this.getArticolo(), this.getQuantita());
+    }
+
 }

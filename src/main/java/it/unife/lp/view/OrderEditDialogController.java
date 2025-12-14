@@ -1,14 +1,14 @@
 package it.unife.lp.view;
 
+import it.unife.lp.MainApp;
 import it.unife.lp.model.Articolo;
 import it.unife.lp.model.Ordine;
 import it.unife.lp.model.VoceOrdine;
 import it.unife.lp.util.AlertsUtil;
 import it.unife.lp.util.OrderTableUtil;
 import javafx.beans.binding.Bindings;
-import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 public class OrderEditDialogController {
 
     private Stage dialogStage;
-    private Ordine ordine;
+    private Ordine ordineOriginale, ordine;
     private boolean okClicked = false;
     private boolean saveClicked = false;
 
@@ -33,6 +33,8 @@ public class OrderEditDialogController {
     
     @FXML
     private Label descrizioneDialog;
+    @FXML
+    private Label idLabel;
 
     @FXML
     private TableView<VoceOrdine> vociOrdineRightTable;
@@ -60,6 +62,8 @@ public class OrderEditDialogController {
     @FXML
     private TextField quantitaField;
 
+    MainApp mainApp;
+
     @FXML
     private void initialize() {
         // Initialize the items table with the columns.
@@ -75,6 +79,10 @@ public class OrderEditDialogController {
         scontoPercentualeField.textProperty().addListener((obs, oldVal, newVal) -> {
             try {
                 double sconto = Double.parseDouble(newVal);
+                if (sconto < 0 || sconto > 100) {
+                    ordine.setScontoPercentuale(0);
+                    return;
+                }
                 ordine.setScontoPercentuale(sconto);
             } catch (NumberFormatException e) {
                 ordine.setScontoPercentuale(0);
@@ -132,28 +140,47 @@ public class OrderEditDialogController {
             }
         });
     }
-
-    public void setArticoli(ObservableList<Articolo> articoli) {
-        articoliLeftTable.setItems(articoli);
-    }
-
-    public boolean isSaveClicked() {
-        return saveClicked;
+    
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+        articoliLeftTable.setItems(mainApp.getArticoli());
     }
 
     @FXML
     private void handleSaveOrder() {
         if (isOrderValidtoSave()) {
+            ordineOriginale.setVoci(FXCollections.observableArrayList(ordine.getVoci()));
+            ordineOriginale.setScontoPercentuale(ordine.getSconto());
+            ordineOriginale.setPrezzoTotale(ordine.getPrezzoTotale());
+            ordineOriginale.setDataOra(ordine.getDataOra());
+            ordineOriginale.setMetodoPagamento(ordine.getMetodoPagamento());
+            ordineOriginale.setPagato(ordine.isPagato());
+            ordineOriginale.setImportoRicevuto(ordine.getImportoRicevuto());
+
             saveClicked = true;
             dialogStage.close();
         }
     }
     
     @FXML
-    private void handlePayOrder() { /* TODO */ }
+    private void handlePayOrder() {
+        /* TODO: 
+                This closes the OrderEditDialog and it opens the OrderPaymentDialog. If the payment is succesful, the OrderPaymentDialog closes and the user
+                returns to the order list view. Otherwise, if the payment is cancelled, the user returns to the OrderEditDialog.
+        */
+       handleSaveOrder();
+
+        /* YET TO IMPLEMENT!!! */
+        // boolean isPaymentSuccessful = mainApp.showOrderPaymentDialog(ordine);
+        // if (isPaymentSuccessful) {
+        //     dialogStage.close();
+        // }
+    }
 
     @FXML
-    private void handleCancel() { /* TODO */ }
+    private void handleCancel() {
+        dialogStage.close();
+    }
     
     private boolean isQuantitaValid() {
         String errorMessage = "";
@@ -171,12 +198,12 @@ public class OrderEditDialogController {
             return true;
         } else {
             // Show the error message.
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(dialogStage);
-            alert.setTitle("Input non valido");
-            alert.setHeaderText("Correggi i campi non validi");
-            alert.setContentText(errorMessage);
-            alert.showAndWait();
+            AlertsUtil.alertWarning(
+                dialogStage,
+                "Input non valido",
+                "Correggi i campi non validi",
+                errorMessage
+            );
             return false;
         }
     }
@@ -191,13 +218,14 @@ public class OrderEditDialogController {
             // Else, gets the quantity to add
             int quantitaDaAggiungere = Integer.parseInt(quantitaField.getText());
 
-            
+            // System.out.println("Adding quantity: " + quantitaDaAggiungere + " of article: " + selectedArticolo.getNome());
 
-            System.out.println("Adding quantity: " + quantitaDaAggiungere + " of article: " + selectedArticolo.getNome());
+            // Checks if the item is already present in the order
             ordine.getVoci().stream()
                 .filter(voce -> voce.getArticolo().equals(selectedArticolo))
                 .findFirst()
                 .ifPresentOrElse(
+                    // If present, updates the quantity if the new quantity doesn't exceed the stock
                     voce -> {
                         if (quantitaDaAggiungere + voce.getQuantita() > selectedArticolo.getStoccaggio()) {
                             AlertsUtil.alertWarning(
@@ -210,6 +238,7 @@ public class OrderEditDialogController {
                         }
                         voce.setQuantita(voce.getQuantita() + quantitaDaAggiungere);
                     },
+                    // If not present, adds a new item to the order if the quantity inserted doesn't exceed the stock
                     () -> {
                         if (quantitaDaAggiungere > selectedArticolo.getStoccaggio()) {
                             AlertsUtil.alertWarning(
@@ -238,12 +267,12 @@ public class OrderEditDialogController {
             int quantitaDaRimuovere = Integer.parseInt(quantitaField.getText());
 
             if (quantitaDaRimuovere > selectedVoce.getQuantita()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.initOwner(dialogStage);
-                alert.setTitle("Input non valido");
-                alert.setHeaderText("Correggi i campi non validi");
-                alert.setContentText("La quantità da rimuovere supera la quantità presente nell'ordine (" + selectedVoce.getQuantita() + ").\n");
-                alert.showAndWait();
+                AlertsUtil.alertWarning(
+                    dialogStage,
+                    "Input non valido",
+                    "Correggi i campi non validi",
+                    "La quantità da rimuovere supera la quantità presente nell'ordine (" + selectedVoce.getQuantita() + ").\n"
+                );
                 return;
             }
 
@@ -258,13 +287,22 @@ public class OrderEditDialogController {
     public void setDescrizionDialog(String descrizioneDialog) {
         this.descrizioneDialog.setText(descrizioneDialog);
     }
+
+    public void setOrderId(int orderId) {
+        this.idLabel.setText(Integer.toString((orderId)));
+    }
     
     public boolean isOkClicked() {
         return okClicked;
     }
 
-    public void setItem(Ordine ordine) {
-        this.ordine = ordine;
+    public boolean isSaveClicked() {
+        return saveClicked;
+    }
+
+    public void setItem(Ordine ordineOriginale) {
+        this.ordineOriginale = ordineOriginale;
+        this.ordine = ordineOriginale.copy(); // Work on a copy of the order to avoid modifying the original until saved
 
         OrderTableUtil.populateItemsTable(
             vociOrdineRightTable,
@@ -279,10 +317,10 @@ public class OrderEditDialogController {
         // totaleLabel.setText(String.format("%.2f €", ordine.getPrezzoTotale()));
         totaleLabel.textProperty().bind(
         Bindings.createStringBinding(
-            () -> String.format("%.2f €", ordine.getPrezzoTotale()),
-            ordine.prezzoTotaleProperty()
-        )
-    );
+                () -> String.format("%.2f €", ordine.getPrezzoTotale()),
+                ordine.prezzoTotaleProperty()
+            )
+        );
     }
 
     private boolean isOrderValidtoSave() {
@@ -303,12 +341,12 @@ public class OrderEditDialogController {
             return true;
         } else {
             // Show the error message.
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(dialogStage);
-            alert.setTitle("Input non valido");
-            alert.setHeaderText("Correggi i campi non validi");
-            alert.setContentText(errorMessage);
-            alert.showAndWait();
+            AlertsUtil.alertWarning(
+                dialogStage,
+                "Input non valido",
+                "Correggi i campi non validi",
+                errorMessage
+            );
             return false;
         }
     }

@@ -76,6 +76,7 @@ public class Ordine {
 
     public double getPrezzoTotale() { return this.prezzoTotale.get(); }
     public DoubleProperty prezzoTotaleProperty() { return this.prezzoTotale; }
+    public void setPrezzoTotale(double prezzoTotale) { this.prezzoTotale.set(prezzoTotale); }
 
     public MetodoPagamento getMetodoPagamento() { return this.metodoPagamento.get(); }
     public ObjectProperty<MetodoPagamento> metodoPagamentoProperty() { return this.metodoPagamento; }
@@ -135,6 +136,36 @@ public class Ordine {
         this.pagato.set(false);
         this.importoRicevuto.set(0.0);
         this.resto.set(0.0);        
+    }
+
+    // public Ordine copy() {
+    //     Ordine copia = new Ordine(this.getId());
+    //     copia.setDataOra(this.getDataOra());
+    //     copia.setVoci(FXCollections.observableArrayList(this.getVoci()));
+    //     copia.setScontoPercentuale(this.getSconto());
+    //     copia.setPrezzoTotale(this.getPrezzoTotale());
+    //     copia.setMetodoPagamento(this.getMetodoPagamento());
+    //     copia.setPagato(this.isPagato());
+    //     copia.setImportoRicevuto(this.getImportoRicevuto());
+    //     return copia;
+    // }
+
+    public Ordine copy() {
+        Ordine copia = new Ordine(this.getId());
+        copia.setDataOra(this.getDataOra());
+
+        // Creates a deep copy of the items list
+        ObservableList<VoceOrdine> vociCopia = FXCollections.observableArrayList();
+        for (VoceOrdine voce : this.getVoci()) {
+            vociCopia.add(voce.copy());
+        }
+        copia.setVoci(vociCopia);
+        copia.setScontoPercentuale(this.getSconto());
+        copia.setPrezzoTotale(this.getPrezzoTotale());
+        copia.setMetodoPagamento(this.getMetodoPagamento());
+        copia.setPagato(this.isPagato());
+        copia.setImportoRicevuto(this.getImportoRicevuto());
+        return copia;
     }
 
     // ------------------------------
