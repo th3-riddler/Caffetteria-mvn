@@ -47,19 +47,15 @@
                      </padding>
                   </Label>
                   <Region prefHeight="42.0" prefWidth="118.0" />
-                  <HBox fx:id="editDeleteOrderHbox" alignment="CENTER" spacing="10.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#handleEditOrder">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../icons/edit.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
+                  <Button fx:id="editOrderButton" mnemonicParsing="false" onAction="#handleEditOrder">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/edit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </HBox>
             <GridPane prefHeight="70.0" prefWidth="338.0">
@@ -147,10 +143,10 @@
                 <children>
                     <Button mnemonicParsing="false" onAction="#handleNewOrder" text="Nuovo" />
                     <Region HBox.hgrow="ALWAYS" />
-                    <HBox fx:id="payReciptOrderHbox" alignment="CENTER_RIGHT" spacing="15.0">
+                    <HBox alignment="CENTER_RIGHT" spacing="15.0">
                         <children>
-                            <Button mnemonicParsing="false" text="Paga" />
-                            <Button mnemonicParsing="false" text="Ricevuta" />
+                            <Button fx:id="payButton" mnemonicParsing="false" onAction="#handlePayOrder" text="Paga" />
+                            <Button fx:id="reciptButton" mnemonicParsing="false" text="Ricevuta" />
                         </children>
                     </HBox>
                 </children>

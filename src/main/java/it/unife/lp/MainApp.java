@@ -20,6 +20,7 @@ import it.unife.lp.model.Ordine;
 import it.unife.lp.view.ItemEditDialogController;
 import it.unife.lp.view.MenuOverviewController;
 import it.unife.lp.view.OrderEditDialogController;
+import it.unife.lp.view.OrderPaymentDialogController;
 import it.unife.lp.view.OrdiniViewController;
 import it.unife.lp.view.RootLayoutController;
 
@@ -207,35 +208,34 @@ public class MainApp extends Application {
         }
     }
 
-    // public boolean showOrderPaymentDialog(Ordine ordine) {
-    //     try {
-    //         // Load the fxml file and create a new stage for the popup dialog.
-    //         FXMLLoader loader = new FXMLLoader();
-    //         loader.setLocation(MainApp.class.getResource("view/OrderEditDialog.fxml"));
-    //         BorderPane page = (BorderPane) loader.load();
-    //         // Create the dialog Stage.
-    //         Stage dialogStage = new Stage();
-    //         dialogStage.setTitle(descrizioneDialog);
-    //         dialogStage.initModality(Modality.WINDOW_MODAL);
-    //         dialogStage.initOwner(primaryStage);
-    //         Scene scene = new Scene(page);
-    //         dialogStage.setScene(scene);
+    public boolean showOrderPaymentDialog(Ordine ordine) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/OrderPaymentDialog.fxml"));
+            BorderPane page = (BorderPane) loader.load();
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Pagamento Ordine " + ordine.getId());
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
 
-    //         OrderEditDialogController controller = loader.getController();
-    //         controller.setDialogStage(dialogStage);
-    //         controller.setItem(ordine);
-    //         controller.setDescrizionDialog(descrizioneDialog);
-    //         controller.setOrderId(ordine.getId());
+            OrderPaymentDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setItem(ordine);
+            controller.setOrderId(ordine.getId());
 
-    //         controller.setMainApp(this);
-    //         // Show the dialog and wait until the user closes it
-    //         dialogStage.showAndWait();
-    //         return controller.isSaveClicked();
-    //     } catch (IOException e) {
-    //         e.printStackTrace();
-    //         return false;
-    //     }
-    // }
+            // controller.setMainApp(this);
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            return controller.isPaymentSuccessful();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public Stage getPrimaryStage() {
         return primaryStage;

@@ -203,8 +203,8 @@ public class Ordine {
      * Calculates the change to give back to the customer
      */
     private void calcolaResto() {
-        // Calculates the change only if the amount received is greater than 0
-        if (this.importoRicevuto.get() > 0) {
+        // Calculates the change only if the amount received is greater than the total price
+        if (this.importoRicevuto.get() > this.prezzoTotaleFinale.get()) {
             this.resto.set(this.importoRicevuto.get() - this.prezzoTotaleFinale.get());
         } else {
             this.resto.set(0.0);

@@ -9,7 +9,9 @@ import it.unife.lp.model.VoceOrdine;
 import it.unife.lp.util.DateUtil;
 import it.unife.lp.util.OrderTableUtil;
 import javafx.beans.binding.Bindings;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -53,9 +55,13 @@ public class OrdiniViewController {
     private Label totaleFinaleLabel;
 
     @FXML
-    private HBox editDeleteOrderHbox; // HBox containing actions related to the selected order (Edit and Delete Buttons)
+    private Button editOrderButton; // HBox containing actions related to the selected order (Edit and Delete Buttons)
     @FXML
     private HBox payReciptOrderHbox; // HBox containing actions related to the selected order (Pay and Receipt Buttons)
+    @FXML
+    private Button payButton;
+    @FXML
+    private Button reciptButton;
 
     private MainApp mainApp;
 
@@ -87,20 +93,51 @@ public class OrdiniViewController {
                 .addListener((obs, oldValue, newValue) -> showOrderDetails(newValue));
 
         // Binds the visibility of the order actions HBox to whether an order is selected in the left table
-        editDeleteOrderHbox.visibleProperty().bind(
+        editOrderButton.visibleProperty().bind(
             ordiniLeftTable.getSelectionModel().selectedItemProperty().isNotNull()
         );
         // Binds the management of the order actions HBox to whether an order is selected in the left table (so that it doesn't take up space when not visible)
-        editDeleteOrderHbox.managedProperty().bind(
+        editOrderButton.managedProperty().bind(
             ordiniLeftTable.getSelectionModel().selectedItemProperty().isNotNull()
         );
 
-        payReciptOrderHbox.visibleProperty().bind(
-            ordiniLeftTable.getSelectionModel().selectedItemProperty().isNotNull()
+        // The pay button appears only if the selected order is not paid yet
+        // Binding.createBooleanBinding checks the condition in the lambda function whenever the selected item in the orders table changes
+        payButton.visibleProperty().bind(
+            Bindings.createBooleanBinding(
+                () -> {
+                    Ordine ord = ordiniLeftTable.getSelectionModel().getSelectedItem();
+                    return ord != null && !ord.isPagato();
+                },
+                ordiniLeftTable.getSelectionModel().selectedItemProperty(),
+                Bindings.selectBoolean(
+                    ordiniLeftTable.getSelectionModel().selectedItemProperty(),
+                    "pagato"
+                )
+            )
+        );
+        
+        payButton.managedProperty().bind(
+            payButton.visibleProperty()
+        );
+        
+        // The receipt button appears only if the selected order is paid yet
+        reciptButton.visibleProperty().bind(
+            Bindings.createBooleanBinding(
+                () -> {
+                    Ordine ord = ordiniLeftTable.getSelectionModel().getSelectedItem();
+                    return ord != null && ord.isPagato();
+                },
+                ordiniLeftTable.getSelectionModel().selectedItemProperty(),
+                Bindings.selectBoolean(
+                    ordiniLeftTable.getSelectionModel().selectedItemProperty(),
+                    "pagato"
+                )
+            )
         );
 
-        payReciptOrderHbox.managedProperty().bind(
-            ordiniLeftTable.getSelectionModel().selectedItemProperty().isNotNull()
+        reciptButton.managedProperty().bind(
+            reciptButton.visibleProperty()
         );
     }
 
@@ -170,16 +207,17 @@ public class OrdiniViewController {
         }
     }
 
-    // @FXML
-    // private void handlePayOrder() {
-    //     Ordine selectedOrdine = ordiniLeftTable.getSelectionModel().getSelectedItem();
+    @FXML
+    private void handlePayOrder() {
+        Ordine selectedOrdine = ordiniLeftTable.getSelectionModel().getSelectedItem();
 
-    //     if (selectedOrdine != null) {
-    //         boolean isPaymentSuccessful = mainApp.showOrderPaymentDialog(selectedOrdine);
-    //         if (isPaymentSuccessful) {
-    //             showOrderDetails(selectedOrdine);
-    //         } 
-    //     }
-    // }
+        if (selectedOrdine != null) {
+            boolean isPaymentSuccessful = mainApp.showOrderPaymentDialog(selectedOrdine);
+            if (isPaymentSuccessful) {
+                // showOrderDetails(selectedOrdine); // With this line the details are updated but the order remains selected, so the pay button is still visible
+                ordiniLeftTable.getSelectionModel().clearSelection(); // Clears selection to refresh the order details view
+            } 
+        }
+    }
 
 }

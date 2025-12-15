@@ -8,6 +8,7 @@
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/model/Ordine.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/view/RootLayoutController.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/view/MenuOverviewController.java
+/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/view/OrderPaymentDialogController.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/model/Articolo.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/util/OrderTableUtil.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/model/MetodoPagamento.java
