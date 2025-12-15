@@ -50,7 +50,9 @@ public class OrderEditDialogController {
     @FXML
     private TextField scontoPercentualeField;
     @FXML
-    private Label totaleLabel;
+    private Label totaleParzialeLabel;
+    @FXML
+    private Label totaleFinaleLabel;
 
     @FXML
     private Button addItemButton; // Button to add item to the order
@@ -151,7 +153,8 @@ public class OrderEditDialogController {
         if (isOrderValidtoSave()) {
             ordineOriginale.setVoci(FXCollections.observableArrayList(ordine.getVoci()));
             ordineOriginale.setScontoPercentuale(ordine.getSconto());
-            ordineOriginale.setPrezzoTotale(ordine.getPrezzoTotale());
+            ordineOriginale.setPrezzoTotaleParziale(ordine.getPrezzoTotaleParziale());
+            ordineOriginale.setPrezzoTotaleFinale(ordine.getPrezzoTotaleFinale());
             ordineOriginale.setDataOra(ordine.getDataOra());
             ordineOriginale.setMetodoPagamento(ordine.getMetodoPagamento());
             ordineOriginale.setPagato(ordine.isPagato());
@@ -314,11 +317,18 @@ public class OrderEditDialogController {
         );
 
         scontoPercentualeField.setText(Double.toString(ordine.getSconto()));
-        // totaleLabel.setText(String.format("%.2f €", ordine.getPrezzoTotale()));
-        totaleLabel.textProperty().bind(
+        // Sets up bindings for total labels (partial and final)
+        totaleParzialeLabel.textProperty().bind(
         Bindings.createStringBinding(
-                () -> String.format("%.2f €", ordine.getPrezzoTotale()),
-                ordine.prezzoTotaleProperty()
+                () -> String.format("%.2f €", ordine.getPrezzoTotaleParziale()),
+                ordine.prezzoTotaleParzialeProperty()
+            )
+        );
+
+        totaleFinaleLabel.textProperty().bind(
+            Bindings.createStringBinding(
+                () -> String.format("%.2f €", ordine.getPrezzoTotaleFinale()),
+                ordine.prezzoTotaleFinaleProperty()
             )
         );
     }

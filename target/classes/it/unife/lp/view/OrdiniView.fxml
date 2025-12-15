@@ -46,7 +46,7 @@
                         <Insets bottom="5.0" />
                      </padding>
                   </Label>
-                  <Region prefHeight="42.0" prefWidth="62.0" />
+                  <Region prefHeight="42.0" prefWidth="118.0" />
                   <HBox fx:id="editDeleteOrderHbox" alignment="CENTER" spacing="10.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#handleEditOrder">
@@ -54,15 +54,6 @@
                               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/edit.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../icons/delete.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -102,7 +93,7 @@
                   <Label fx:id="statoLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-            <TableView fx:id="vociOrdineRightTable" prefHeight="181.0" prefWidth="338.0">
+            <TableView fx:id="vociOrdineRightTable" prefHeight="166.0" prefWidth="388.0">
               <columns>
                 <TableColumn fx:id="nomeVoceRightColumn" prefWidth="114.0" text="Nome" />
                 <TableColumn fx:id="prezzoUnitarioVoceRightColumn" prefWidth="79.0" text="Prezzo cad." />
@@ -116,7 +107,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <HBox alignment="CENTER" prefHeight="29.0" prefWidth="338.0">
+            <HBox alignment="CENTER" prefHeight="26.0" prefWidth="388.0">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -130,17 +121,23 @@
                         <Insets right="5.0" />
                      </padding>
                   </Label>
-                  <Region prefHeight="18.0" prefWidth="157.0" />
-                  <Label text="Totale:">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label fx:id="totaleLabel" text="Label">
-                     <HBox.margin>
-                        <Insets left="5.0" right="10.0" />
-                     </HBox.margin>
-                  </Label>
+                  <Region prefHeight="36.0" prefWidth="122.0" />
+                  <VBox>
+                     <children>
+                        <HBox spacing="5.0">
+                           <children>
+                              <Label text="Totale Parziale:" />
+                              <Label fx:id="totaleParzialeLabel" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="5.0">
+                           <children>
+                              <Label text="Totale Finale:" />
+                              <Label fx:id="totaleFinaleLabel" text="Label" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
                <padding>
                   <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />

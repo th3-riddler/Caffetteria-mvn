@@ -56,7 +56,7 @@
                   </Label>
                </children>
             </HBox>
-            <TableView fx:id="vociOrdineRightTable" prefHeight="222.0" prefWidth="380.0">
+            <TableView fx:id="vociOrdineRightTable" prefHeight="226.0" prefWidth="430.0">
               <columns>
                 <TableColumn fx:id="nomeArticoloRightTableColumn" prefWidth="142.0" text="Nome" />
                 <TableColumn fx:id="prezzoArticoloUnitarioRightTableColumn" prefWidth="82.0" text="Prezzo cad." />
@@ -82,9 +82,23 @@
                         <Insets />
                      </HBox.margin>
                   </HBox>
-                  <Region prefHeight="59.0" prefWidth="174.0" />
-                  <Label text="Totale:" />
-                  <Label fx:id="totaleLabel" text="Label" />
+                  <Region prefHeight="49.0" prefWidth="147.0" />
+                  <VBox alignment="CENTER">
+                     <children>
+                        <HBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <Label text="Totale Parziale:" />
+                              <Label fx:id="totaleParzialeLabel" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <Label text="Totale Finale:" />
+                              <Label fx:id="totaleFinaleLabel" text="Label" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
                <VBox.margin>
                   <Insets right="10.0" top="10.0" />

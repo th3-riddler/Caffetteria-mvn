@@ -19,7 +19,8 @@ public class Ordine {
     private final ObjectProperty<LocalDateTime> dataOra;
     private final ObservableList<VoceOrdine> voci;
     private final DoubleProperty scontoPercentuale;
-    private final DoubleProperty prezzoTotale;
+    private final DoubleProperty prezzoTotaleParziale;
+    private final DoubleProperty prezzoTotaleFinale;
     private final ObjectProperty<MetodoPagamento> metodoPagamento;
     private final BooleanProperty pagato;
 
@@ -36,7 +37,8 @@ public class Ordine {
         this.dataOra = new SimpleObjectProperty<>(LocalDateTime.now());
         this.voci = FXCollections.observableArrayList();
         this.scontoPercentuale = new SimpleDoubleProperty(0.0);
-        this.prezzoTotale = new SimpleDoubleProperty(0.0);
+        this.prezzoTotaleParziale = new SimpleDoubleProperty(0.0);
+        this.prezzoTotaleFinale = new SimpleDoubleProperty(0.0);
         this.metodoPagamento = new SimpleObjectProperty<>(null);
         this.pagato = new SimpleBooleanProperty(false);
 
@@ -74,9 +76,13 @@ public class Ordine {
     public DoubleProperty scontoProperty() { return this.scontoPercentuale; }
     public void setScontoPercentuale(double scontoPercentuale) { this.scontoPercentuale.set(scontoPercentuale); }
 
-    public double getPrezzoTotale() { return this.prezzoTotale.get(); }
-    public DoubleProperty prezzoTotaleProperty() { return this.prezzoTotale; }
-    public void setPrezzoTotale(double prezzoTotale) { this.prezzoTotale.set(prezzoTotale); }
+    public double getPrezzoTotaleParziale() { return this.prezzoTotaleParziale.get(); }
+    public DoubleProperty prezzoTotaleParzialeProperty() { return this.prezzoTotaleParziale; }
+    public void setPrezzoTotaleParziale(double prezzoTotaleParziale) { this.prezzoTotaleParziale.set(prezzoTotaleParziale); }
+
+    public double getPrezzoTotaleFinale() { return this.prezzoTotaleFinale.get(); }
+    public DoubleProperty prezzoTotaleFinaleProperty() { return this.prezzoTotaleFinale; }
+    public void setPrezzoTotaleFinale(double prezzoTotaleFinale) { this.prezzoTotaleFinale.set(prezzoTotaleFinale); }
 
     public MetodoPagamento getMetodoPagamento() { return this.metodoPagamento.get(); }
     public ObjectProperty<MetodoPagamento> metodoPagamentoProperty() { return this.metodoPagamento; }
@@ -131,7 +137,8 @@ public class Ordine {
     public void clear() {
         this.voci.clear();
         this.scontoPercentuale.set(0.0);
-        this.prezzoTotale.set(0.0);
+        this.prezzoTotaleParziale.set(0.0);
+        this.prezzoTotaleFinale.set(0.0);
         this.metodoPagamento.set(null);
         this.pagato.set(false);
         this.importoRicevuto.set(0.0);
@@ -161,7 +168,8 @@ public class Ordine {
         }
         copia.setVoci(vociCopia);
         copia.setScontoPercentuale(this.getSconto());
-        copia.setPrezzoTotale(this.getPrezzoTotale());
+        copia.setPrezzoTotaleParziale(this.getPrezzoTotaleParziale());
+        copia.setPrezzoTotaleFinale(this.getPrezzoTotaleFinale());
         copia.setMetodoPagamento(this.getMetodoPagamento());
         copia.setPagato(this.isPagato());
         copia.setImportoRicevuto(this.getImportoRicevuto());
@@ -181,8 +189,11 @@ public class Ordine {
         double totaleSenzaSconto = this.voci.stream().mapToDouble(VoceOrdine::getPrezzoTotale).sum();
         System.out.println("Totale senza sconto: " + totaleSenzaSconto);
 
+        // Sets the partial total
+        this.prezzoTotaleParziale.set(totaleSenzaSconto);
+
         // Applies the discount 
-        this.prezzoTotale.set(totaleSenzaSconto * (1 - this.scontoPercentuale.get() / 100.0));
+        this.prezzoTotaleFinale.set(totaleSenzaSconto * (1 - this.scontoPercentuale.get() / 100.0));
 
         // Calculates the change if needed
         calcolaResto();
@@ -194,7 +205,7 @@ public class Ordine {
     private void calcolaResto() {
         // Calculates the change only if the amount received is greater than 0
         if (this.importoRicevuto.get() > 0) {
-            this.resto.set(this.importoRicevuto.get() - this.prezzoTotale.get());
+            this.resto.set(this.importoRicevuto.get() - this.prezzoTotaleFinale.get());
         } else {
             this.resto.set(0.0);
         }

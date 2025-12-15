@@ -48,7 +48,9 @@ public class OrdiniViewController {
     @FXML
     private Label scontoLabel;
     @FXML
-    private Label totaleLabel;
+    private Label totaleParzialeLabel;
+    @FXML
+    private Label totaleFinaleLabel;
 
     @FXML
     private HBox editDeleteOrderHbox; // HBox containing actions related to the selected order (Edit and Delete Buttons)
@@ -65,8 +67,8 @@ public class OrdiniViewController {
         
         totaleOrdineLeftColumn.setCellValueFactory(cellData -> 
             Bindings.createStringBinding(
-                () -> String.format("%.2f €", cellData.getValue().getPrezzoTotale()),
-                cellData.getValue().prezzoTotaleProperty()
+                () -> String.format("%.2f €", cellData.getValue().getPrezzoTotaleFinale()),
+                cellData.getValue().prezzoTotaleFinaleProperty()
             )
         );
 
@@ -113,7 +115,9 @@ public class OrdiniViewController {
         statoLabel.setText(ordine != null ? ordine.isPagato() ? "Pagato" : "Non Pagato" : "");
 
         scontoLabel.setText(ordine != null ? String.format("%.2f %%", ordine.getSconto()) : "");
-        totaleLabel.setText(ordine != null ? String.format("%.2f €", ordine.getPrezzoTotale()) : "");
+
+        totaleParzialeLabel.setText(ordine != null ? String.format("%.2f €", ordine.getPrezzoTotaleParziale()) : "");
+        totaleFinaleLabel.setText(ordine != null ? String.format("%.2f €", ordine.getPrezzoTotaleFinale()) : "");
 
         if (ordine != null) { 
             OrderTableUtil.populateItemsTable(
@@ -143,6 +147,16 @@ public class OrdiniViewController {
             mainApp.getOrdini().add(ordineTmp);
         }
     }
+
+    // @FXML
+    // private void handleRemoveOrder() {
+    //     Ordine selectedOrdine = ordiniLeftTable.getSelectionModel().getSelectedItem();
+
+    //     if (selectedOrdine != null) {
+    //         mainApp.getOrdini().remove(selectedOrdine);
+    //     }
+        
+    // }
 
     @FXML
     private void handleEditOrder() {
