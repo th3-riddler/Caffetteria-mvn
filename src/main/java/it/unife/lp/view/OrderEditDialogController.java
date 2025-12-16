@@ -21,8 +21,6 @@ public class OrderEditDialogController {
 
     private Stage dialogStage;
     private Ordine ordineOriginale, ordine;
-    private boolean okClicked = false;
-    private boolean saveClicked = false;
 
     @FXML
     private TableView<Articolo> articoliLeftTable;
@@ -148,26 +146,25 @@ public class OrderEditDialogController {
         articoliLeftTable.setItems(mainApp.getArticoli());
     }
 
-    @FXML
-    private void handleSaveOrder() {
-        if (isOrderValidtoSave()) {
-            ordineOriginale.setVoci(FXCollections.observableArrayList(ordine.getVoci()));
-            ordineOriginale.setScontoPercentuale(ordine.getSconto());
-            ordineOriginale.setPrezzoTotaleParziale(ordine.getPrezzoTotaleParziale());
-            ordineOriginale.setPrezzoTotaleFinale(ordine.getPrezzoTotaleFinale());
-            ordineOriginale.setDataOra(ordine.getDataOra());
-            ordineOriginale.setMetodoPagamento(ordine.getMetodoPagamento());
-            ordineOriginale.setPagato(ordine.isPagato());
-            ordineOriginale.setImportoRicevuto(ordine.getImportoRicevuto());
+    // @FXML
+    // private void handleSaveOrder() {
+    //     if (isOrderValidtoSave()) {
+    //         ordineOriginale.setVoci(FXCollections.observableArrayList(ordine.getVoci()));
+    //         ordineOriginale.setScontoPercentuale(ordine.getSconto());
+    //         ordineOriginale.setPrezzoTotaleParziale(ordine.getPrezzoTotaleParziale());
+    //         ordineOriginale.setPrezzoTotaleFinale(ordine.getPrezzoTotaleFinale());
+    //         ordineOriginale.setDataOra(ordine.getDataOra());
+    //         ordineOriginale.setMetodoPagamento(ordine.getMetodoPagamento());
+    //         ordineOriginale.setImportoRicevuto(ordine.getImportoRicevuto());
 
-            saveClicked = true;
-            dialogStage.close();
-        }
-    }
+    //         saveClicked = true;
+    //         dialogStage.close();
+    //     }
+    // }
 
     @FXML
     private void handleCancel() {
-        dialogStage.close();
+        this.mainApp.showOrdiniView();
     }
     
     private boolean isQuantitaValid() {
@@ -268,6 +265,38 @@ public class OrderEditDialogController {
         }
     }
 
+    @FXML
+    private void handlePayOrder() {
+
+        if (isOrderValidtoPay()) {
+            boolean isPaymentSuccessful = mainApp.showOrderPaymentDialog(this.ordine);
+            if (isPaymentSuccessful) {
+                // ordiniLeftTable.getSelectionModel().clearSelection(); // Clears selection to refresh the order details view
+                updateStorageAfterOrderPayment(this.ordine);
+                
+                ordineOriginale.setVoci(FXCollections.observableArrayList(ordine.getVoci()));
+                ordineOriginale.setScontoPercentuale(ordine.getSconto());
+                ordineOriginale.setPrezzoTotaleParziale(ordine.getPrezzoTotaleParziale());
+                ordineOriginale.setPrezzoTotaleFinale(ordine.getPrezzoTotaleFinale());
+                ordineOriginale.setDataOra(ordine.getDataOra());
+                ordineOriginale.setMetodoPagamento(ordine.getMetodoPagamento());
+                ordineOriginale.setImportoRicevuto(ordine.getImportoRicevuto());
+
+                // saveClicked = true;
+                mainApp.getOrdini().add(ordineOriginale);
+                this.mainApp.showOrdiniView();
+            } 
+        }
+    }
+
+    private void updateStorageAfterOrderPayment(Ordine ord) {
+        // Updates the stock of articles based on the items in the paid order
+        for (VoceOrdine voce : ord.getVoci()) {
+            Articolo articolo = voce.getArticolo();
+            articolo.setStoccaggio(articolo.getStoccaggio() - voce.getQuantita());
+        }
+    }
+
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
@@ -278,14 +307,6 @@ public class OrderEditDialogController {
 
     public void setOrderId(int orderId) {
         this.idLabel.setText(Integer.toString((orderId)));
-    }
-    
-    public boolean isOkClicked() {
-        return okClicked;
-    }
-
-    public boolean isSaveClicked() {
-        return saveClicked;
     }
 
     public void setItem(Ordine ordineOriginale) {
@@ -318,7 +339,7 @@ public class OrderEditDialogController {
         );
     }
 
-    private boolean isOrderValidtoSave() {
+    private boolean isOrderValidtoPay() {
         String errorMessage = "";
         if (ordine.getVoci().isEmpty()) {
             errorMessage += "L'ordine deve contenere almeno una voce.\n";

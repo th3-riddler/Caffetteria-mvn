@@ -22,7 +22,6 @@ public class Ordine {
     private final DoubleProperty prezzoTotaleParziale;
     private final DoubleProperty prezzoTotaleFinale;
     private final ObjectProperty<MetodoPagamento> metodoPagamento;
-    private final BooleanProperty pagato;
 
     private final DoubleProperty importoRicevuto;
     private final DoubleProperty resto; // Resto dovuto in caso di pagamento in contanti
@@ -40,7 +39,6 @@ public class Ordine {
         this.prezzoTotaleParziale = new SimpleDoubleProperty(0.0);
         this.prezzoTotaleFinale = new SimpleDoubleProperty(0.0);
         this.metodoPagamento = new SimpleObjectProperty<>(null);
-        this.pagato = new SimpleBooleanProperty(false);
 
         this.importoRicevuto = new SimpleDoubleProperty(0.0);
         this.resto = new SimpleDoubleProperty(0.0);
@@ -90,10 +88,6 @@ public class Ordine {
     public ObjectProperty<MetodoPagamento> metodoPagamentoProperty() { return this.metodoPagamento; }
     public void setMetodoPagamento(MetodoPagamento metodoPagamento) { this.metodoPagamento.set(metodoPagamento); }
 
-    public boolean isPagato() { return this.pagato.get(); }
-    public BooleanProperty pagatoProperty() { return this.pagato; }
-    public void setPagato(boolean pagato) { this.pagato.set(pagato); }
-
     public double getImportoRicevuto() { return this.importoRicevuto.get(); }
     public DoubleProperty importoRicevutoProperty() { return this.importoRicevuto; }
     public void setImportoRicevuto(double importoRicevuto) {
@@ -142,22 +136,9 @@ public class Ordine {
         this.prezzoTotaleParziale.set(0.0);
         this.prezzoTotaleFinale.set(0.0);
         this.metodoPagamento.set(null);
-        this.pagato.set(false);
         this.importoRicevuto.set(0.0);
         this.resto.set(0.0);        
     }
-
-    // public Ordine copy() {
-    //     Ordine copia = new Ordine(this.getId());
-    //     copia.setDataOra(this.getDataOra());
-    //     copia.setVoci(FXCollections.observableArrayList(this.getVoci()));
-    //     copia.setScontoPercentuale(this.getSconto());
-    //     copia.setPrezzoTotale(this.getPrezzoTotale());
-    //     copia.setMetodoPagamento(this.getMetodoPagamento());
-    //     copia.setPagato(this.isPagato());
-    //     copia.setImportoRicevuto(this.getImportoRicevuto());
-    //     return copia;
-    // }
 
     public Ordine copy() {
         Ordine copia = new Ordine(this.getId());
@@ -173,7 +154,6 @@ public class Ordine {
         copia.setPrezzoTotaleParziale(this.getPrezzoTotaleParziale());
         copia.setPrezzoTotaleFinale(this.getPrezzoTotaleFinale());
         copia.setMetodoPagamento(this.getMetodoPagamento());
-        copia.setPagato(this.isPagato());
         copia.setImportoRicevuto(this.getImportoRicevuto());
         return copia;
     }

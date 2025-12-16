@@ -178,33 +178,23 @@ public class MainApp extends Application {
         }
     }
 
-    public boolean showOrderEditDialog(Ordine ordine, String descrizioneDialog) {
+    public void showNewOrderScreen(Ordine ordine, String descrizioneDialog) {
         try {
-            // Load the fxml file and create a new stage for the popup dialog.
+            // Load Ordini view.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/OrderEditDialog.fxml"));
-            BorderPane page = (BorderPane) loader.load();
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle(descrizioneDialog);
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
+            BorderPane ordiniView = (BorderPane) loader.load();
+            // Set ordini view into the center of root layout.
+            rootLayout.setCenter(ordiniView);
+            // Give the controller access to the main app.
             OrderEditDialogController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
             controller.setItem(ordine);
             controller.setDescrizionDialog(descrizioneDialog);
             controller.setOrderId(ordine.getId());
-
             controller.setMainApp(this);
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-            return controller.isSaveClicked();
+
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
     }
 

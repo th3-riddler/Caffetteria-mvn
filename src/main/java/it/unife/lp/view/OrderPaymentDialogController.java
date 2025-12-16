@@ -19,7 +19,7 @@ import javafx.util.StringConverter;
 public class OrderPaymentDialogController {
 
     private Stage dialogStage;
-    private Ordine ordineOriginale, ordine;
+    private Ordine ordine;
     private boolean isPaymentSuccessful = false;
 
     @FXML
@@ -95,9 +95,8 @@ public class OrderPaymentDialogController {
         });
     }
 
-    public void setItem(Ordine ordineOriginale) {
-        this.ordineOriginale = ordineOriginale;
-        this.ordine = ordineOriginale.copy(); // Work on a copy of the order to avoid modifying the original until saved
+    public void setItem(Ordine ordine) {
+        this.ordine = ordine;
 
         OrderTableUtil.populateItemsTable(
             vociOrdineLeftTable,
@@ -170,9 +169,8 @@ public class OrderPaymentDialogController {
     private void handleConfirmPayment() {
         if (isPaymentValid()) {
             // If validation passes, updates the original order and closes the dialog
-            ordineOriginale.setMetodoPagamento(metodoPagamentoChoiceBox.getValue());
-            ordineOriginale.setImportoRicevuto(ordine.getImportoRicevuto());
-            ordineOriginale.setPagato(true); // Marks the order as paid
+            this.ordine.setMetodoPagamento(metodoPagamentoChoiceBox.getValue());
+            // ordine.setImportoRicevuto(ordine.getImportoRicevuto());
             // ordineOriginale.calcolaResto();
     
             isPaymentSuccessful = true;

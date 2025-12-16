@@ -97,7 +97,6 @@
                      <children>
                         <Label text="Totale Scontato:" />
                         <Label fx:id="totaleDaPagareLabel" text="Label" />
-                        <Label text="€" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="142.0" spacing="5.0">
