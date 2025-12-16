@@ -164,32 +164,6 @@ public class OrderEditDialogController {
             dialogStage.close();
         }
     }
-    
-    // @FXML
-    // private void handlePayOrder() {
-    //     /* TODO: 
-    //             This closes the OrderEditDialog and it opens the OrderPaymentDialog. If the payment is succesful, the OrderPaymentDialog closes and the user
-    //             returns to the order list view. Otherwise, if the payment is cancelled, the user returns to the OrderEditDialog.
-    //     */
-    // //    handleSaveOrder();
-    //         ordineOriginale.setVoci(FXCollections.observableArrayList(ordine.getVoci()));
-    //         ordineOriginale.setScontoPercentuale(ordine.getSconto());
-    //         ordineOriginale.setPrezzoTotaleParziale(ordine.getPrezzoTotaleParziale());
-    //         ordineOriginale.setPrezzoTotaleFinale(ordine.getPrezzoTotaleFinale());
-    //         ordineOriginale.setDataOra(ordine.getDataOra());
-    //         ordineOriginale.setMetodoPagamento(ordine.getMetodoPagamento());
-    //         ordineOriginale.setPagato(ordine.isPagato());
-    //         ordineOriginale.setImportoRicevuto(ordine.getImportoRicevuto());
-
-            
-    //         /* YET TO IMPLEMENT!!! */
-    //         boolean isPaymentSuccessful = mainApp.showOrderPaymentDialog(ordine);
-    //         dialogStage.close();
-    //     if (!isPaymentSuccessful) {
-    //         // dialogStage.close();
-    //         mainApp.showOrderEditDialog(ordine, "Modifica Ordine");
-    //     }
-    // }
 
     @FXML
     private void handleCancel() {

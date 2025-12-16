@@ -30,6 +30,11 @@ public class OrderTableUtil {
             cellData.getValue().quantitaProperty() :
             cellData.getValue().getArticolo().stoccaggioProperty()
         );
+        ordine.getVoci().forEach(voce -> {
+            if (voce.getQuantita() > voce.getArticolo().getStoccaggio()) {
+                voce.setQuantita(voce.getArticolo().getStoccaggio());
+            }
+        });
 
         // Uses Bindings to format the total price values as strings with the euro symbol in order to keep them updated if the price of the article or the quantity changes
         prezzoTotaleCol.setCellValueFactory(cellData -> 

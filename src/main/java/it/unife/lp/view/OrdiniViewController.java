@@ -216,7 +216,17 @@ public class OrdiniViewController {
             if (isPaymentSuccessful) {
                 // showOrderDetails(selectedOrdine); // With this line the details are updated but the order remains selected, so the pay button is still visible
                 ordiniLeftTable.getSelectionModel().clearSelection(); // Clears selection to refresh the order details view
+                updateStorageAfterOrderPayment(selectedOrdine);
+                // ordiniLeftTable.refresh();
             } 
+        }
+    }
+
+    private void updateStorageAfterOrderPayment(Ordine ord) {
+        // Updates the stock of articles based on the items in the paid order
+        for (VoceOrdine voce : ord.getVoci()) {
+            Articolo articolo = voce.getArticolo();
+            articolo.setStoccaggio(articolo.getStoccaggio() - voce.getQuantita());
         }
     }
 

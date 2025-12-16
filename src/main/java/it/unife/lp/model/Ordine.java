@@ -68,7 +68,9 @@ public class Ordine {
     public ObservableList<VoceOrdine> getVoci() { return this.voci; }
     public void setVoci(ObservableList<VoceOrdine> voci) { 
         this.voci.clear();
-        this.voci.addAll(voci);
+        for (VoceOrdine voce : voci) {
+            aggiungiVoce(voce);
+        }
         calcolaTotale();
     }
 
@@ -187,6 +189,7 @@ public class Ordine {
 
         // Finds the amount to pay without the discount
         double totaleSenzaSconto = this.voci.stream().mapToDouble(VoceOrdine::getPrezzoTotale).sum();
+        System.out.println("Calcolo totale ordine ID " + this.getId());
         System.out.println("Totale senza sconto: " + totaleSenzaSconto);
 
         // Sets the partial total
@@ -194,6 +197,10 @@ public class Ordine {
 
         // Applies the discount 
         this.prezzoTotaleFinale.set(totaleSenzaSconto * (1 - this.scontoPercentuale.get() / 100.0));
+
+        System.out.println("Prezzo totale parziale ID: " + this.getId() + " -> " + this.getPrezzoTotaleParziale());
+        System.out.println("Prezzo totale finale ID: " + this.getId() + " -> " + this.getPrezzoTotaleFinale());
+        System.out.println("----------------------------------------------------------");
 
         // Calculates the change if needed
         calcolaResto();

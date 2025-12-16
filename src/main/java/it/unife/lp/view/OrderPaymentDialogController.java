@@ -173,6 +173,7 @@ public class OrderPaymentDialogController {
             ordineOriginale.setMetodoPagamento(metodoPagamentoChoiceBox.getValue());
             ordineOriginale.setImportoRicevuto(ordine.getImportoRicevuto());
             ordineOriginale.setPagato(true); // Marks the order as paid
+            // ordineOriginale.calcolaResto();
     
             isPaymentSuccessful = true;
             dialogStage.close();
