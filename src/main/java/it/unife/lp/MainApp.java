@@ -19,7 +19,7 @@ import it.unife.lp.model.Articolo;
 import it.unife.lp.model.Ordine;
 import it.unife.lp.view.ItemEditDialogController;
 import it.unife.lp.view.MenuOverviewController;
-import it.unife.lp.view.OrderEditDialogController;
+import it.unife.lp.view.NewOrderScreenController;
 import it.unife.lp.view.OrderPaymentDialogController;
 import it.unife.lp.view.OrdiniViewController;
 import it.unife.lp.view.RootLayoutController;
@@ -182,12 +182,12 @@ public class MainApp extends Application {
         try {
             // Load Ordini view.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/OrderEditDialog.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/NewOrderScreen.fxml"));
             BorderPane ordiniView = (BorderPane) loader.load();
             // Set ordini view into the center of root layout.
             rootLayout.setCenter(ordiniView);
             // Give the controller access to the main app.
-            OrderEditDialogController controller = loader.getController();
+            NewOrderScreenController controller = loader.getController();
             controller.setItem(ordine);
             controller.setDescrizionDialog(descrizioneDialog);
             controller.setOrderId(ordine.getId());

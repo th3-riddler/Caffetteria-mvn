@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class OrderEditDialogController {
+public class NewOrderScreenController {
 
     private Stage dialogStage;
     private Ordine ordineOriginale, ordine;

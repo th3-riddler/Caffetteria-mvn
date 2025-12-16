@@ -1,7 +1,6 @@
 /home/redux/Documents/javafx/caffetteria/src/main/java/module-info.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/MainApp.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/view/OrdiniViewController.java
-/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/view/OrderEditDialogController.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/util/AlertsUtil.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/util/DateUtil.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/model/VoceOrdine.java
@@ -9,6 +8,7 @@
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/view/RootLayoutController.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/view/MenuOverviewController.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/view/OrderPaymentDialogController.java
+/home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/view/NewOrderScreenController.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/model/Articolo.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/util/OrderTableUtil.java
 /home/redux/Documents/javafx/caffetteria/src/main/java/it/unife/lp/model/MetodoPagamento.java
