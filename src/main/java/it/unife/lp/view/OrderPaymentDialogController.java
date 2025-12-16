@@ -80,7 +80,8 @@ public class OrderPaymentDialogController {
         // Populates choice box with payment methods
         metodoPagamentoChoiceBox.getItems().setAll(MetodoPagamento.values());
 
-        
+        // Set the default selected payment method
+        metodoPagamentoChoiceBox.setValue(MetodoPagamento.CARTA_DI_CREDITO);
 
         // Shows the contantiPaymentVBox only if CONTANTI is selected as payment method
         contantiPaymentVBox.visibleProperty().bind(

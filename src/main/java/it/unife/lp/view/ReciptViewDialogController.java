@@ -39,6 +39,8 @@ public class ReciptViewDialogController {
     private Label totaleScontatoLabel;
     @FXML
     private Label metodoPagamentoLabel;
+    @FXML
+    private Label restoLabel;
 
     @FXML
     private Label dataLabel;
@@ -71,6 +73,7 @@ public class ReciptViewDialogController {
         totaleScontatoLabel.setText(String.format("%.2f €", ordine.getPrezzoTotaleFinale()));
         metodoPagamentoLabel.setText(ordine.getMetodoPagamento().toString());
 
-        dataLabel.setText(DateUtil.formatDateTime(ordine.getDataOra()));
+        dataLabel.setText(DateUtil.format(ordine.getData()));
+        restoLabel.setText(String.format("%.2f €", ordine.getResto()));
     }
 }

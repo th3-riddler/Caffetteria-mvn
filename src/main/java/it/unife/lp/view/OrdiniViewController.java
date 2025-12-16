@@ -103,7 +103,7 @@ public class OrdiniViewController {
 
     private void showOrderDetails(Ordine ordine) {
         idLabel.setText(ordine != null ? String.valueOf(ordine.getId()) : "");
-        dataLabel.setText(ordine != null ? String.valueOf(DateUtil.formatDateTime(ordine.getDataOra())) : "");
+        dataLabel.setText(ordine != null ? String.valueOf(DateUtil.format(ordine.getData())) : "");
         metodoPagamentoLabel.setText(ordine != null ? ordine.getMetodoPagamento().toString() : "");
 
         scontoLabel.setText(ordine != null ? String.format("%.2f %%", ordine.getSconto()) : "");

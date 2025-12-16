@@ -68,7 +68,6 @@ public class MainApp extends Application {
         ));
         ordini.get(0).setScontoPercentuale(10);
         ordini.get(0).setMetodoPagamento(MetodoPagamento.CARTA_DI_CREDITO);
-        ordini.get(0).setImportoRicevuto(30);
     }
 
     /**

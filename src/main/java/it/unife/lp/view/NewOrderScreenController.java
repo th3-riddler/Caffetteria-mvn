@@ -5,11 +5,13 @@ import it.unife.lp.model.Articolo;
 import it.unife.lp.model.Ordine;
 import it.unife.lp.model.VoceOrdine;
 import it.unife.lp.util.AlertsUtil;
+import it.unife.lp.util.DateUtil;
 import it.unife.lp.util.OrderTableUtil;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -33,6 +35,8 @@ public class NewOrderScreenController {
     private Label descrizioneDialog;
     @FXML
     private Label idLabel;
+    @FXML
+    private DatePicker dataPicker;
 
     @FXML
     private TableView<VoceOrdine> vociOrdineRightTable;
@@ -87,6 +91,10 @@ public class NewOrderScreenController {
             } catch (NumberFormatException e) {
                 ordine.setScontoPercentuale(0);
             }
+        });
+
+        dataPicker.valueProperty().addListener((obs, oldVal, newVal) -> {
+            ordine.setdata(newVal);
         });
 
         // The addItemButton is visible only when an item is selected on the left table and no item is selected on the right table
@@ -278,7 +286,7 @@ public class NewOrderScreenController {
                 ordineOriginale.setScontoPercentuale(ordine.getSconto());
                 ordineOriginale.setPrezzoTotaleParziale(ordine.getPrezzoTotaleParziale());
                 ordineOriginale.setPrezzoTotaleFinale(ordine.getPrezzoTotaleFinale());
-                ordineOriginale.setDataOra(ordine.getDataOra());
+                ordineOriginale.setdata(ordine.getData());
                 ordineOriginale.setMetodoPagamento(ordine.getMetodoPagamento());
                 ordineOriginale.setImportoRicevuto(ordine.getImportoRicevuto());
 

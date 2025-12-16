@@ -12,11 +12,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Ordine {
     private final IntegerProperty id;
-    private final ObjectProperty<LocalDateTime> dataOra;
+    private final ObjectProperty<LocalDate> data;
     private final ObservableList<VoceOrdine> voci;
     private final DoubleProperty scontoPercentuale;
     private final DoubleProperty prezzoTotaleParziale;
@@ -33,7 +33,7 @@ public class Ordine {
      */
     public Ordine (int id) {
         this.id = new SimpleIntegerProperty(id);
-        this.dataOra = new SimpleObjectProperty<>(LocalDateTime.now());
+        this.data = new SimpleObjectProperty<>(LocalDate.now());
         this.voci = FXCollections.observableArrayList();
         this.scontoPercentuale = new SimpleDoubleProperty(0.0);
         this.prezzoTotaleParziale = new SimpleDoubleProperty(0.0);
@@ -54,14 +54,9 @@ public class Ordine {
     public IntegerProperty idProperty() { return this.id; }
     public void setId(int id) { this.id.set(id); }
 
-    public LocalDateTime getDataOra() { return this.dataOra.get(); }
-    public ObjectProperty<LocalDateTime> dataOraProperty() { return this.dataOra; }
-    public void setDataOra(LocalDateTime dataOra) { this.dataOra.set(dataOra); }
-
-    public LocalDate getData() { return this.dataOra.get().toLocalDate(); }
-    public ObjectProperty<LocalDate> dataProperty() {
-        return new SimpleObjectProperty<>(this.dataOra.get().toLocalDate());
-    }
+    public LocalDate getData() { return this.data.get(); }
+    public ObjectProperty<LocalDate> dataProperty() { return this.data; }
+    public void setdata(LocalDate data) { this.data.set(data); }
 
     public ObservableList<VoceOrdine> getVoci() { return this.voci; }
     public void setVoci(ObservableList<VoceOrdine> voci) { 
@@ -142,7 +137,7 @@ public class Ordine {
 
     public Ordine copy() {
         Ordine copia = new Ordine(this.getId());
-        copia.setDataOra(this.getDataOra());
+        copia.setdata(this.getData());
 
         // Creates a deep copy of the items list
         ObservableList<VoceOrdine> vociCopia = FXCollections.observableArrayList();

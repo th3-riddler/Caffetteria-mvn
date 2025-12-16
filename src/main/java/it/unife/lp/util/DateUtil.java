@@ -13,7 +13,6 @@ import java.time.format.DateTimeParseException;
 public class DateUtil {
     /** The date pattern that is used for conversion. Change as you wish. */
     private static final String DATE_PATTERN = "dd/MM/yyyy";
-    private static final String DATE_TIME_PATTERN = "dd/MM/yyyy HH:mm";
     /** The date formatter. */
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
 
@@ -59,18 +58,5 @@ public class DateUtil {
     public static boolean validDate(String dateString) {
         // Try to parse the String.
         return DateUtil.parse(dateString) != null;
-    }
-
-    /**
-     * Converts a LocalDateTime to a formatted String.
-     * @param dateTimeString the date time as String
-     * @return formatted string
-     */
-    public static String formatDateTime(LocalDateTime dateTime) {
-        if (dateTime == null) {
-            return null;
-        }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
-        return formatter.format(dateTime);
     }
 }
