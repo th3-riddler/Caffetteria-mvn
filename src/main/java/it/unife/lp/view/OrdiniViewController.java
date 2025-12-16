@@ -140,6 +140,13 @@ public class OrdiniViewController {
         mainApp.showNewOrderScreen(ordineTmp, "Nuovo Ordine");
     }
 
+    @FXML
+    private void handleRecipt() {
+        Ordine selectedOrdine = ordiniLeftTable.getSelectionModel().getSelectedItem();
+
+        this.mainApp.showReciptViewDialog(selectedOrdine);
+    }
+
     // @FXML
     // private void handleRemoveOrder() {
     //     Ordine selectedOrdine = ordiniLeftTable.getSelectionModel().getSelectedItem();

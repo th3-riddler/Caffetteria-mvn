@@ -140,7 +140,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" spacing="10.0" VBox.vgrow="ALWAYS">
                 <children>
-                      <Button fx:id="reciptButton" mnemonicParsing="false" text="Ricevuta" />
+                      <Button fx:id="reciptButton" mnemonicParsing="false" onAction="#handleRecipt" text="Ricevuta" />
                 </children>
                 <padding>
                     <Insets left="0.0" right="0.0" />

@@ -1,8 +1,13 @@
 package it.unife.lp.view;
 
 import it.unife.lp.model.Ordine;
+import it.unife.lp.model.VoceOrdine;
+import it.unife.lp.util.DateUtil;
+import it.unife.lp.util.OrderTableUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 public class ReciptViewDialogController {
@@ -10,15 +15,62 @@ public class ReciptViewDialogController {
     private Stage dialogStage;
     private Ordine ordine;
 
+    @FXML
+    private Label orderIdLabel;
+    
+    @FXML
+    private TableView<VoceOrdine> vociOrdineTable;
+    @FXML
+    private TableColumn<VoceOrdine, String> vociOrdineNomeColumn;
+    @FXML
+    private TableColumn<VoceOrdine, String> vociOrdinePrezzoUnitarioColumn;
+    @FXML
+    private TableColumn<VoceOrdine, Number> vociOrdineQuantitaColumn;
+    @FXML
+    private TableColumn<VoceOrdine, String> vociOrdinePrezzoTotaleColumn;
+    
+    @FXML
+    private Label subtotaleLabel;
+    @FXML
+    private Label scontoPercentualeLabel;
+    @FXML
+    private Label scontoNumericoLabel;
+    @FXML
+    private Label totaleScontatoLabel;
+    @FXML
+    private Label metodoPagamentoLabel;
 
     @FXML
-    private Label idLabel;
+    private Label dataLabel;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
     public void setOrderId(int orderId) {
-        this.idLabel.setText(Integer.toString((orderId)));
+        this.orderIdLabel.setText(Integer.toString((orderId)));
+    }
+
+    public void setItem(Ordine ordine) {
+        this.ordine = ordine;
+
+        OrderTableUtil.populateItemsTable(
+            vociOrdineTable,
+            vociOrdineNomeColumn,
+            vociOrdinePrezzoUnitarioColumn,
+            vociOrdineQuantitaColumn,
+            vociOrdinePrezzoTotaleColumn,
+            ordine
+        );
+
+        subtotaleLabel.setText(String.format("%.2f €", ordine.getPrezzoTotaleParziale()));
+        scontoPercentualeLabel.setText(String.format("(-%.2f %%)", ordine.getSconto()));
+        // Gets the numeric value of the discount
+        scontoNumericoLabel.setText(String.format("-%.2f €", ordine.getPrezzoTotaleParziale() * ordine.getSconto() / 100));
+
+        totaleScontatoLabel.setText(String.format("%.2f €", ordine.getPrezzoTotaleFinale()));
+        metodoPagamentoLabel.setText(ordine.getMetodoPagamento().toString());
+
+        dataLabel.setText(DateUtil.formatDateTime(ordine.getDataOra()));
     }
 }

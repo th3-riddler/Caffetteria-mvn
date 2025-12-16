@@ -247,9 +247,7 @@ public class MainApp extends Application {
 
             ReciptViewDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            
-            // controller.setItem(ordine);
-            
+            controller.setItem(ordine);
             controller.setOrderId(ordine.getId());
 
             // controller.setMainApp(this);

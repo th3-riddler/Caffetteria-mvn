@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unife.lp.view.ReciptViewDialogController">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -51,7 +50,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label text="Label">
+                  <Label fx:id="orderIdLabel" text="Label">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -63,12 +62,12 @@
                   <Insets left="15.0" right="15.0" />
                </VBox.margin>
             </Separator>
-            <TableView prefHeight="200.0" prefWidth="360.0">
+            <TableView fx:id="vociOrdineTable" prefHeight="200.0" prefWidth="360.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Nome" />
-                <TableColumn prefWidth="75.0" text="Prezzo cad." />
-                  <TableColumn prefWidth="75.0" text="Quantità" />
-                  <TableColumn prefWidth="75.0" text="Prezzo tot." />
+                <TableColumn fx:id="vociOrdineNomeColumn" prefWidth="75.0" text="Nome" />
+                <TableColumn fx:id="vociOrdinePrezzoUnitarioColumn" prefWidth="75.0" text="Prezzo cad." />
+                  <TableColumn fx:id="vociOrdineQuantitaColumn" prefWidth="75.0" text="Quantità" />
+                  <TableColumn fx:id="vociOrdinePrezzoTotaleColumn" prefWidth="75.0" text="Prezzo tot." />
               </columns>
                <VBox.margin>
                   <Insets left="20.0" right="20.0" top="5.0" />
@@ -86,13 +85,13 @@
                <children>
                   <HBox>
                      <children>
-                        <Label text="Subtotale:">
+                        <Label prefHeight="29.0" prefWidth="119.0" text="Subtotale:">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
                         <Region prefHeight="0.0" prefWidth="200.0" />
-                        <Label prefHeight="29.0" prefWidth="64.0" text="Label">
+                        <Label fx:id="subtotaleLabel" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="85.0" text="Label">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -101,18 +100,18 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="24.0" prefWidth="62.0" text="Sconto">
+                        <Label prefHeight="24.0" prefWidth="75.0" text="Sconto">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="24.0" prefWidth="59.0" text="Label">
+                        <Label fx:id="scontoPercentualeLabel" alignment="CENTER_RIGHT" prefHeight="24.0" prefWidth="99.0" text="Label">
                            <font>
-                              <Font size="17.0" />
+                              <Font size="15.0" />
                            </font>
                         </Label>
-                        <Region prefHeight="24.0" prefWidth="181.0" />
-                        <Label text="Label">
+                        <Region prefHeight="24.0" prefWidth="161.0" />
+                        <Label fx:id="scontoNumericoLabel" alignment="CENTER_RIGHT" prefHeight="24.0" prefWidth="88.0" text="Label">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -121,13 +120,13 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="29.0" prefWidth="78.0" text="Totale:">
+                        <Label prefHeight="29.0" prefWidth="88.0" text="Totale:">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
                         <Region prefHeight="29.0" prefWidth="219.0" />
-                        <Label prefHeight="29.0" prefWidth="64.0" text="Label">
+                        <Label fx:id="totaleScontatoLabel" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="88.0" text="Label">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -136,9 +135,9 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label prefHeight="29.0" prefWidth="160.0" text="Metodo Pagamento:" />
-                        <Region prefHeight="21.0" prefWidth="171.0" />
-                        <Label prefHeight="29.0" prefWidth="64.0" text="Label">
+                        <Label prefHeight="21.0" prefWidth="163.0" text="Metodo Pagamento:" />
+                        <Region prefHeight="21.0" prefWidth="105.0" />
+                        <Label fx:id="metodoPagamentoLabel" alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="169.0" text="Label">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -162,7 +161,7 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label text="Label">
+                  <Label fx:id="dataLabel" text="Label">
                      <font>
                         <Font size="17.0" />
                      </font>
