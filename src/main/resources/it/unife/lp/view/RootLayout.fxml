@@ -22,7 +22,7 @@
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#handleShowMenuOverview" text="Menu" />
                   <MenuItem mnemonicParsing="false" onAction="#handleShowOrdiniView" text="Orders" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Reports" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleShowReportView" text="Reports" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

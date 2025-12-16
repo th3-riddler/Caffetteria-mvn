@@ -66,9 +66,9 @@ public class ReciptViewDialogController {
         );
 
         subtotaleLabel.setText(String.format("%.2f €", ordine.getPrezzoTotaleParziale()));
-        scontoPercentualeLabel.setText(String.format("(-%.2f %%)", ordine.getSconto()));
+        scontoPercentualeLabel.setText(String.format("(-%.2f %%)", ordine.getScontoPercentuale()));
         // Gets the numeric value of the discount
-        scontoNumericoLabel.setText(String.format("-%.2f €", ordine.getPrezzoTotaleParziale() * ordine.getSconto() / 100));
+        scontoNumericoLabel.setText(String.format("-%.2f €", ordine.getPrezzoTotaleParziale() * ordine.getScontoPercentuale() / 100));
 
         totaleScontatoLabel.setText(String.format("%.2f €", ordine.getPrezzoTotaleFinale()));
         metodoPagamentoLabel.setText(ordine.getMetodoPagamento().toString());

@@ -106,7 +106,7 @@ public class OrdiniViewController {
         dataLabel.setText(ordine != null ? String.valueOf(DateUtil.format(ordine.getData())) : "");
         metodoPagamentoLabel.setText(ordine != null ? ordine.getMetodoPagamento().toString() : "");
 
-        scontoLabel.setText(ordine != null ? String.format("%.2f %%", ordine.getSconto()) : "");
+        scontoLabel.setText(ordine != null ? String.format("%.2f %%", ordine.getScontoPercentuale()) : "");
 
         totaleParzialeLabel.setText(ordine != null ? String.format("%.2f €", ordine.getPrezzoTotaleParziale()) : "");
         totaleFinaleLabel.setText(ordine != null ? String.format("%.2f €", ordine.getPrezzoTotaleFinale()) : "");

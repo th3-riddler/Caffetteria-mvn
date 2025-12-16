@@ -35,6 +35,6 @@ public class OrderTableUtil {
                 cellData.getValue().prezzoTotaleProperty()
             )
         );
-        table.setItems(ordine.getVoci());
+        table.setItems(ordine.getVociProperty());
     }
 }

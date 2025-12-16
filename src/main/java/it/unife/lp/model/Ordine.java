@@ -1,10 +1,8 @@
 package it.unife.lp.model;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -12,8 +10,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 
 import java.time.LocalDate;
-import java.time.LocalDate;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Ordine {
     private final IntegerProperty id;
     private final ObjectProperty<LocalDate> data;
@@ -47,6 +50,10 @@ public class Ordine {
         this.scontoPercentuale.addListener((obs, oldValue, newValue) -> calcolaTotale());
     }
 
+    public Ordine() {
+        this(0);
+    }
+
     // ------------------------------
     // Generic Getters
     // ------------------------------
@@ -58,8 +65,10 @@ public class Ordine {
     public ObjectProperty<LocalDate> dataProperty() { return this.data; }
     public void setdata(LocalDate data) { this.data.set(data); }
 
-    public ObservableList<VoceOrdine> getVoci() { return this.voci; }
-    public void setVoci(ObservableList<VoceOrdine> voci) { 
+    @JsonIgnore
+    public ObservableList<VoceOrdine> getVociProperty() { return this.voci; }
+    public List<VoceOrdine> getVoci() { return List.copyOf(this.voci); }
+    public void setVoci(List<VoceOrdine> voci) { 
         this.voci.clear();
         for (VoceOrdine voce : voci) {
             aggiungiVoce(voce);
@@ -67,7 +76,8 @@ public class Ordine {
         calcolaTotale();
     }
 
-    public double getSconto() { return this.scontoPercentuale.get(); }
+
+    public double getScontoPercentuale() { return this.scontoPercentuale.get(); }
     public DoubleProperty scontoProperty() { return this.scontoPercentuale; }
     public void setScontoPercentuale(double scontoPercentuale) { this.scontoPercentuale.set(scontoPercentuale); }
 
@@ -92,6 +102,7 @@ public class Ordine {
     
     public double getResto() { return this.resto.get(); }
     public DoubleProperty restoProperty() { return this.resto; }
+    public void setResto(double resto) { this.resto.set(resto); }
 
     // ------------------------------
     // Items handlers
@@ -141,11 +152,11 @@ public class Ordine {
 
         // Creates a deep copy of the items list
         ObservableList<VoceOrdine> vociCopia = FXCollections.observableArrayList();
-        for (VoceOrdine voce : this.getVoci()) {
+        for (VoceOrdine voce : this.getVociProperty()) {
             vociCopia.add(voce.copy());
         }
         copia.setVoci(vociCopia);
-        copia.setScontoPercentuale(this.getSconto());
+        copia.setScontoPercentuale(this.getScontoPercentuale());
         copia.setPrezzoTotaleParziale(this.getPrezzoTotaleParziale());
         copia.setPrezzoTotaleFinale(this.getPrezzoTotaleFinale());
         copia.setMetodoPagamento(this.getMetodoPagamento());

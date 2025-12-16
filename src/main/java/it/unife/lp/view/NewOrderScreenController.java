@@ -158,7 +158,7 @@ public class NewOrderScreenController {
     // private void handleSaveOrder() {
     //     if (isOrderValidtoSave()) {
     //         ordineOriginale.setVoci(FXCollections.observableArrayList(ordine.getVoci()));
-    //         ordineOriginale.setScontoPercentuale(ordine.getSconto());
+    //         ordineOriginale.setScontoPercentuale(ordine.getScontoPercentuale());
     //         ordineOriginale.setPrezzoTotaleParziale(ordine.getPrezzoTotaleParziale());
     //         ordineOriginale.setPrezzoTotaleFinale(ordine.getPrezzoTotaleFinale());
     //         ordineOriginale.setDataOra(ordine.getDataOra());
@@ -214,7 +214,7 @@ public class NewOrderScreenController {
             // System.out.println("Adding quantity: " + quantitaDaAggiungere + " of article: " + selectedArticolo.getNome());
 
             // Checks if the item is already present in the order
-            ordine.getVoci().stream()
+            ordine.getVociProperty().stream()
                 .filter(voce -> voce.getArticolo().equals(selectedArticolo))
                 .findFirst()
                 .ifPresentOrElse(
@@ -282,8 +282,8 @@ public class NewOrderScreenController {
                 // ordiniLeftTable.getSelectionModel().clearSelection(); // Clears selection to refresh the order details view
                 updateStorageAfterOrderPayment(this.ordine);
                 
-                ordineOriginale.setVoci(FXCollections.observableArrayList(ordine.getVoci()));
-                ordineOriginale.setScontoPercentuale(ordine.getSconto());
+                ordineOriginale.setVoci(FXCollections.observableArrayList(ordine.getVociProperty()));
+                ordineOriginale.setScontoPercentuale(ordine.getScontoPercentuale());
                 ordineOriginale.setPrezzoTotaleParziale(ordine.getPrezzoTotaleParziale());
                 ordineOriginale.setPrezzoTotaleFinale(ordine.getPrezzoTotaleFinale());
                 ordineOriginale.setdata(ordine.getData());
@@ -299,7 +299,7 @@ public class NewOrderScreenController {
 
     private void updateStorageAfterOrderPayment(Ordine ord) {
         // Updates the stock of articles based on the items in the paid order
-        for (VoceOrdine voce : ord.getVoci()) {
+        for (VoceOrdine voce : ord.getVociProperty()) {
             Articolo articolo = voce.getArticolo();
             articolo.setStoccaggio(articolo.getStoccaggio() - voce.getQuantita());
         }
@@ -330,7 +330,7 @@ public class NewOrderScreenController {
             ordine
         );
 
-        scontoPercentualeField.setText(Double.toString(ordine.getSconto()));
+        scontoPercentualeField.setText(Double.toString(ordine.getScontoPercentuale()));
         // Sets up bindings for total labels (partial and final)
         totaleParzialeLabel.textProperty().bind(
         Bindings.createStringBinding(
@@ -349,7 +349,7 @@ public class NewOrderScreenController {
 
     private boolean isOrderValidtoPay() {
         String errorMessage = "";
-        if (ordine.getVoci().isEmpty()) {
+        if (ordine.getVociProperty().isEmpty()) {
             errorMessage += "L'ordine deve contenere almeno una voce.\n";
         }
         try {

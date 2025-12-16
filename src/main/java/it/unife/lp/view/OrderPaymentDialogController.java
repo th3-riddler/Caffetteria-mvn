@@ -110,7 +110,7 @@ public class OrderPaymentDialogController {
             ordine
         );
 
-        scontoLabel.setText(Double.toString(ordine.getSconto()));
+        scontoLabel.setText(Double.toString(ordine.getScontoPercentuale()));
 
         totaleDaPagareLabel.textProperty().bind(
             Bindings.createStringBinding(

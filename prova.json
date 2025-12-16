@@ -1,0 +1,149 @@
+{
+  "articoli" : [ {
+    "nome" : "Espresso",
+    "descrizione" : "Caffè espresso classico",
+    "prezzo" : 1.5,
+    "stoccaggio" : 85
+  }, {
+    "nome" : "Cappuccino",
+    "descrizione" : "Caffè con latte e schiuma",
+    "prezzo" : 2.5,
+    "stoccaggio" : 80
+  }, {
+    "nome" : "Latte Macchiato",
+    "descrizione" : "Latte con una spruzzata di caffè",
+    "prezzo" : 2.8,
+    "stoccaggio" : 60
+  }, {
+    "nome" : "Cornetto Vuoto",
+    "descrizione" : "Cornetto semplice",
+    "prezzo" : 1.2,
+    "stoccaggio" : 150
+  }, {
+    "nome" : "Cornetto alla Crema",
+    "descrizione" : "Cornetto ripieno di crema",
+    "prezzo" : 1.5,
+    "stoccaggio" : 120
+  }, {
+    "nome" : "Torta al Cioccolato",
+    "descrizione" : "Fetta di torta al cioccolato",
+    "prezzo" : 3.0,
+    "stoccaggio" : 50
+  }, {
+    "nome" : "Torta di Mele",
+    "descrizione" : "Fetta di torta di mele",
+    "prezzo" : 2.8,
+    "stoccaggio" : 40
+  }, {
+    "nome" : "Succo d'Arancia",
+    "descrizione" : "Bicchiere di succo d'arancia fresco",
+    "prezzo" : 2.0,
+    "stoccaggio" : 70
+  }, {
+    "nome" : "Torta Salata",
+    "descrizione" : "Fetta di torta salata con verdure",
+    "prezzo" : 3.5,
+    "stoccaggio" : 30
+  }, {
+    "nome" : "Panino Prosciutto e Formaggio",
+    "descrizione" : "Panino con prosciutto e formaggio",
+    "prezzo" : 4.0,
+    "stoccaggio" : 90
+  }, {
+    "nome" : "Acqua Naturale",
+    "descrizione" : "Bottiglia di acqua naturale",
+    "prezzo" : 1.0,
+    "stoccaggio" : 200
+  }, {
+    "nome" : "Acqua Frizzante",
+    "descrizione" : "Bottiglia di acqua frizzante",
+    "prezzo" : 1.0,
+    "stoccaggio" : 200
+  } ],
+  "ordini" : [ {
+    "id" : 1,
+    "data" : [ 2025, 12, 16 ],
+    "voci" : [ {
+      "@id" : 1,
+      "articolo" : "Espresso",
+      "quantita" : 2,
+      "prezzoTotale" : 3.0
+    }, {
+      "@id" : 2,
+      "articolo" : "Cornetto Vuoto",
+      "quantita" : 1,
+      "prezzoTotale" : 1.2
+    }, {
+      "@id" : 3,
+      "articolo" : "Espresso",
+      "quantita" : 2,
+      "prezzoTotale" : 3.0
+    }, {
+      "@id" : 4,
+      "articolo" : "Cornetto Vuoto",
+      "quantita" : 1,
+      "prezzoTotale" : 1.2
+    }, {
+      "@id" : 5,
+      "articolo" : "Espresso",
+      "quantita" : 2,
+      "prezzoTotale" : 3.0
+    }, {
+      "@id" : 6,
+      "articolo" : "Cornetto Vuoto",
+      "quantita" : 1,
+      "prezzoTotale" : 1.2
+    }, {
+      "@id" : 7,
+      "articolo" : "Espresso",
+      "quantita" : 2,
+      "prezzoTotale" : 3.0
+    }, {
+      "@id" : 8,
+      "articolo" : "Cornetto Vuoto",
+      "quantita" : 1,
+      "prezzoTotale" : 1.2
+    }, {
+      "@id" : 9,
+      "articolo" : "Espresso",
+      "quantita" : 2,
+      "prezzoTotale" : 3.0
+    }, {
+      "@id" : 10,
+      "articolo" : "Cornetto Vuoto",
+      "quantita" : 1,
+      "prezzoTotale" : 1.2
+    }, {
+      "@id" : 11,
+      "articolo" : "Espresso",
+      "quantita" : 2,
+      "prezzoTotale" : 3.0
+    }, {
+      "@id" : 12,
+      "articolo" : "Cornetto Vuoto",
+      "quantita" : 1,
+      "prezzoTotale" : 1.2
+    } ],
+    "scontoPercentuale" : 10.0,
+    "prezzoTotaleParziale" : 25.2,
+    "prezzoTotaleFinale" : 22.68,
+    "metodoPagamento" : "CARTA_DI_CREDITO",
+    "importoRicevuto" : 0.0,
+    "resto" : 0.0
+  }, {
+    "id" : 2,
+    "data" : [ 2025, 12, 4 ],
+    "voci" : [ {
+      "@id" : 13,
+      "articolo" : "Espresso",
+      "quantita" : 15,
+      "prezzoTotale" : 22.5
+    } ],
+    "scontoPercentuale" : 60.0,
+    "prezzoTotaleParziale" : 22.5,
+    "prezzoTotaleFinale" : 9.0,
+    "metodoPagamento" : "CONTANTI",
+    "importoRicevuto" : 10.5,
+    "resto" : 1.5
+  } ]
+}
