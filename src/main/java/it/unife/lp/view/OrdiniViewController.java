@@ -51,6 +51,8 @@ public class OrdiniViewController {
     private Label totaleParzialeLabel;
     @FXML
     private Label totaleFinaleLabel;
+    @FXML
+    private Label metodoPagamentoLabel;
 
     @FXML
     private Button newOrderButton; // Button to create a new order
@@ -102,6 +104,7 @@ public class OrdiniViewController {
     private void showOrderDetails(Ordine ordine) {
         idLabel.setText(ordine != null ? String.valueOf(ordine.getId()) : "");
         dataLabel.setText(ordine != null ? String.valueOf(DateUtil.formatDateTime(ordine.getDataOra())) : "");
+        metodoPagamentoLabel.setText(ordine != null ? ordine.getMetodoPagamento().toString() : "");
 
         scontoLabel.setText(ordine != null ? String.format("%.2f %%", ordine.getSconto()) : "");
 
@@ -120,6 +123,9 @@ public class OrdiniViewController {
         } else {
             vociOrdineRightTable.setItems(null);
         }
+
+        System.out.println("Order " + (ordine != null ? ordine.getId() : "N/A") + " money: " + (ordine != null ? ordine.getImportoRicevuto() : "N/A"));
+        System.out.println("Order " + (ordine != null ? ordine.getId() : "N/A") + " change: " + (ordine != null ? ordine.getResto() : "N/A"));
     }
 
     @FXML

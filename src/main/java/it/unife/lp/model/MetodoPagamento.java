@@ -1,7 +1,18 @@
 package it.unife.lp.model;
 
 public enum MetodoPagamento {
-    CONTANTI,
-    CARTA_DI_CREDITO,
-    CARTA_DI_DEBITO
+    CONTANTI("Contanti"),
+    CARTA_DI_CREDITO("Carta di Credito"),
+    CARTA_DI_DEBITO("Carta di Debito");
+
+    private final String displayName;
+
+    MetodoPagamento(String displayName) {
+        this.displayName = displayName;
+    }
+
+    @Override
+    public String toString() {
+        return displayName;
+    }
 }

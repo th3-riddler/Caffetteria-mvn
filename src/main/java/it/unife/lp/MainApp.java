@@ -16,12 +16,14 @@ import java.io.File;
 import java.io.IOException;
 
 import it.unife.lp.model.Articolo;
+import it.unife.lp.model.MetodoPagamento;
 import it.unife.lp.model.Ordine;
 import it.unife.lp.view.ItemEditDialogController;
 import it.unife.lp.view.MenuOverviewController;
 import it.unife.lp.view.NewOrderScreenController;
 import it.unife.lp.view.OrderPaymentDialogController;
 import it.unife.lp.view.OrdiniViewController;
+import it.unife.lp.view.ReciptViewDialogController;
 import it.unife.lp.view.RootLayoutController;
 
 /**
@@ -49,7 +51,7 @@ public class MainApp extends Application {
                         new Articolo("Acqua Naturale", "Bottiglia di acqua naturale", 1.00, 200),
                         new Articolo("Acqua Frizzante", "Bottiglia di acqua frizzante", 1.00, 200));
 
-        ordini.addAll(new Ordine(1), new Ordine(2), new Ordine(3));
+        ordini.addAll(new Ordine(1));
         ordini.get(0).setVoci(FXCollections.observableArrayList(
             new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
             new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
@@ -65,6 +67,8 @@ public class MainApp extends Application {
             new it.unife.lp.model.VoceOrdine(articoli.get(3), 1)
         ));
         ordini.get(0).setScontoPercentuale(10);
+        ordini.get(0).setMetodoPagamento(MetodoPagamento.CARTA_DI_CREDITO);
+        ordini.get(0).setImportoRicevuto(30);
     }
 
     /**
@@ -224,6 +228,37 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public void showReciptViewDialog(Ordine ordine) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/ReciptViewDialog.fxml"));
+            BorderPane page = (BorderPane) loader.load();
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Ricevuta Ordine " + ordine.getId());
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            ReciptViewDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            
+            // controller.setItem(ordine);
+            
+            controller.setOrderId(ordine.getId());
+
+            // controller.setMainApp(this);
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+            // return controller.isPaymentSuccessful();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // return false;
         }
     }
 
