@@ -110,7 +110,7 @@ public class RootLayoutController {
     }
 
     @FXML
-    private void handleShowReportView() {
-        // mainApp.showReportView();
+    private void handleShowStatisticsView() {
+        mainApp.showStatisticsView();
     }
 }

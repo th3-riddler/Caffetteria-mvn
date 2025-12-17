@@ -118,7 +118,7 @@ public class OrdiniViewController {
                     prezzoUnitarioVoceRightColumn,
                     quantitaVoceRightColumn,
                     prezzoTotaleVoceRightColumn,
-                    ordine
+                    ordine.getVociProperty()
             );
         } else {
             vociOrdineRightTable.setItems(null);

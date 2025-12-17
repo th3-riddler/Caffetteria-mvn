@@ -327,7 +327,7 @@ public class NewOrderScreenController {
             prezzoArticoloUnitarioRightTableColumn,
             quantitaArticoloRightTableColumn,
             prezzoTotaleArticoloRightTableColumn,
-            ordine
+            ordine.getVociProperty()
         );
 
         scontoPercentualeField.setText(Double.toString(ordine.getScontoPercentuale()));
@@ -359,6 +359,10 @@ public class NewOrderScreenController {
             }
         } catch (NumberFormatException e) {
             errorMessage += "Lo sconto percentuale deve essere un numero valido.\n";
+        }
+
+        if (dataPicker.getValue() == null) {
+            errorMessage += "La data dell'ordine non può essere vuota.\n";
         }
 
         if (errorMessage.isEmpty()) {

@@ -52,6 +52,10 @@ public class Articolo {
     public IntegerProperty stoccaggioProperty() { return this.stoccaggio; }
     public void setStoccaggio(int stoccaggio) { this.stoccaggio.set(stoccaggio); }
 
+    public Articolo copy() {
+        return new Articolo(this.getNome(), this.getDescrizione(), this.getPrezzo(), this.getStoccaggio());
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

@@ -3,7 +3,7 @@
     "nome" : "Espresso",
     "descrizione" : "Caffè espresso classico",
     "prezzo" : 1.5,
-    "stoccaggio" : 85
+    "stoccaggio" : 80
   }, {
     "nome" : "Cappuccino",
     "descrizione" : "Caffè con latte e schiuma",
@@ -28,7 +28,7 @@
     "nome" : "Torta al Cioccolato",
     "descrizione" : "Fetta di torta al cioccolato",
     "prezzo" : 3.0,
-    "stoccaggio" : 50
+    "stoccaggio" : 48
   }, {
     "nome" : "Torta di Mele",
     "descrizione" : "Fetta di torta di mele",
@@ -62,88 +62,38 @@
   } ],
   "ordini" : [ {
     "id" : 1,
-    "data" : [ 2025, 12, 16 ],
+    "data" : [ 2026, 1, 1 ],
     "voci" : [ {
       "@id" : 1,
       "articolo" : "Espresso",
-      "quantita" : 2,
-      "prezzoTotale" : 3.0
+      "quantita" : 10,
+      "prezzoTotale" : 15.0
     }, {
       "@id" : 2,
-      "articolo" : "Cornetto Vuoto",
-      "quantita" : 1,
-      "prezzoTotale" : 1.2
-    }, {
-      "@id" : 3,
-      "articolo" : "Espresso",
+      "articolo" : "Torta al Cioccolato",
       "quantita" : 2,
-      "prezzoTotale" : 3.0
-    }, {
-      "@id" : 4,
-      "articolo" : "Cornetto Vuoto",
-      "quantita" : 1,
-      "prezzoTotale" : 1.2
-    }, {
-      "@id" : 5,
-      "articolo" : "Espresso",
-      "quantita" : 2,
-      "prezzoTotale" : 3.0
-    }, {
-      "@id" : 6,
-      "articolo" : "Cornetto Vuoto",
-      "quantita" : 1,
-      "prezzoTotale" : 1.2
-    }, {
-      "@id" : 7,
-      "articolo" : "Espresso",
-      "quantita" : 2,
-      "prezzoTotale" : 3.0
-    }, {
-      "@id" : 8,
-      "articolo" : "Cornetto Vuoto",
-      "quantita" : 1,
-      "prezzoTotale" : 1.2
-    }, {
-      "@id" : 9,
-      "articolo" : "Espresso",
-      "quantita" : 2,
-      "prezzoTotale" : 3.0
-    }, {
-      "@id" : 10,
-      "articolo" : "Cornetto Vuoto",
-      "quantita" : 1,
-      "prezzoTotale" : 1.2
-    }, {
-      "@id" : 11,
-      "articolo" : "Espresso",
-      "quantita" : 2,
-      "prezzoTotale" : 3.0
-    }, {
-      "@id" : 12,
-      "articolo" : "Cornetto Vuoto",
-      "quantita" : 1,
-      "prezzoTotale" : 1.2
+      "prezzoTotale" : 6.0
     } ],
-    "scontoPercentuale" : 10.0,
-    "prezzoTotaleParziale" : 25.2,
-    "prezzoTotaleFinale" : 22.68,
+    "scontoPercentuale" : 0.0,
+    "prezzoTotaleParziale" : 21.0,
+    "prezzoTotaleFinale" : 21.0,
     "metodoPagamento" : "CARTA_DI_CREDITO",
     "importoRicevuto" : 0.0,
     "resto" : 0.0
   }, {
     "id" : 2,
-    "data" : [ 2025, 12, 4 ],
+    "data" : [ 2026, 1, 1 ],
     "voci" : [ {
-      "@id" : 13,
+      "@id" : 3,
       "articolo" : "Espresso",
-      "quantita" : 15,
-      "prezzoTotale" : 22.5
+      "quantita" : 10,
+      "prezzoTotale" : 15.0
     } ],
-    "scontoPercentuale" : 60.0,
-    "prezzoTotaleParziale" : 22.5,
-    "prezzoTotaleFinale" : 9.0,
-    "metodoPagamento" : "CONTANTI",
-    "importoRicevuto" : 10.5,
-    "resto" : 1.5
+    "scontoPercentuale" : 10.0,
+    "prezzoTotaleParziale" : 15.0,
+    "prezzoTotaleFinale" : 13.5,
+    "metodoPagamento" : "CARTA_DI_CREDITO",
+    "importoRicevuto" : 0.0,
+    "resto" : 0.0
   } ]
 }

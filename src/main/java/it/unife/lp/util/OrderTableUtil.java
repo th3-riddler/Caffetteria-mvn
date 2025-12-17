@@ -3,6 +3,7 @@ package it.unife.lp.util;
 import it.unife.lp.model.Ordine;
 import it.unife.lp.model.VoceOrdine;
 import javafx.beans.binding.Bindings;
+import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -13,7 +14,7 @@ public class OrderTableUtil {
         TableColumn<VoceOrdine, String> prezzoUnitarioCol,
         TableColumn<VoceOrdine, Number> quantitaCol,
         TableColumn<VoceOrdine, String> prezzoTotaleCol,
-        Ordine ordine
+        ObservableList<VoceOrdine> voci
     ) {
         nomeCol.setCellValueFactory(cellData -> cellData.getValue().getArticolo().nomeProperty());
 
@@ -35,6 +36,7 @@ public class OrderTableUtil {
                 cellData.getValue().prezzoTotaleProperty()
             )
         );
-        table.setItems(ordine.getVociProperty());
+        // Evntually, sets the items of the table to the order's items
+        table.setItems(voci);
     }
 }

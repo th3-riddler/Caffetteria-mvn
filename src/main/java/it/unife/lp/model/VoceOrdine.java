@@ -27,6 +27,10 @@ public class VoceOrdine {
 
     public Articolo getArticolo() { return this.articolo; }
     public void setArticolo(Articolo articolo) { this.articolo = articolo; }
+    public void setPrezzoArticolo(double prezzo) {
+        this.articolo.setPrezzo(prezzo);
+        this.prezzoTotale.set(this.articolo.getPrezzo() * this.quantita.get());
+    }
 
     public int getQuantita() { return this.quantita.get(); }
     public IntegerProperty quantitaProperty() { return this.quantita; }
@@ -40,7 +44,7 @@ public class VoceOrdine {
     public void setPrezzoTotale(double prezzoTotale) { this.prezzoTotale.set(prezzoTotale); }
     
     public VoceOrdine copy() {
-        return new VoceOrdine(this.getArticolo(), this.getQuantita());
+        return new VoceOrdine(this.articolo.copy(), this.getQuantita());
     }
 
 }

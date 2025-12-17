@@ -11,7 +11,7 @@ import it.unife.lp.model.VoceOrdine;
 
 public class StatisticsUtil {
 
-    public static Map<Articolo, Integer> venditeGiornaliere(List<Ordine> ordini, LocalDate date) {
+    public static Map<Articolo, Integer> dailySalesMap(List<Ordine> ordini, LocalDate date) {
         return ordini.stream()
                 // Checks if the order date matches the specified date
                 .filter(o -> o.getData().isEqual(date))
@@ -24,7 +24,7 @@ public class StatisticsUtil {
                 );
     }
 
-    public static Map<Articolo, Integer> inventario(List<Articolo> articoli) {
+    public static Map<Articolo, Integer> inventoryMap(List<Articolo> articoli) {
         return articoli.stream()
                 .collect(
                     Collectors.toMap(
@@ -34,7 +34,7 @@ public class StatisticsUtil {
                 );
     }
 
-    public static Map<Articolo, Integer> articoliPiuVenduti(List<Ordine> ordini, LocalDate startDate, LocalDate endDate) {
+    public static Map<Articolo, Integer> topItemsMap(List<Ordine> ordini, LocalDate startDate, LocalDate endDate) {
         return ordini.stream()
                 // Checks if the order date is within the specified range (inclusive)
                 .filter(o -> (o.getData().isEqual(startDate) || o.getData().isAfter(startDate)) && (o.getData().isEqual(endDate) || o.getData().isBefore(endDate)))

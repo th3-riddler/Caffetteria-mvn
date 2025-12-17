@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Map;
 import java.util.prefs.Preferences;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,6 +25,7 @@ import it.unife.lp.model.Articolo;
 import it.unife.lp.model.CaffetteriaData;
 import it.unife.lp.model.MetodoPagamento;
 import it.unife.lp.model.Ordine;
+import it.unife.lp.view.DailyRevenueDialogController;
 import it.unife.lp.view.ItemEditDialogController;
 import it.unife.lp.view.MenuOverviewController;
 import it.unife.lp.view.NewOrderScreenController;
@@ -30,6 +33,7 @@ import it.unife.lp.view.OrderPaymentDialogController;
 import it.unife.lp.view.OrdiniViewController;
 import it.unife.lp.view.ReciptViewDialogController;
 import it.unife.lp.view.RootLayoutController;
+import it.unife.lp.view.StatisticsViewController;
 
 /**
  * JavaFX App
@@ -44,18 +48,18 @@ public class MainApp extends Application {
 
     public MainApp() {
         // Sample data
-        // articoli.addAll(new Articolo("Espresso", "Caffè espresso classico", 1.50, 100),
-        //                 new Articolo("Cappuccino", "Caffè con latte e schiuma", 2.50, 80),
-        //                 new Articolo("Latte Macchiato", "Latte con una spruzzata di caffè", 2.80, 60),
-        //                 new Articolo("Cornetto Vuoto", "Cornetto semplice", 1.20, 150),
-        //                 new Articolo("Cornetto alla Crema", "Cornetto ripieno di crema", 1.50, 120),
-        //                 new Articolo("Torta al Cioccolato", "Fetta di torta al cioccolato", 3.00, 50),
-        //                 new Articolo("Torta di Mele", "Fetta di torta di mele", 2.80, 40),
-        //                 new Articolo("Succo d'Arancia", "Bicchiere di succo d'arancia fresco", 2.00, 70),
-        //                 new Articolo("Torta Salata", "Fetta di torta salata con verdure", 3.50, 30),
-        //                 new Articolo("Panino Prosciutto e Formaggio", "Panino con prosciutto e formaggio", 4.00, 90),
-        //                 new Articolo("Acqua Naturale", "Bottiglia di acqua naturale", 1.00, 200),
-        //                 new Articolo("Acqua Frizzante", "Bottiglia di acqua frizzante", 1.00, 200));
+        articoli.addAll(new Articolo("Espresso", "Caffè espresso classico", 1.50, 100),
+                        new Articolo("Cappuccino", "Caffè con latte e schiuma", 2.50, 80),
+                        new Articolo("Latte Macchiato", "Latte con una spruzzata di caffè", 2.80, 60),
+                        new Articolo("Cornetto Vuoto", "Cornetto semplice", 1.20, 150),
+                        new Articolo("Cornetto alla Crema", "Cornetto ripieno di crema", 1.50, 120),
+                        new Articolo("Torta al Cioccolato", "Fetta di torta al cioccolato", 3.00, 50),
+                        new Articolo("Torta di Mele", "Fetta di torta di mele", 2.80, 40),
+                        new Articolo("Succo d'Arancia", "Bicchiere di succo d'arancia fresco", 2.00, 70),
+                        new Articolo("Torta Salata", "Fetta di torta salata con verdure", 3.50, 30),
+                        new Articolo("Panino Prosciutto e Formaggio", "Panino con prosciutto e formaggio", 4.00, 90),
+                        new Articolo("Acqua Naturale", "Bottiglia di acqua naturale", 1.00, 200),
+                        new Articolo("Acqua Frizzante", "Bottiglia di acqua frizzante", 1.00, 200));
 
         // ordini.addAll(new Ordine(1));
         // ordini.get(0).setVoci(FXCollections.observableArrayList(
@@ -319,7 +323,6 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
 
             ReciptViewDialogController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
             controller.setItem(ordine);
             controller.setOrderId(ordine.getId());
 
@@ -330,6 +333,51 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
             // return false;
+        }
+    }
+
+    public void showStatisticsView() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/StatisticsView.fxml"));
+            
+            BorderPane ordiniView = (BorderPane) loader.load();
+            rootLayout.setCenter(ordiniView);
+
+            // Give the controller access to the main app.
+            StatisticsViewController controller = loader.getController();
+
+            controller.setMainApp(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showDailyRevenueDialog(/*Map<Articolo, Integer> dailySales, */LocalDate date) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/DailyRevenueDialog.fxml"));
+            BorderPane page = (BorderPane) loader.load();
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Ricavi Giornalieri - " + date.toString());
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            DailyRevenueDialogController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.setItem(date);
+            // controller.setOrderId(ordine.getId());
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

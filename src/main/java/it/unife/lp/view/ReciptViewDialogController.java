@@ -11,9 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 public class ReciptViewDialogController {
-    
-    private Stage dialogStage;
-    private Ordine ordine;
 
     @FXML
     private Label orderIdLabel;
@@ -45,16 +42,11 @@ public class ReciptViewDialogController {
     @FXML
     private Label dataLabel;
 
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
-    }
-
     public void setOrderId(int orderId) {
         this.orderIdLabel.setText(Integer.toString((orderId)));
     }
 
     public void setItem(Ordine ordine) {
-        this.ordine = ordine;
 
         OrderTableUtil.populateItemsTable(
             vociOrdineTable,
@@ -62,7 +54,7 @@ public class ReciptViewDialogController {
             vociOrdinePrezzoUnitarioColumn,
             vociOrdineQuantitaColumn,
             vociOrdinePrezzoTotaleColumn,
-            ordine
+            ordine.getVociProperty()
         );
 
         subtotaleLabel.setText(String.format("%.2f €", ordine.getPrezzoTotaleParziale()));

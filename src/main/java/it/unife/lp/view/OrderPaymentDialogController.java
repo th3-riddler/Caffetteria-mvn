@@ -107,7 +107,7 @@ public class OrderPaymentDialogController {
             prezzoArticoloUnitarioLeftTableColumn,
             quantitaArticoloLeftTableColumn,
             prezzoTotaleArticoloLeftTableColumn,
-            ordine
+            ordine.getVociProperty()
         );
 
         scontoLabel.setText(Double.toString(ordine.getScontoPercentuale()));
