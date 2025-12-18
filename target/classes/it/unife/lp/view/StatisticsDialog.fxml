@@ -88,7 +88,7 @@
                                           <DatePicker fx:id="topItemsEndDatePicker" />
                                        </children>
                                     </VBox>
-                                    <Button fx:id="loadTopItemsButton" mnemonicParsing="false" text="Carica">
+                                    <Button fx:id="loadTopItemsButton" mnemonicParsing="false" onAction="#handleLoadTopItems" text="Carica">
                                        <HBox.margin>
                                           <Insets left="20.0" />
                                        </HBox.margin>

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import it.unife.lp.MainApp;
 import it.unife.lp.model.Articolo;
+import it.unife.lp.util.AlertsUtil;
 import it.unife.lp.util.StatisticsUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Tooltip;
+import javafx.stage.Stage;
 
 public class StatisticsDialogController {
     // TABS
@@ -58,8 +60,9 @@ public class StatisticsDialogController {
     @FXML
     private CategoryAxis topItemsXAxis;
 
-    MainApp mainApp;
+    private MainApp mainApp;
 
+    private Stage dialogStage;
 
     @FXML
     private void initialize() {
@@ -72,7 +75,7 @@ public class StatisticsDialogController {
             } else if (newTab == inventoryTab) {
                 loadInventoryData();
             } else if (newTab == topItemsTab) {
-                loadTopItemsData();
+                loadTopItemsData(null, null);
             }
         });
 
@@ -100,6 +103,10 @@ public class StatisticsDialogController {
         this.mainApp = mainApp;
         dailySalesDatePicker.setValue(LocalDate.now());
         loadDailySalesData(LocalDate.now());
+    }
+
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
     }
 
     private void loadDailySalesData(LocalDate date) {
@@ -154,12 +161,63 @@ public class StatisticsDialogController {
         inventoryBarChart.getData().add(series);
     }
 
-    private void loadTopItemsData() {
-        
+    private void loadTopItemsData(LocalDate startDate, LocalDate endDate) {
+        // If dates are null, set default values (first day of current month to today)
+        if (startDate == null || endDate == null) {
+            startDate = LocalDate.now().withDayOfMonth(1);
+            endDate = LocalDate.now();
+        }
+        topItemsStartDatePicker.setValue(startDate);
+        topItemsEndDatePicker.setValue(endDate);
+
+        Map<Articolo, Integer> topItemsData = StatisticsUtil.topItemsMap(mainApp.getOrdini(), startDate, endDate);
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        series.setName("Articoli Più Venduti - Dal " + startDate.toString() + " Al " + endDate.toString());
+        for (Map.Entry<Articolo, Integer> entry : topItemsData.entrySet()) {
+            series.getData().add(new XYChart.Data<>(entry.getKey().getNome(), entry.getValue()));
+        }
+        // Set X axis categories
+        List<String> categories = topItemsData.keySet().stream().map(Articolo::getNome).collect(Collectors.toList());
+        topItemsXAxis.setCategories(FXCollections.observableArrayList(categories));
+        topItemsXAxis.setTickLabelRotation(45);
+        topItemsBarChart.getData().clear();
+        topItemsBarChart.getData().add(series);
+    }
+
+    private boolean isTopItemsDateValid(LocalDate startDate, LocalDate endDate) {
+        if (startDate == null || endDate == null) {
+            AlertsUtil.alertWarning(
+                dialogStage,
+                "Date non valide",
+                "Date non selezionate",
+                "Seleziona entrambe le date per caricare i dati!"
+            );
+            return false;
+        }
+        if (endDate.isBefore(startDate)) {
+            AlertsUtil.alertWarning(
+                dialogStage,
+                "Date non valide",
+                "Intervallo di date non valido",
+                "La data di fine non può essere precedente alla data di inizio!"
+            );
+            return false;
+        }
+        return true;
     }
 
     @FXML
     private void handleLoadDailyRevenue() {
         this.mainApp.showDailyRevenueDialog(dailySalesDatePicker.getValue());
+    }
+
+    @FXML
+    private void handleLoadTopItems() {
+        LocalDate startDate = topItemsStartDatePicker.getValue();
+        LocalDate endDate = topItemsEndDatePicker.getValue();
+        if (!isTopItemsDateValid(startDate, endDate)) {
+            return;
+        }
+        loadTopItemsData(startDate, endDate);
     }
 }

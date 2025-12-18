@@ -35,7 +35,6 @@ import it.unife.lp.view.OrdiniViewController;
 import it.unife.lp.view.ReciptViewDialogController;
 import it.unife.lp.view.RootLayoutController;
 import it.unife.lp.view.StatisticsDialogController;
-import it.unife.lp.view.StatisticsViewController;
 
 /**
  * JavaFX App
@@ -335,24 +334,6 @@ public class MainApp extends Application {
         }
     }
 
-    public void showStatisticsView() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/StatisticsView.fxml"));
-            
-            BorderPane statisticsViewBorderPane = (BorderPane) loader.load();
-            rootLayout.setCenter(statisticsViewBorderPane);
-
-            // Give the controller access to the main app.
-            StatisticsViewController controller = loader.getController();
-
-            controller.setMainApp(this);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void showStatisticsDialog() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -371,7 +352,7 @@ public class MainApp extends Application {
 
             StatisticsDialogController controller = loader.getController();
             controller.setMainApp(this);
-            // controller.setItem(date);
+            controller.setDialogStage(dialogStage);
 
             dialogStage.showAndWait();
         } catch (IOException e) {

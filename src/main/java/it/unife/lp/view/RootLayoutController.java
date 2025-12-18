@@ -111,7 +111,6 @@ public class RootLayoutController {
 
     @FXML
     private void handleShowStatisticsView() {
-        // mainApp.showStatisticsView();
         mainApp.showStatisticsDialog();
     }
 }
