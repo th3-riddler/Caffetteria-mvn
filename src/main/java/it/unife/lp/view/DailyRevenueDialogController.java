@@ -10,7 +10,6 @@ import it.unife.lp.model.Articolo;
 import it.unife.lp.model.Ordine;
 import it.unife.lp.model.VoceOrdine;
 import it.unife.lp.util.DateUtil;
-import it.unife.lp.util.OrderTableUtil;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -28,11 +27,7 @@ public class DailyRevenueDialogController {
     @FXML
     private TableView<VoceOrdine> itemsRevenueTable;
     @FXML
-    private TableColumn<VoceOrdine, Number> idColumn;
-    @FXML
     private TableColumn<VoceOrdine, String> itemNameColumn;
-    @FXML
-    private TableColumn<VoceOrdine, String> itemUnitRevenueColumn;
     @FXML
     private TableColumn<VoceOrdine, Number> itemQuantityColumn;
     @FXML
@@ -91,6 +86,7 @@ public class DailyRevenueDialogController {
         //     v -> System.out.println(v.getPrezzoTotale())
         // );
 
+        // Now I populate the itemsRevenueTable with the aggregated items
         itemNameColumn.setCellValueFactory(cellData -> cellData.getValue().getArticolo().nomeProperty());
         itemQuantityColumn.setCellValueFactory(cellData -> cellData.getValue().quantitaProperty());
         itemTotalRevenueColumn.setCellValueFactory(cellData -> 

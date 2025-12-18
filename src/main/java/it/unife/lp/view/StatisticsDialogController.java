@@ -1,8 +1,6 @@
 package it.unife.lp.view;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -21,7 +19,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.Tooltip;
 
-public class StatisticsViewController {
+public class StatisticsDialogController {
     // TABS
     @FXML
     private TabPane statisticsTabPane;
@@ -35,8 +33,6 @@ public class StatisticsViewController {
     // DAILY SALES TAB
     @FXML
     private DatePicker dailySalesDatePicker;
-    @FXML
-    private Button loadDailySalesButton;
     @FXML
     private Button dailyRevenueButton;
     @FXML
@@ -63,6 +59,7 @@ public class StatisticsViewController {
     private CategoryAxis topItemsXAxis;
 
     MainApp mainApp;
+
 
     @FXML
     private void initialize() {
@@ -141,17 +138,8 @@ public class StatisticsViewController {
 
         // Set X axis categories
         List<String> categories = inventoryData.keySet().stream().map(Articolo::getNome).collect(Collectors.toList());
-        // List<String> categories = Arrays.asList("A", "B", "C", "D", "E");
         inventoryXAxis.setCategories(FXCollections.observableArrayList(categories));
-
-        // XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        // series.setName("Test");
-        // series.getData().add(new XYChart.Data<>("A", 10));
-        // series.getData().add(new XYChart.Data<>("B", 20));
-        // series.getData().add(new XYChart.Data<>("C", 30));
-        // series.getData().add(new XYChart.Data<>("D", 40));
-        // series.getData().add(new XYChart.Data<>("E", 50));
-        inventoryXAxis.setTickLabelRotation(90);
+        inventoryXAxis.setTickLabelRotation(45);
 
         System.out.println(categories);
 

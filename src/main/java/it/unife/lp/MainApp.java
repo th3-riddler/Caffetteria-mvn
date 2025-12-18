@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -33,6 +34,7 @@ import it.unife.lp.view.OrderPaymentDialogController;
 import it.unife.lp.view.OrdiniViewController;
 import it.unife.lp.view.ReciptViewDialogController;
 import it.unife.lp.view.RootLayoutController;
+import it.unife.lp.view.StatisticsDialogController;
 import it.unife.lp.view.StatisticsViewController;
 
 /**
@@ -264,9 +266,9 @@ public class MainApp extends Application {
             // Load Ordini view.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/NewOrderScreen.fxml"));
-            BorderPane ordiniView = (BorderPane) loader.load();
-            // Set ordini view into the center of root layout.
-            rootLayout.setCenter(ordiniView);
+            BorderPane newOrderScreenBorderPane = (BorderPane) loader.load();
+            rootLayout.setCenter(newOrderScreenBorderPane);
+
             // Give the controller access to the main app.
             NewOrderScreenController controller = loader.getController();
             controller.setItem(ordine);
@@ -285,6 +287,7 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/OrderPaymentDialog.fxml"));
             BorderPane page = (BorderPane) loader.load();
+
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Pagamento Ordine " + ordine.getId());
@@ -298,9 +301,8 @@ public class MainApp extends Application {
             controller.setItem(ordine);
             controller.setOrderId(ordine.getId());
 
-            // controller.setMainApp(this);
-            // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
+
             return controller.isPaymentSuccessful();
         } catch (IOException e) {
             e.printStackTrace();
@@ -314,6 +316,7 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/ReciptViewDialog.fxml"));
             BorderPane page = (BorderPane) loader.load();
+
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Ricevuta Ordine " + ordine.getId());
@@ -326,13 +329,9 @@ public class MainApp extends Application {
             controller.setItem(ordine);
             controller.setOrderId(ordine.getId());
 
-            // controller.setMainApp(this);
-            // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
-            // return controller.isPaymentSuccessful();
         } catch (IOException e) {
             e.printStackTrace();
-            // return false;
         }
     }
 
@@ -341,8 +340,8 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/StatisticsView.fxml"));
             
-            BorderPane ordiniView = (BorderPane) loader.load();
-            rootLayout.setCenter(ordiniView);
+            BorderPane statisticsViewBorderPane = (BorderPane) loader.load();
+            rootLayout.setCenter(statisticsViewBorderPane);
 
             // Give the controller access to the main app.
             StatisticsViewController controller = loader.getController();
@@ -354,12 +353,39 @@ public class MainApp extends Application {
         }
     }
 
-    public void showDailyRevenueDialog(/*Map<Articolo, Integer> dailySales, */LocalDate date) {
+    public void showStatisticsDialog() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/StatisticsDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            // dialogStage.setTitle("Ricavi Giornalieri - " + date.toString());
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            StatisticsDialogController controller = loader.getController();
+            controller.setMainApp(this);
+            // controller.setItem(date);
+
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showDailyRevenueDialog(LocalDate date) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/DailyRevenueDialog.fxml"));
             BorderPane page = (BorderPane) loader.load();
+
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Ricavi Giornalieri - " + date.toString());
@@ -372,9 +398,7 @@ public class MainApp extends Application {
             DailyRevenueDialogController controller = loader.getController();
             controller.setMainApp(this);
             controller.setItem(date);
-            // controller.setOrderId(ordine.getId());
 
-            // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
