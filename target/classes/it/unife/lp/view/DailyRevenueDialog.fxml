@@ -30,7 +30,6 @@
             <TableView fx:id="itemsRevenueTable" prefHeight="345.0" prefWidth="410.0">
               <columns>
                 <TableColumn fx:id="itemNameColumn" prefWidth="122.0" text="Nome" />
-                <TableColumn fx:id="itemUnitRevenueColumn" prefWidth="108.0" text="Ricavo unitario" />
                   <TableColumn fx:id="itemQuantityColumn" prefWidth="66.0" text="Quantità" />
                   <TableColumn fx:id="itemTotalRevenueColumn" prefWidth="112.0" text="Ricavo totale" />
               </columns>

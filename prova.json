@@ -3,7 +3,7 @@
     "nome" : "Espresso",
     "descrizione" : "Caffè espresso classico",
     "prezzo" : 1.5,
-    "stoccaggio" : 80
+    "stoccaggio" : 45
   }, {
     "nome" : "Cappuccino",
     "descrizione" : "Caffè con latte e schiuma",
@@ -28,7 +28,7 @@
     "nome" : "Torta al Cioccolato",
     "descrizione" : "Fetta di torta al cioccolato",
     "prezzo" : 3.0,
-    "stoccaggio" : 48
+    "stoccaggio" : 38
   }, {
     "nome" : "Torta di Mele",
     "descrizione" : "Fetta di torta di mele",
@@ -38,7 +38,7 @@
     "nome" : "Succo d'Arancia",
     "descrizione" : "Bicchiere di succo d'arancia fresco",
     "prezzo" : 2.0,
-    "stoccaggio" : 70
+    "stoccaggio" : 67
   }, {
     "nome" : "Torta Salata",
     "descrizione" : "Fetta di torta salata con verdure",
@@ -92,6 +92,56 @@
     "scontoPercentuale" : 10.0,
     "prezzoTotaleParziale" : 15.0,
     "prezzoTotaleFinale" : 13.5,
+    "metodoPagamento" : "CARTA_DI_CREDITO",
+    "importoRicevuto" : 0.0,
+    "resto" : 0.0
+  }, {
+    "id" : 3,
+    "data" : [ 2026, 1, 2 ],
+    "voci" : [ {
+      "@id" : 4,
+      "articolo" : "Espresso",
+      "quantita" : 30,
+      "prezzoTotale" : 45.0
+    } ],
+    "scontoPercentuale" : 0.0,
+    "prezzoTotaleParziale" : 45.0,
+    "prezzoTotaleFinale" : 45.0,
+    "metodoPagamento" : "CARTA_DI_CREDITO",
+    "importoRicevuto" : 0.0,
+    "resto" : 0.0
+  }, {
+    "id" : 4,
+    "data" : [ 2026, 1, 2 ],
+    "voci" : [ {
+      "@id" : 5,
+      "articolo" : "Torta al Cioccolato",
+      "quantita" : 10,
+      "prezzoTotale" : 30.0
+    } ],
+    "scontoPercentuale" : 15.0,
+    "prezzoTotaleParziale" : 30.0,
+    "prezzoTotaleFinale" : 25.5,
+    "metodoPagamento" : "CONTANTI",
+    "importoRicevuto" : 50.0,
+    "resto" : 24.5
+  }, {
+    "id" : 5,
+    "data" : [ 2026, 1, 2 ],
+    "voci" : [ {
+      "@id" : 6,
+      "articolo" : "Espresso",
+      "quantita" : 5,
+      "prezzoTotale" : 7.5
+    }, {
+      "@id" : 7,
+      "articolo" : "Succo d'Arancia",
+      "quantita" : 3,
+      "prezzoTotale" : 6.0
+    } ],
+    "scontoPercentuale" : 25.0,
+    "prezzoTotaleParziale" : 13.5,
+    "prezzoTotaleFinale" : 10.125,
     "metodoPagamento" : "CARTA_DI_CREDITO",
     "importoRicevuto" : 0.0,
     "resto" : 0.0
