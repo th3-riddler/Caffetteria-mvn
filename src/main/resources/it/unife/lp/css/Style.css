@@ -23,7 +23,7 @@
 /* MenuBar */
 .menubar {
     -fx-background-color: #f4f4f4;
-    -fx-padding: 10;
+    /* -fx-padding: 10; */
 }
 
 /* Tables */

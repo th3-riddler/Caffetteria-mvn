@@ -3,7 +3,7 @@
     "nome" : "Espresso",
     "descrizione" : "Caffè espresso classico",
     "prezzo" : 1.5,
-    "stoccaggio" : 45
+    "stoccaggio" : 44
   }, {
     "nome" : "Cappuccino",
     "descrizione" : "Caffè con latte e schiuma",
@@ -142,6 +142,21 @@
     "scontoPercentuale" : 25.0,
     "prezzoTotaleParziale" : 13.5,
     "prezzoTotaleFinale" : 10.125,
+    "metodoPagamento" : "CARTA_DI_CREDITO",
+    "importoRicevuto" : 0.0,
+    "resto" : 0.0
+  }, {
+    "id" : 6,
+    "data" : [ 2025, 12, 5 ],
+    "voci" : [ {
+      "@id" : 8,
+      "articolo" : "Espresso",
+      "quantita" : 1,
+      "prezzoTotale" : 1.5
+    } ],
+    "scontoPercentuale" : 0.0,
+    "prezzoTotaleParziale" : 1.5,
+    "prezzoTotaleFinale" : 1.5,
     "metodoPagamento" : "CARTA_DI_CREDITO",
     "importoRicevuto" : 0.0,
     "resto" : 0.0

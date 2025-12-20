@@ -102,14 +102,14 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle("Cafe App");
         initRootLayout();
         showMenuOverview();
     }
 
     public File getCafeFilePath() {
         Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
-        String filePath = prefs.get("filePath", null);
+        String filePath = prefs.get("CafefilePath", null);
         if (filePath != null) {
             return new File(filePath);
         } else {
@@ -120,13 +120,13 @@ public class MainApp extends Application {
     public void setCafeFilePath(File file) {
         Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
         if (file != null) {
-            prefs.put("filePath", file.getPath());
+            prefs.put("CafefilePath", file.getPath());
             // Update the stage title.
             primaryStage.setTitle("AddressApp - " + file.getName());
         } else {
-            prefs.remove("filePath");
+            prefs.remove("CafefilePath");
             // Update the stage title.
-            primaryStage.setTitle("AddressApp");
+            primaryStage.setTitle("Cafe App");
         }
     }
 
@@ -198,10 +198,10 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
         // Try to load last opened person file.
-        // File file = getPersonFilePath();
-        // if (file != null) {
-        // loadPersonDataFromFile(file);
-        // }
+        File file = getCafeFilePath();
+        if (file != null) {
+            loadCafeDataFromFile(file);
+        }
     }
 
     /**
