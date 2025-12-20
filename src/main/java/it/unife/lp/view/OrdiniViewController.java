@@ -82,18 +82,18 @@ public class OrdiniViewController {
                 .addListener((obs, oldValue, newValue) -> showOrderDetails(newValue));
         
         // The receipt button appears only if the selected order is paid yet
-        // reciptButton.visibleProperty().bind(
-        //     Bindings.createBooleanBinding(
-        //         () -> {
-        //             return ordiniLeftTable.getSelectionModel().getSelectedItem() != null;
-        //         },
-        //         ordiniLeftTable.getSelectionModel().selectedItemProperty()
-        //     )
-        // );
+        reciptButton.visibleProperty().bind(
+            Bindings.createBooleanBinding(
+                () -> {
+                    return ordiniLeftTable.getSelectionModel().getSelectedItem() != null;
+                },
+                ordiniLeftTable.getSelectionModel().selectedItemProperty()
+            )
+        );
 
-        // reciptButton.managedProperty().bind(
-        //     reciptButton.visibleProperty()
-        // );
+        reciptButton.managedProperty().bind(
+            reciptButton.visibleProperty()
+        );
     }
 
     public void setMainApp(MainApp mainApp) {

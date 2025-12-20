@@ -1,0 +1,49 @@
+/* Buttons */
+.button {
+    -fx-background-radius: 6;
+    -fx-font-size: 13px;
+}
+
+.button:hover {
+    -fx-opacity: 0.9;
+}
+
+/* Important Buttons */
+
+.primary-button {
+    -fx-background-color: #2d8cf0;
+    -fx-text-fill: white;
+}
+
+.danger-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+
+/* MenuBar */
+.menubar {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 10;
+}
+
+/* Tables */
+.table-view {
+    -fx-background-radius: 6;
+}
+
+.table-view .column-header {
+    -fx-font-weight: bold;
+}
+
+/* Total Amount */
+.total-amount {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d8cf0;
+}
+
+/* Separator */
+.separator {
+    -fx-background-color: #999;
+    -fx-padding: 2 0 2 0;
+}

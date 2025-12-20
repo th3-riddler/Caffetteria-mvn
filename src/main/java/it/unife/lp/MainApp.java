@@ -50,32 +50,32 @@ public class MainApp extends Application {
     public MainApp() {
         // Sample data
         articoli.addAll(new Articolo("Espresso", "Caffè espresso classico", 1.50, 100),
-                        new Articolo("Cappuccino", "Caffè con latte e schiuma", 2.50, 80),
-                        new Articolo("Latte Macchiato", "Latte con una spruzzata di caffè", 2.80, 60),
-                        new Articolo("Cornetto Vuoto", "Cornetto semplice", 1.20, 150),
-                        new Articolo("Cornetto alla Crema", "Cornetto ripieno di crema", 1.50, 120),
-                        new Articolo("Torta al Cioccolato", "Fetta di torta al cioccolato", 3.00, 50),
-                        new Articolo("Torta di Mele", "Fetta di torta di mele", 2.80, 40),
-                        new Articolo("Succo d'Arancia", "Bicchiere di succo d'arancia fresco", 2.00, 70),
-                        new Articolo("Torta Salata", "Fetta di torta salata con verdure", 3.50, 30),
-                        new Articolo("Panino Prosciutto e Formaggio", "Panino con prosciutto e formaggio", 4.00, 90),
-                        new Articolo("Acqua Naturale", "Bottiglia di acqua naturale", 1.00, 200),
-                        new Articolo("Acqua Frizzante", "Bottiglia di acqua frizzante", 1.00, 200));
+                new Articolo("Cappuccino", "Caffè con latte e schiuma", 2.50, 80),
+                new Articolo("Latte Macchiato", "Latte con una spruzzata di caffè", 2.80, 60),
+                new Articolo("Cornetto Vuoto", "Cornetto semplice", 1.20, 150),
+                new Articolo("Cornetto alla Crema", "Cornetto ripieno di crema", 1.50, 120),
+                new Articolo("Torta al Cioccolato", "Fetta di torta al cioccolato", 3.00, 50),
+                new Articolo("Torta di Mele", "Fetta di torta di mele", 2.80, 40),
+                new Articolo("Succo d'Arancia", "Bicchiere di succo d'arancia fresco", 2.00, 70),
+                new Articolo("Torta Salata", "Fetta di torta salata con verdure", 3.50, 30),
+                new Articolo("Panino Prosciutto e Formaggio", "Panino con prosciutto e formaggio", 4.00, 90),
+                new Articolo("Acqua Naturale", "Bottiglia di acqua naturale", 1.00, 200),
+                new Articolo("Acqua Frizzante", "Bottiglia di acqua frizzante", 1.00, 200));
 
         // ordini.addAll(new Ordine(1));
         // ordini.get(0).setVoci(FXCollections.observableArrayList(
-        //     new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
-        //     new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
-        //     new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
-        //     new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
-        //     new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
-        //     new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
-        //     new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
-        //     new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
-        //     new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
-        //     new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
-        //     new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
-        //     new it.unife.lp.model.VoceOrdine(articoli.get(3), 1)
+        // new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
+        // new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
+        // new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
+        // new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
+        // new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
+        // new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
+        // new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
+        // new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
+        // new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
+        // new it.unife.lp.model.VoceOrdine(articoli.get(3), 1),
+        // new it.unife.lp.model.VoceOrdine(articoli.get(0), 2),
+        // new it.unife.lp.model.VoceOrdine(articoli.get(3), 1)
         // ));
         // ordini.get(0).setScontoPercentuale(10);
         // ordini.get(0).setMetodoPagamento(MetodoPagamento.CARTA_DI_CREDITO);
@@ -83,6 +83,7 @@ public class MainApp extends Application {
 
     /**
      * Gets the articles observable list
+     * 
      * @return ObservableList of Articolo
      */
     public ObservableList<Articolo> getArticoli() {
@@ -91,6 +92,7 @@ public class MainApp extends Application {
 
     /**
      * Gets the orders observable list
+     * 
      * @return ObservableList of Ordine
      */
     public ObservableList<Ordine> getOrdini() {
@@ -132,11 +134,11 @@ public class MainApp extends Application {
         try {
             ObjectMapper mapper = new ObjectMapper();
             mapper.registerModule(new JavaTimeModule());
-            
+
             CaffetteriaData data = mapper.readValue(file, CaffetteriaData.class);
             articoli.setAll(FXCollections.observableArrayList(data.getArticoli()));
             ordini.setAll(FXCollections.observableArrayList(data.getOrdini()));
-            
+
             setCafeFilePath(file);
         } catch (Exception e) { // catches ANY exception
             Alert alert = new Alert(AlertType.ERROR);
@@ -182,6 +184,10 @@ public class MainApp extends Application {
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
+            
+            scene.getStylesheets().add(
+                getClass().getResource("css/Style.css").toExternalForm());
+                
             primaryStage.setScene(scene);
 
             // Give the controller access to the main app.
@@ -194,7 +200,7 @@ public class MainApp extends Application {
         // Try to load last opened person file.
         // File file = getPersonFilePath();
         // if (file != null) {
-        //     loadPersonDataFromFile(file);
+        // loadPersonDataFromFile(file);
         // }
     }
 
