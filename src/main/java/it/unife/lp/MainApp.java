@@ -184,10 +184,10 @@ public class MainApp extends Application {
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
-            
+
             scene.getStylesheets().add(
-                getClass().getResource("css/Style.css").toExternalForm());
-                
+                    getClass().getResource("css/Style.css").toExternalForm());
+
             primaryStage.setScene(scene);
 
             // Give the controller access to the main app.
@@ -197,6 +197,7 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         // Try to load last opened person file.
         File file = getCafeFilePath();
         if (file != null) {
@@ -253,6 +254,9 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
+            scene.getStylesheets().add(
+                    MainApp.class.getResource("/it/unife/lp/css/Style.css").toExternalForm());
+
             ItemEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setItem(articolo);
@@ -301,6 +305,9 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
+            scene.getStylesheets().add(
+                    MainApp.class.getResource("/it/unife/lp/css/Style.css").toExternalForm());
+
             OrderPaymentDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setItem(ordine);
@@ -330,6 +337,9 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
+            scene.getStylesheets().add(
+                    MainApp.class.getResource("/it/unife/lp/css/Style.css").toExternalForm());
+
             ReciptViewDialogController controller = loader.getController();
             controller.setItem(ordine);
             controller.setOrderId(ordine.getId());
@@ -356,6 +366,9 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
+            scene.getStylesheets().add(
+                    MainApp.class.getResource("/it/unife/lp/css/Style.css").toExternalForm());
+
             StatisticsDialogController controller = loader.getController();
             controller.setMainApp(this);
             controller.setDialogStage(dialogStage);
@@ -381,6 +394,9 @@ public class MainApp extends Application {
 
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
+
+            scene.getStylesheets().add(
+                    MainApp.class.getResource("/it/unife/lp/css/Style.css").toExternalForm());
 
             DailyRevenueDialogController controller = loader.getController();
             controller.setMainApp(this);

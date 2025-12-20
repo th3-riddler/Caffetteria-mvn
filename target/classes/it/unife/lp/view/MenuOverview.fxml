@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unife.lp.view.MenuOverviewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" styleClass="card" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unife.lp.view.MenuOverviewController">
    <left>
-      <TableView fx:id="articoliTable" prefHeight="400.0" prefWidth="272.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="articoliTable" prefHeight="400.0" prefWidth="272.0" styleClass="tableview" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="nomeArticoloColumn" prefWidth="167.0" text="Nome" />
           <TableColumn fx:id="prezzoArticoloColumn" prefWidth="103.0" text="Prezzo" />
@@ -27,7 +27,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="128.0" layoutY="14.0" text="Dettagli Articolo" AnchorPane.leftAnchor="128.0" AnchorPane.topAnchor="14.0">
+            <Label layoutX="128.0" layoutY="14.0" styleClass="title" text="Dettagli Articolo" AnchorPane.leftAnchor="128.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font size="19.0" />
                </font></Label>

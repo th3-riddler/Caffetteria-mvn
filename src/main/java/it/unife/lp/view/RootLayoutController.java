@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import it.unife.lp.MainApp;
+import it.unife.lp.util.AlertsUtil;
 
 public class RootLayoutController {
     // Reference to the main application
