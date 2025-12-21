@@ -3,7 +3,7 @@
     "nome" : "Espresso",
     "descrizione" : "Caffè espresso classico",
     "prezzo" : 1.5,
-    "stoccaggio" : 44
+    "stoccaggio" : 100
   }, {
     "nome" : "Cappuccino",
     "descrizione" : "Caffè con latte e schiuma",
@@ -28,7 +28,7 @@
     "nome" : "Torta al Cioccolato",
     "descrizione" : "Fetta di torta al cioccolato",
     "prezzo" : 3.0,
-    "stoccaggio" : 38
+    "stoccaggio" : 50
   }, {
     "nome" : "Torta di Mele",
     "descrizione" : "Fetta di torta di mele",
@@ -38,7 +38,7 @@
     "nome" : "Succo d'Arancia",
     "descrizione" : "Bicchiere di succo d'arancia fresco",
     "prezzo" : 2.0,
-    "stoccaggio" : 67
+    "stoccaggio" : 70
   }, {
     "nome" : "Torta Salata",
     "descrizione" : "Fetta di torta salata con verdure",
@@ -59,106 +59,196 @@
     "descrizione" : "Bottiglia di acqua frizzante",
     "prezzo" : 1.0,
     "stoccaggio" : 200
+  }, {
+    "nome" : "Brioche al Cioccolato",
+    "descrizione" : "Brioche con ripieno di cioccolato",
+    "prezzo" : 1.6,
+    "stoccaggio" : 100
+  }, {
+    "nome" : "Muffin Mirtilli",
+    "descrizione" : "Muffin ai mirtilli",
+    "prezzo" : 2.2,
+    "stoccaggio" : 80
+  }, {
+    "nome" : "Caffè Americano",
+    "descrizione" : "Caffè lungo all'americana",
+    "prezzo" : 1.8,
+    "stoccaggio" : 60
   } ],
   "ordini" : [ {
     "id" : 1,
-    "data" : [ 2026, 1, 1 ],
+    "data" : [ 2025, 12, 21 ],
     "voci" : [ {
       "@id" : 1,
       "articolo" : "Espresso",
-      "quantita" : 10,
-      "prezzoTotale" : 15.0
+      "quantita" : 2,
+      "prezzoTotale" : 3.0
     }, {
       "@id" : 2,
-      "articolo" : "Torta al Cioccolato",
+      "articolo" : "Cappuccino",
+      "quantita" : 1,
+      "prezzoTotale" : 2.5
+    }, {
+      "@id" : 3,
+      "articolo" : "Cornetto Vuoto",
       "quantita" : 2,
-      "prezzoTotale" : 6.0
+      "prezzoTotale" : 2.4
     } ],
     "scontoPercentuale" : 0.0,
-    "prezzoTotaleParziale" : 21.0,
-    "prezzoTotaleFinale" : 21.0,
-    "metodoPagamento" : "CARTA_DI_CREDITO",
-    "importoRicevuto" : 0.0,
-    "resto" : 0.0
+    "prezzoTotaleParziale" : 7.9,
+    "prezzoTotaleFinale" : 7.9,
+    "metodoPagamento" : "CONTANTI",
+    "importoRicevuto" : 10.0,
+    "resto" : 2.0999999999999996
   }, {
     "id" : 2,
-    "data" : [ 2026, 1, 1 ],
+    "data" : [ 2025, 12, 20 ],
     "voci" : [ {
-      "@id" : 3,
-      "articolo" : "Espresso",
-      "quantita" : 10,
-      "prezzoTotale" : 15.0
+      "@id" : 4,
+      "articolo" : "Torta al Cioccolato",
+      "quantita" : 1,
+      "prezzoTotale" : 3.0
+    }, {
+      "@id" : 5,
+      "articolo" : "Succo d'Arancia",
+      "quantita" : 2,
+      "prezzoTotale" : 4.0
     } ],
     "scontoPercentuale" : 10.0,
-    "prezzoTotaleParziale" : 15.0,
-    "prezzoTotaleFinale" : 13.5,
+    "prezzoTotaleParziale" : 7.0,
+    "prezzoTotaleFinale" : 6.3,
     "metodoPagamento" : "CARTA_DI_CREDITO",
     "importoRicevuto" : 0.0,
     "resto" : 0.0
   }, {
     "id" : 3,
-    "data" : [ 2026, 1, 2 ],
+    "data" : [ 2025, 12, 19 ],
     "voci" : [ {
-      "@id" : 4,
+      "@id" : 6,
       "articolo" : "Espresso",
-      "quantita" : 30,
-      "prezzoTotale" : 45.0
+      "quantita" : 1,
+      "prezzoTotale" : 1.5
+    }, {
+      "@id" : 7,
+      "articolo" : "Acqua Naturale",
+      "quantita" : 3,
+      "prezzoTotale" : 3.0
+    }, {
+      "@id" : 8,
+      "articolo" : "Muffin Mirtilli",
+      "quantita" : 2,
+      "prezzoTotale" : 4.4
     } ],
-    "scontoPercentuale" : 0.0,
-    "prezzoTotaleParziale" : 45.0,
-    "prezzoTotaleFinale" : 45.0,
-    "metodoPagamento" : "CARTA_DI_CREDITO",
+    "scontoPercentuale" : 5.0,
+    "prezzoTotaleParziale" : 8.9,
+    "prezzoTotaleFinale" : 8.455,
+    "metodoPagamento" : "CARTA_DI_DEBITO",
     "importoRicevuto" : 0.0,
     "resto" : 0.0
   }, {
     "id" : 4,
-    "data" : [ 2026, 1, 2 ],
+    "data" : [ 2025, 12, 21 ],
     "voci" : [ {
-      "@id" : 5,
-      "articolo" : "Torta al Cioccolato",
-      "quantita" : 10,
-      "prezzoTotale" : 30.0
-    } ],
-    "scontoPercentuale" : 15.0,
-    "prezzoTotaleParziale" : 30.0,
-    "prezzoTotaleFinale" : 25.5,
-    "metodoPagamento" : "CONTANTI",
-    "importoRicevuto" : 50.0,
-    "resto" : 24.5
-  }, {
-    "id" : 5,
-    "data" : [ 2026, 1, 2 ],
-    "voci" : [ {
-      "@id" : 6,
-      "articolo" : "Espresso",
-      "quantita" : 5,
-      "prezzoTotale" : 7.5
+      "@id" : 9,
+      "articolo" : "Caffè Americano",
+      "quantita" : 2,
+      "prezzoTotale" : 3.6
     }, {
-      "@id" : 7,
-      "articolo" : "Succo d'Arancia",
-      "quantita" : 3,
-      "prezzoTotale" : 6.0
+      "@id" : 10,
+      "articolo" : "Cappuccino",
+      "quantita" : 1,
+      "prezzoTotale" : 2.5
     } ],
-    "scontoPercentuale" : 25.0,
-    "prezzoTotaleParziale" : 13.5,
-    "prezzoTotaleFinale" : 10.125,
+    "scontoPercentuale" : 0.0,
+    "prezzoTotaleParziale" : 6.1,
+    "prezzoTotaleFinale" : 6.1,
     "metodoPagamento" : "CARTA_DI_CREDITO",
     "importoRicevuto" : 0.0,
     "resto" : 0.0
   }, {
-    "id" : 6,
-    "data" : [ 2025, 12, 5 ],
+    "id" : 5,
+    "data" : [ 2025, 12, 18 ],
     "voci" : [ {
-      "@id" : 8,
+      "@id" : 11,
+      "articolo" : "Cornetto Vuoto",
+      "quantita" : 3,
+      "prezzoTotale" : 3.5999999999999996
+    }, {
+      "@id" : 12,
+      "articolo" : "Torta al Cioccolato",
+      "quantita" : 1,
+      "prezzoTotale" : 3.0
+    } ],
+    "scontoPercentuale" : 15.0,
+    "prezzoTotaleParziale" : 6.6,
+    "prezzoTotaleFinale" : 5.609999999999999,
+    "metodoPagamento" : "CONTANTI",
+    "importoRicevuto" : 10.0,
+    "resto" : 4.390000000000001
+  }, {
+    "id" : 6,
+    "data" : [ 2025, 12, 21 ],
+    "voci" : [ {
+      "@id" : 13,
+      "articolo" : "Succo d'Arancia",
+      "quantita" : 1,
+      "prezzoTotale" : 2.0
+    }, {
+      "@id" : 14,
+      "articolo" : "Muffin Mirtilli",
+      "quantita" : 1,
+      "prezzoTotale" : 2.2
+    } ],
+    "scontoPercentuale" : 0.0,
+    "prezzoTotaleParziale" : 4.2,
+    "prezzoTotaleFinale" : 4.2,
+    "metodoPagamento" : "CARTA_DI_DEBITO",
+    "importoRicevuto" : 0.0,
+    "resto" : 0.0
+  }, {
+    "id" : 7,
+    "data" : [ 2025, 12, 20 ],
+    "voci" : [ {
+      "@id" : 15,
+      "articolo" : "Acqua Naturale",
+      "quantita" : 2,
+      "prezzoTotale" : 2.0
+    }, {
+      "@id" : 16,
+      "articolo" : "Caffè Americano",
+      "quantita" : 1,
+      "prezzoTotale" : 1.8
+    } ],
+    "scontoPercentuale" : 5.0,
+    "prezzoTotaleParziale" : 3.8,
+    "prezzoTotaleFinale" : 3.61,
+    "metodoPagamento" : "CARTA_DI_CREDITO",
+    "importoRicevuto" : 0.0,
+    "resto" : 0.0
+  }, {
+    "id" : 8,
+    "data" : [ 2025, 12, 21 ],
+    "voci" : [ {
+      "@id" : 17,
       "articolo" : "Espresso",
       "quantita" : 1,
       "prezzoTotale" : 1.5
+    }, {
+      "@id" : 18,
+      "articolo" : "Cappuccino",
+      "quantita" : 1,
+      "prezzoTotale" : 2.5
+    }, {
+      "@id" : 19,
+      "articolo" : "Muffin Mirtilli",
+      "quantita" : 1,
+      "prezzoTotale" : 2.2
     } ],
     "scontoPercentuale" : 0.0,
-    "prezzoTotaleParziale" : 1.5,
-    "prezzoTotaleFinale" : 1.5,
-    "metodoPagamento" : "CARTA_DI_CREDITO",
-    "importoRicevuto" : 0.0,
+    "prezzoTotaleParziale" : 6.2,
+    "prezzoTotaleFinale" : 6.2,
+    "metodoPagamento" : "CONTANTI",
+    "importoRicevuto" : 5.0,
     "resto" : 0.0
   } ]
 }

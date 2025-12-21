@@ -123,9 +123,6 @@ public class OrdiniViewController {
         } else {
             vociOrdineRightTable.setItems(null);
         }
-
-        System.out.println("Order " + (ordine != null ? ordine.getId() : "N/A") + " money: " + (ordine != null ? ordine.getImportoRicevuto() : "N/A"));
-        System.out.println("Order " + (ordine != null ? ordine.getId() : "N/A") + " change: " + (ordine != null ? ordine.getResto() : "N/A"));
     }
 
     @FXML
