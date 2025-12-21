@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.StringProperty;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "nome")
-// @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "nome")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Articolo {
     private final StringProperty nome;
     private final StringProperty descrizione;
@@ -61,7 +61,7 @@ public class Articolo {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+        result = prime * result + ((getNome() == null) ? 0 : getNome().hashCode());
         return result;
     }
 
@@ -74,10 +74,10 @@ public class Articolo {
         if (getClass() != obj.getClass())
             return false;
         Articolo other = (Articolo) obj;
-        if (nome == null) {
-            if (other.nome != null)
+        if (getNome() == null) {
+            if (other.getNome() != null)
                 return false;
-        } else if (!nome.equals(other.nome))
+        } else if (!getNome().equals(other.getNome()))
             return false;
         return true;
     }

@@ -113,7 +113,7 @@ public class Ordine {
      * @param voce
      */
     public void aggiungiVoce(VoceOrdine voce) {
-        this.voci.add(voce);
+        this.voci.add(voce.copy());
 
         // Adds a listener on the new Item added, in order to update the amount if the price of the item changes
         voce.prezzoTotaleProperty().addListener((obs, oldValue, newValue) -> calcolaTotale());

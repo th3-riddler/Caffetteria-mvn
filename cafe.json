@@ -1,96 +1,129 @@
 {
   "articoli" : [ {
+    "@id" : 1,
     "nome" : "Espresso",
     "descrizione" : "Caffè espresso classico",
     "prezzo" : 1.5,
-    "stoccaggio" : 100
+    "stoccaggio" : 98
   }, {
+    "@id" : 2,
     "nome" : "Cappuccino",
     "descrizione" : "Caffè con latte e schiuma",
-    "prezzo" : 2.5,
-    "stoccaggio" : 80
+    "prezzo" : 2.0,
+    "stoccaggio" : 50
   }, {
+    "@id" : 3,
     "nome" : "Latte Macchiato",
     "descrizione" : "Latte con una spruzzata di caffè",
     "prezzo" : 2.8,
-    "stoccaggio" : 60
+    "stoccaggio" : 59
   }, {
+    "@id" : 4,
     "nome" : "Cornetto Vuoto",
     "descrizione" : "Cornetto semplice",
     "prezzo" : 1.2,
-    "stoccaggio" : 150
+    "stoccaggio" : 149
   }, {
+    "@id" : 5,
     "nome" : "Cornetto alla Crema",
     "descrizione" : "Cornetto ripieno di crema",
     "prezzo" : 1.5,
-    "stoccaggio" : 120
+    "stoccaggio" : 119
   }, {
+    "@id" : 6,
     "nome" : "Torta al Cioccolato",
     "descrizione" : "Fetta di torta al cioccolato",
     "prezzo" : 3.0,
-    "stoccaggio" : 50
+    "stoccaggio" : 48
   }, {
+    "@id" : 7,
     "nome" : "Torta di Mele",
     "descrizione" : "Fetta di torta di mele",
     "prezzo" : 2.8,
     "stoccaggio" : 40
   }, {
-    "nome" : "Succo d'Arancia",
-    "descrizione" : "Bicchiere di succo d'arancia fresco",
-    "prezzo" : 2.0,
-    "stoccaggio" : 70
-  }, {
+    "@id" : 8,
     "nome" : "Torta Salata",
     "descrizione" : "Fetta di torta salata con verdure",
     "prezzo" : 3.5,
-    "stoccaggio" : 30
+    "stoccaggio" : 27
   }, {
+    "@id" : 9,
     "nome" : "Panino Prosciutto e Formaggio",
     "descrizione" : "Panino con prosciutto e formaggio",
     "prezzo" : 4.0,
-    "stoccaggio" : 90
+    "stoccaggio" : 88
   }, {
+    "@id" : 10,
     "nome" : "Acqua Naturale",
     "descrizione" : "Bottiglia di acqua naturale",
     "prezzo" : 1.0,
-    "stoccaggio" : 200
+    "stoccaggio" : 199
   }, {
+    "@id" : 11,
     "nome" : "Acqua Frizzante",
     "descrizione" : "Bottiglia di acqua frizzante",
     "prezzo" : 1.0,
-    "stoccaggio" : 200
+    "stoccaggio" : 199
   }, {
+    "@id" : 12,
     "nome" : "Brioche al Cioccolato",
     "descrizione" : "Brioche con ripieno di cioccolato",
     "prezzo" : 1.6,
-    "stoccaggio" : 100
+    "stoccaggio" : 99
   }, {
+    "@id" : 13,
     "nome" : "Muffin Mirtilli",
     "descrizione" : "Muffin ai mirtilli",
     "prezzo" : 2.2,
-    "stoccaggio" : 80
+    "stoccaggio" : 79
   }, {
+    "@id" : 14,
     "nome" : "Caffè Americano",
     "descrizione" : "Caffè lungo all'americana",
     "prezzo" : 1.8,
-    "stoccaggio" : 60
+    "stoccaggio" : 59
+  }, {
+    "@id" : 15,
+    "nome" : "Succo d'Arancia",
+    "descrizione" : "Bicchiere di succo d'arancia fresco",
+    "prezzo" : 2.0,
+    "stoccaggio" : 74
   } ],
   "ordini" : [ {
     "id" : 1,
     "data" : [ 2025, 12, 21 ],
     "voci" : [ {
-      "@id" : 1,
-      "articolo" : "Espresso",
+      "@id" : 16,
+      "articolo" : {
+        "@id" : 17,
+        "nome" : "Espresso",
+        "descrizione" : "Caffè espresso classico",
+        "prezzo" : 1.5,
+        "stoccaggio" : 100
+      },
       "quantita" : 2,
       "prezzoTotale" : 3.0
     }, {
-      "@id" : 2,
-      "articolo" : "Cappuccino",
+      "@id" : 18,
+      "articolo" : {
+        "@id" : 19,
+        "nome" : "Cappuccino",
+        "descrizione" : "Caffè con latte e schiuma",
+        "prezzo" : 2.5,
+        "stoccaggio" : 80
+      },
       "quantita" : 1,
       "prezzoTotale" : 2.5
     }, {
-      "@id" : 3,
-      "articolo" : "Cornetto Vuoto",
+      "@id" : 20,
+      "articolo" : {
+        "@id" : 21,
+        "nome" : "Cornetto Vuoto",
+        "descrizione" : "Cornetto semplice",
+        "prezzo" : 1.2,
+        "stoccaggio" : 150
+      },
       "quantita" : 2,
       "prezzoTotale" : 2.4
     } ],
@@ -104,13 +137,25 @@
     "id" : 2,
     "data" : [ 2025, 12, 20 ],
     "voci" : [ {
-      "@id" : 4,
-      "articolo" : "Torta al Cioccolato",
+      "@id" : 22,
+      "articolo" : {
+        "@id" : 23,
+        "nome" : "Torta al Cioccolato",
+        "descrizione" : "Fetta di torta al cioccolato",
+        "prezzo" : 3.0,
+        "stoccaggio" : 50
+      },
       "quantita" : 1,
       "prezzoTotale" : 3.0
     }, {
-      "@id" : 5,
-      "articolo" : "Succo d'Arancia",
+      "@id" : 24,
+      "articolo" : {
+        "@id" : 25,
+        "nome" : "Succo d'Arancia",
+        "descrizione" : "Bicchiere di succo d'arancia fresco",
+        "prezzo" : 2.0,
+        "stoccaggio" : 70
+      },
       "quantita" : 2,
       "prezzoTotale" : 4.0
     } ],
@@ -124,18 +169,36 @@
     "id" : 3,
     "data" : [ 2025, 12, 19 ],
     "voci" : [ {
-      "@id" : 6,
-      "articolo" : "Espresso",
+      "@id" : 26,
+      "articolo" : {
+        "@id" : 27,
+        "nome" : "Espresso",
+        "descrizione" : "Caffè espresso classico",
+        "prezzo" : 1.5,
+        "stoccaggio" : 100
+      },
       "quantita" : 1,
       "prezzoTotale" : 1.5
     }, {
-      "@id" : 7,
-      "articolo" : "Acqua Naturale",
+      "@id" : 28,
+      "articolo" : {
+        "@id" : 29,
+        "nome" : "Acqua Naturale",
+        "descrizione" : "Bottiglia di acqua naturale",
+        "prezzo" : 1.0,
+        "stoccaggio" : 200
+      },
       "quantita" : 3,
       "prezzoTotale" : 3.0
     }, {
-      "@id" : 8,
-      "articolo" : "Muffin Mirtilli",
+      "@id" : 30,
+      "articolo" : {
+        "@id" : 31,
+        "nome" : "Muffin Mirtilli",
+        "descrizione" : "Muffin ai mirtilli",
+        "prezzo" : 2.2,
+        "stoccaggio" : 80
+      },
       "quantita" : 2,
       "prezzoTotale" : 4.4
     } ],
@@ -149,13 +212,25 @@
     "id" : 4,
     "data" : [ 2025, 12, 21 ],
     "voci" : [ {
-      "@id" : 9,
-      "articolo" : "Caffè Americano",
+      "@id" : 32,
+      "articolo" : {
+        "@id" : 33,
+        "nome" : "Caffè Americano",
+        "descrizione" : "Caffè lungo all'americana",
+        "prezzo" : 1.8,
+        "stoccaggio" : 60
+      },
       "quantita" : 2,
       "prezzoTotale" : 3.6
     }, {
-      "@id" : 10,
-      "articolo" : "Cappuccino",
+      "@id" : 34,
+      "articolo" : {
+        "@id" : 35,
+        "nome" : "Cappuccino",
+        "descrizione" : "Caffè con latte e schiuma",
+        "prezzo" : 2.5,
+        "stoccaggio" : 80
+      },
       "quantita" : 1,
       "prezzoTotale" : 2.5
     } ],
@@ -169,13 +244,25 @@
     "id" : 5,
     "data" : [ 2025, 12, 18 ],
     "voci" : [ {
-      "@id" : 11,
-      "articolo" : "Cornetto Vuoto",
+      "@id" : 36,
+      "articolo" : {
+        "@id" : 37,
+        "nome" : "Cornetto Vuoto",
+        "descrizione" : "Cornetto semplice",
+        "prezzo" : 1.2,
+        "stoccaggio" : 150
+      },
       "quantita" : 3,
       "prezzoTotale" : 3.5999999999999996
     }, {
-      "@id" : 12,
-      "articolo" : "Torta al Cioccolato",
+      "@id" : 38,
+      "articolo" : {
+        "@id" : 39,
+        "nome" : "Torta al Cioccolato",
+        "descrizione" : "Fetta di torta al cioccolato",
+        "prezzo" : 3.0,
+        "stoccaggio" : 50
+      },
       "quantita" : 1,
       "prezzoTotale" : 3.0
     } ],
@@ -189,13 +276,25 @@
     "id" : 6,
     "data" : [ 2025, 12, 21 ],
     "voci" : [ {
-      "@id" : 13,
-      "articolo" : "Succo d'Arancia",
+      "@id" : 40,
+      "articolo" : {
+        "@id" : 41,
+        "nome" : "Succo d'Arancia",
+        "descrizione" : "Bicchiere di succo d'arancia fresco",
+        "prezzo" : 2.0,
+        "stoccaggio" : 70
+      },
       "quantita" : 1,
       "prezzoTotale" : 2.0
     }, {
-      "@id" : 14,
-      "articolo" : "Muffin Mirtilli",
+      "@id" : 42,
+      "articolo" : {
+        "@id" : 43,
+        "nome" : "Muffin Mirtilli",
+        "descrizione" : "Muffin ai mirtilli",
+        "prezzo" : 2.2,
+        "stoccaggio" : 80
+      },
       "quantita" : 1,
       "prezzoTotale" : 2.2
     } ],
@@ -209,13 +308,25 @@
     "id" : 7,
     "data" : [ 2025, 12, 20 ],
     "voci" : [ {
-      "@id" : 15,
-      "articolo" : "Acqua Naturale",
+      "@id" : 44,
+      "articolo" : {
+        "@id" : 45,
+        "nome" : "Acqua Naturale",
+        "descrizione" : "Bottiglia di acqua naturale",
+        "prezzo" : 1.0,
+        "stoccaggio" : 200
+      },
       "quantita" : 2,
       "prezzoTotale" : 2.0
     }, {
-      "@id" : 16,
-      "articolo" : "Caffè Americano",
+      "@id" : 46,
+      "articolo" : {
+        "@id" : 47,
+        "nome" : "Caffè Americano",
+        "descrizione" : "Caffè lungo all'americana",
+        "prezzo" : 1.8,
+        "stoccaggio" : 60
+      },
       "quantita" : 1,
       "prezzoTotale" : 1.8
     } ],
@@ -229,18 +340,36 @@
     "id" : 8,
     "data" : [ 2025, 12, 21 ],
     "voci" : [ {
-      "@id" : 17,
-      "articolo" : "Espresso",
+      "@id" : 48,
+      "articolo" : {
+        "@id" : 49,
+        "nome" : "Espresso",
+        "descrizione" : "Caffè espresso classico",
+        "prezzo" : 1.5,
+        "stoccaggio" : 100
+      },
       "quantita" : 1,
       "prezzoTotale" : 1.5
     }, {
-      "@id" : 18,
-      "articolo" : "Cappuccino",
+      "@id" : 50,
+      "articolo" : {
+        "@id" : 51,
+        "nome" : "Cappuccino",
+        "descrizione" : "Caffè con latte e schiuma",
+        "prezzo" : 2.5,
+        "stoccaggio" : 80
+      },
       "quantita" : 1,
       "prezzoTotale" : 2.5
     }, {
-      "@id" : 19,
-      "articolo" : "Muffin Mirtilli",
+      "@id" : 52,
+      "articolo" : {
+        "@id" : 53,
+        "nome" : "Muffin Mirtilli",
+        "descrizione" : "Muffin ai mirtilli",
+        "prezzo" : 2.2,
+        "stoccaggio" : 80
+      },
       "quantita" : 1,
       "prezzoTotale" : 2.2
     } ],
@@ -249,6 +378,252 @@
     "prezzoTotaleFinale" : 6.2,
     "metodoPagamento" : "CONTANTI",
     "importoRicevuto" : 5.0,
+    "resto" : 0.0
+  }, {
+    "id" : 9,
+    "data" : [ 2025, 12, 19 ],
+    "voci" : [ {
+      "@id" : 54,
+      "articolo" : {
+        "@id" : 55,
+        "nome" : "Espresso",
+        "descrizione" : "Caffè espresso classico",
+        "prezzo" : 1.5,
+        "stoccaggio" : 100
+      },
+      "quantita" : 2,
+      "prezzoTotale" : 3.0
+    }, {
+      "@id" : 56,
+      "articolo" : {
+        "@id" : 57,
+        "nome" : "Cornetto alla Crema",
+        "descrizione" : "Cornetto ripieno di crema",
+        "prezzo" : 1.5,
+        "stoccaggio" : 120
+      },
+      "quantita" : 1,
+      "prezzoTotale" : 1.5
+    }, {
+      "@id" : 58,
+      "articolo" : {
+        "@id" : 59,
+        "nome" : "Brioche al Cioccolato",
+        "descrizione" : "Brioche con ripieno di cioccolato",
+        "prezzo" : 1.6,
+        "stoccaggio" : 100
+      },
+      "quantita" : 1,
+      "prezzoTotale" : 1.6
+    } ],
+    "scontoPercentuale" : 0.0,
+    "prezzoTotaleParziale" : 6.1,
+    "prezzoTotaleFinale" : 6.1,
+    "metodoPagamento" : "CONTANTI",
+    "importoRicevuto" : 10.0,
+    "resto" : 3.9000000000000004
+  }, {
+    "id" : 10,
+    "data" : [ 2025, 12, 20 ],
+    "voci" : [ {
+      "@id" : 60,
+      "articolo" : {
+        "@id" : 61,
+        "nome" : "Torta Salata",
+        "descrizione" : "Fetta di torta salata con verdure",
+        "prezzo" : 3.5,
+        "stoccaggio" : 30
+      },
+      "quantita" : 3,
+      "prezzoTotale" : 10.5
+    }, {
+      "@id" : 62,
+      "articolo" : {
+        "@id" : 63,
+        "nome" : "Panino Prosciutto e Formaggio",
+        "descrizione" : "Panino con prosciutto e formaggio",
+        "prezzo" : 4.0,
+        "stoccaggio" : 90
+      },
+      "quantita" : 1,
+      "prezzoTotale" : 4.0
+    }, {
+      "@id" : 64,
+      "articolo" : {
+        "@id" : 65,
+        "nome" : "Acqua Frizzante",
+        "descrizione" : "Bottiglia di acqua frizzante",
+        "prezzo" : 1.0,
+        "stoccaggio" : 200
+      },
+      "quantita" : 1,
+      "prezzoTotale" : 1.0
+    }, {
+      "@id" : 66,
+      "articolo" : {
+        "@id" : 67,
+        "nome" : "Muffin Mirtilli",
+        "descrizione" : "Muffin ai mirtilli",
+        "prezzo" : 2.2,
+        "stoccaggio" : 80
+      },
+      "quantita" : 1,
+      "prezzoTotale" : 2.2
+    } ],
+    "scontoPercentuale" : 10.0,
+    "prezzoTotaleParziale" : 17.7,
+    "prezzoTotaleFinale" : 15.93,
+    "metodoPagamento" : "CARTA_DI_DEBITO",
+    "importoRicevuto" : 0.0,
+    "resto" : 0.0
+  }, {
+    "id" : 11,
+    "data" : [ 2025, 12, 21 ],
+    "voci" : [ {
+      "@id" : 68,
+      "articolo" : {
+        "@id" : 69,
+        "nome" : "Latte Macchiato",
+        "descrizione" : "Latte con una spruzzata di caffè",
+        "prezzo" : 2.8,
+        "stoccaggio" : 60
+      },
+      "quantita" : 1,
+      "prezzoTotale" : 2.8
+    } ],
+    "scontoPercentuale" : 0.0,
+    "prezzoTotaleParziale" : 2.8,
+    "prezzoTotaleFinale" : 2.8,
+    "metodoPagamento" : "CONTANTI",
+    "importoRicevuto" : 5.0,
+    "resto" : 2.2
+  }, {
+    "id" : 12,
+    "data" : [ 2025, 12, 22 ],
+    "voci" : [ {
+      "@id" : 70,
+      "articolo" : {
+        "@id" : 71,
+        "nome" : "Acqua Naturale",
+        "descrizione" : "Bottiglia di acqua naturale",
+        "prezzo" : 1.0,
+        "stoccaggio" : 200
+      },
+      "quantita" : 1,
+      "prezzoTotale" : 1.0
+    }, {
+      "@id" : 72,
+      "articolo" : {
+        "@id" : 73,
+        "nome" : "Caffè Americano",
+        "descrizione" : "Caffè lungo all'americana",
+        "prezzo" : 1.8,
+        "stoccaggio" : 60
+      },
+      "quantita" : 1,
+      "prezzoTotale" : 1.8
+    } ],
+    "scontoPercentuale" : 0.0,
+    "prezzoTotaleParziale" : 2.8,
+    "prezzoTotaleFinale" : 2.8,
+    "metodoPagamento" : "CARTA_DI_CREDITO",
+    "importoRicevuto" : 0.0,
+    "resto" : 0.0
+  }, {
+    "id" : 13,
+    "data" : [ 2025, 12, 22 ],
+    "voci" : [ {
+      "@id" : 74,
+      "articolo" : {
+        "@id" : 75,
+        "nome" : "Torta al Cioccolato",
+        "descrizione" : "Fetta di torta al cioccolato",
+        "prezzo" : 3.0,
+        "stoccaggio" : 50
+      },
+      "quantita" : 2,
+      "prezzoTotale" : 6.0
+    }, {
+      "@id" : 76,
+      "articolo" : {
+        "@id" : 77,
+        "nome" : "Succo d'Arancia",
+        "descrizione" : "Bicchiere di succo d'arancia fresco",
+        "prezzo" : 2.0,
+        "stoccaggio" : 70
+      },
+      "quantita" : 1,
+      "prezzoTotale" : 2.0
+    }, {
+      "@id" : 78,
+      "articolo" : {
+        "@id" : 79,
+        "nome" : "Panino Prosciutto e Formaggio",
+        "descrizione" : "Panino con prosciutto e formaggio",
+        "prezzo" : 4.0,
+        "stoccaggio" : 89
+      },
+      "quantita" : 1,
+      "prezzoTotale" : 4.0
+    }, {
+      "@id" : 80,
+      "articolo" : {
+        "@id" : 81,
+        "nome" : "Cornetto Vuoto",
+        "descrizione" : "Cornetto semplice",
+        "prezzo" : 1.2,
+        "stoccaggio" : 150
+      },
+      "quantita" : 1,
+      "prezzoTotale" : 1.2
+    } ],
+    "scontoPercentuale" : 5.0,
+    "prezzoTotaleParziale" : 13.2,
+    "prezzoTotaleFinale" : 12.54,
+    "metodoPagamento" : "CONTANTI",
+    "importoRicevuto" : 15.0,
+    "resto" : 2.460000000000001
+  }, {
+    "id" : 14,
+    "data" : [ 2025, 12, 23 ],
+    "voci" : [ {
+      "@id" : 82,
+      "articolo" : {
+        "@id" : 83,
+        "nome" : "Succo d'Arancia",
+        "descrizione" : "Bicchiere di succo d'arancia fresco",
+        "prezzo" : 1.5,
+        "stoccaggio" : 69
+      },
+      "quantita" : 1,
+      "prezzoTotale" : 1.5
+    } ],
+    "scontoPercentuale" : 0.0,
+    "prezzoTotaleParziale" : 1.5,
+    "prezzoTotaleFinale" : 1.5,
+    "metodoPagamento" : "CARTA_DI_CREDITO",
+    "importoRicevuto" : 0.0,
+    "resto" : 0.0
+  }, {
+    "id" : 15,
+    "data" : [ 2025, 12, 23 ],
+    "voci" : [ {
+      "@id" : 84,
+      "articolo" : {
+        "@id" : 85,
+        "nome" : "Succo d'Arancia",
+        "descrizione" : "Bicchiere di succo d'arancia fresco",
+        "prezzo" : 2.0,
+        "stoccaggio" : 75
+      },
+      "quantita" : 1,
+      "prezzoTotale" : 2.0
+    } ],
+    "scontoPercentuale" : 0.0,
+    "prezzoTotaleParziale" : 2.0,
+    "prezzoTotaleFinale" : 2.0,
+    "metodoPagamento" : "CARTA_DI_CREDITO",
+    "importoRicevuto" : 0.0,
     "resto" : 0.0
   } ]
 }

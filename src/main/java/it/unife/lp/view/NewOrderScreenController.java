@@ -154,22 +154,6 @@ public class NewOrderScreenController {
         articoliLeftTable.setItems(mainApp.getArticoli());
     }
 
-    // @FXML
-    // private void handleSaveOrder() {
-    //     if (isOrderValidtoSave()) {
-    //         ordineOriginale.setVoci(FXCollections.observableArrayList(ordine.getVoci()));
-    //         ordineOriginale.setScontoPercentuale(ordine.getScontoPercentuale());
-    //         ordineOriginale.setPrezzoTotaleParziale(ordine.getPrezzoTotaleParziale());
-    //         ordineOriginale.setPrezzoTotaleFinale(ordine.getPrezzoTotaleFinale());
-    //         ordineOriginale.setDataOra(ordine.getDataOra());
-    //         ordineOriginale.setMetodoPagamento(ordine.getMetodoPagamento());
-    //         ordineOriginale.setImportoRicevuto(ordine.getImportoRicevuto());
-
-    //         saveClicked = true;
-    //         dialogStage.close();
-    //     }
-    // }
-
     @FXML
     private void handleCancel() {
         this.mainApp.showOrdiniView();
@@ -300,8 +284,15 @@ public class NewOrderScreenController {
     private void updateStorageAfterOrderPayment(Ordine ord) {
         // Updates the stock of articles based on the items in the paid order
         for (VoceOrdine voce : ord.getVociProperty()) {
-            Articolo articolo = voce.getArticolo();
-            articolo.setStoccaggio(articolo.getStoccaggio() - voce.getQuantita());
+            // Articolo articolo = voce.getArticolo();
+            // articolo.setStoccaggio(articolo.getStoccaggio() - voce.getQuantita());
+            // System.out.println("Updating stock for article: " + voce.getArticolo().getNome() + " by reducing " + voce.getQuantita());
+            this.mainApp.getArticoli().stream()
+                .filter(a -> a.equals(voce.getArticolo()))
+                .findFirst()
+                .ifPresent(articoloInMagazzino -> {
+                    articoloInMagazzino.setStoccaggio(articoloInMagazzino.getStoccaggio() - voce.getQuantita());
+                });
         }
     }
 

@@ -50,110 +50,110 @@ public class MainApp extends Application {
 
     public MainApp() {
         // Sample data
-        articoli.addAll(
-            new Articolo("Espresso", "Caffè espresso classico", 1.50, 100),
-            new Articolo("Cappuccino", "Caffè con latte e schiuma", 2.50, 80),
-            new Articolo("Latte Macchiato", "Latte con una spruzzata di caffè", 2.80, 60),
-            new Articolo("Cornetto Vuoto", "Cornetto semplice", 1.20, 150),
-            new Articolo("Cornetto alla Crema", "Cornetto ripieno di crema", 1.50, 120),
-            new Articolo("Torta al Cioccolato", "Fetta di torta al cioccolato", 3.00, 50),
-            new Articolo("Torta di Mele", "Fetta di torta di mele", 2.80, 40),
-            new Articolo("Succo d'Arancia", "Bicchiere di succo d'arancia fresco", 2.00, 70),
-            new Articolo("Torta Salata", "Fetta di torta salata con verdure", 3.50, 30),
-            new Articolo("Panino Prosciutto e Formaggio", "Panino con prosciutto e formaggio", 4.00, 90),
-            new Articolo("Acqua Naturale", "Bottiglia di acqua naturale", 1.00, 200),
-            new Articolo("Acqua Frizzante", "Bottiglia di acqua frizzante", 1.00, 200),
-            new Articolo("Brioche al Cioccolato", "Brioche con ripieno di cioccolato", 1.60, 100),
-            new Articolo("Muffin Mirtilli", "Muffin ai mirtilli", 2.20, 80),
-            new Articolo("Caffè Americano", "Caffè lungo all'americana", 1.80, 60)
-        );
+        // articoli.addAll(
+        //     new Articolo("Espresso", "Caffè espresso classico", 1.50, 100),
+        //     new Articolo("Cappuccino", "Caffè con latte e schiuma", 2.50, 80),
+        //     new Articolo("Latte Macchiato", "Latte con una spruzzata di caffè", 2.80, 60),
+        //     new Articolo("Cornetto Vuoto", "Cornetto semplice", 1.20, 150),
+        //     new Articolo("Cornetto alla Crema", "Cornetto ripieno di crema", 1.50, 120),
+        //     new Articolo("Torta al Cioccolato", "Fetta di torta al cioccolato", 3.00, 50),
+        //     new Articolo("Torta di Mele", "Fetta di torta di mele", 2.80, 40),
+        //     new Articolo("Succo d'Arancia", "Bicchiere di succo d'arancia fresco", 2.00, 70),
+        //     new Articolo("Torta Salata", "Fetta di torta salata con verdure", 3.50, 30),
+        //     new Articolo("Panino Prosciutto e Formaggio", "Panino con prosciutto e formaggio", 4.00, 90),
+        //     new Articolo("Acqua Naturale", "Bottiglia di acqua naturale", 1.00, 200),
+        //     new Articolo("Acqua Frizzante", "Bottiglia di acqua frizzante", 1.00, 200),
+        //     new Articolo("Brioche al Cioccolato", "Brioche con ripieno di cioccolato", 1.60, 100),
+        //     new Articolo("Muffin Mirtilli", "Muffin ai mirtilli", 2.20, 80),
+        //     new Articolo("Caffè Americano", "Caffè lungo all'americana", 1.80, 60)
+        // );
 
-        Articolo espresso = articoli.get(0);
-        Articolo cappuccino = articoli.get(1);
-        Articolo cornettoVuoto = articoli.get(3);
-        Articolo tortaCioccolato = articoli.get(5);
-        Articolo succoArancia = articoli.get(7);
-        Articolo acquaNaturale = articoli.get(10);
-        Articolo muffinMirtilli = articoli.get(13);
-        Articolo caffeAmericano = articoli.get(14);
+        // Articolo espresso = articoli.get(0);
+        // Articolo cappuccino = articoli.get(1);
+        // Articolo cornettoVuoto = articoli.get(3);
+        // Articolo tortaCioccolato = articoli.get(5);
+        // Articolo succoArancia = articoli.get(7);
+        // Articolo acquaNaturale = articoli.get(10);
+        // Articolo muffinMirtilli = articoli.get(13);
+        // Articolo caffeAmericano = articoli.get(14);
         
-        // Ordine 1 - oggi
-        Ordine ordine1 = new Ordine(1);
-        ordine1.setdata(LocalDate.now());
-        ordine1.setMetodoPagamento(MetodoPagamento.CONTANTI);
-        ordine1.setScontoPercentuale(0);
-        ordine1.aggiungiVoce(new VoceOrdine(espresso, 2));
-        ordine1.aggiungiVoce(new VoceOrdine(cappuccino, 1));
-        ordine1.aggiungiVoce(new VoceOrdine(cornettoVuoto, 2));
-        ordine1.setImportoRicevuto(10.0);
+        // // Ordine 1 - oggi
+        // Ordine ordine1 = new Ordine(1);
+        // ordine1.setdata(LocalDate.now());
+        // ordine1.setMetodoPagamento(MetodoPagamento.CONTANTI);
+        // ordine1.setScontoPercentuale(0);
+        // ordine1.aggiungiVoce(new VoceOrdine(espresso, 2));
+        // ordine1.aggiungiVoce(new VoceOrdine(cappuccino, 1));
+        // ordine1.aggiungiVoce(new VoceOrdine(cornettoVuoto, 2));
+        // ordine1.setImportoRicevuto(10.0);
         
-        // Ordine 2 - ieri
-        Ordine ordine2 = new Ordine(2);
-        ordine2.setdata(LocalDate.now().minusDays(1));
-        ordine2.setMetodoPagamento(MetodoPagamento.CARTA_DI_CREDITO);
-        ordine2.setScontoPercentuale(10);
-        ordine2.aggiungiVoce(new VoceOrdine(tortaCioccolato, 1));
-        ordine2.aggiungiVoce(new VoceOrdine(succoArancia, 2));
-        ordine2.setImportoRicevuto(0.0);
+        // // Ordine 2 - ieri
+        // Ordine ordine2 = new Ordine(2);
+        // ordine2.setdata(LocalDate.now().minusDays(1));
+        // ordine2.setMetodoPagamento(MetodoPagamento.CARTA_DI_CREDITO);
+        // ordine2.setScontoPercentuale(10);
+        // ordine2.aggiungiVoce(new VoceOrdine(tortaCioccolato, 1));
+        // ordine2.aggiungiVoce(new VoceOrdine(succoArancia, 2));
+        // ordine2.setImportoRicevuto(0.0);
         
-        // Ordine 3 - due giorni fa
-        Ordine ordine3 = new Ordine(3);
-        ordine3.setdata(LocalDate.now().minusDays(2));
-        ordine3.setMetodoPagamento(MetodoPagamento.CARTA_DI_DEBITO);
-        ordine3.setScontoPercentuale(5);
-        ordine3.aggiungiVoce(new VoceOrdine(espresso, 1));
-        ordine3.aggiungiVoce(new VoceOrdine(acquaNaturale, 3));
-        ordine3.aggiungiVoce(new VoceOrdine(muffinMirtilli, 2));
-        ordine3.setImportoRicevuto(0.0);
+        // // Ordine 3 - due giorni fa
+        // Ordine ordine3 = new Ordine(3);
+        // ordine3.setdata(LocalDate.now().minusDays(2));
+        // ordine3.setMetodoPagamento(MetodoPagamento.CARTA_DI_DEBITO);
+        // ordine3.setScontoPercentuale(5);
+        // ordine3.aggiungiVoce(new VoceOrdine(espresso, 1));
+        // ordine3.aggiungiVoce(new VoceOrdine(acquaNaturale, 3));
+        // ordine3.aggiungiVoce(new VoceOrdine(muffinMirtilli, 2));
+        // ordine3.setImportoRicevuto(0.0);
         
-        // Ordine 4 - oggi
-        Ordine ordine4 = new Ordine(4);
-        ordine4.setdata(LocalDate.now());
-        ordine4.setMetodoPagamento(MetodoPagamento.CARTA_DI_CREDITO);
-        ordine4.setScontoPercentuale(0);
-        ordine4.aggiungiVoce(new VoceOrdine(caffeAmericano, 2));
-        ordine4.aggiungiVoce(new VoceOrdine(cappuccino, 1));
-        ordine4.setImportoRicevuto(0.0);
+        // // Ordine 4 - oggi
+        // Ordine ordine4 = new Ordine(4);
+        // ordine4.setdata(LocalDate.now());
+        // ordine4.setMetodoPagamento(MetodoPagamento.CARTA_DI_CREDITO);
+        // ordine4.setScontoPercentuale(0);
+        // ordine4.aggiungiVoce(new VoceOrdine(caffeAmericano, 2));
+        // ordine4.aggiungiVoce(new VoceOrdine(cappuccino, 1));
+        // ordine4.setImportoRicevuto(0.0);
         
-        // Ordine 5 - tre giorni fa
-        Ordine ordine5 = new Ordine(5);
-        ordine5.setdata(LocalDate.now().minusDays(3));
-        ordine5.setMetodoPagamento(MetodoPagamento.CONTANTI);
-        ordine5.setScontoPercentuale(15);
-        ordine5.aggiungiVoce(new VoceOrdine(cornettoVuoto, 3));
-        ordine5.aggiungiVoce(new VoceOrdine(tortaCioccolato, 1));
-        ordine5.setImportoRicevuto(10.0);
+        // // Ordine 5 - tre giorni fa
+        // Ordine ordine5 = new Ordine(5);
+        // ordine5.setdata(LocalDate.now().minusDays(3));
+        // ordine5.setMetodoPagamento(MetodoPagamento.CONTANTI);
+        // ordine5.setScontoPercentuale(15);
+        // ordine5.aggiungiVoce(new VoceOrdine(cornettoVuoto, 3));
+        // ordine5.aggiungiVoce(new VoceOrdine(tortaCioccolato, 1));
+        // ordine5.setImportoRicevuto(10.0);
         
-        // Ordine 6 - oggi
-        Ordine ordine6 = new Ordine(6);
-        ordine6.setdata(LocalDate.now());
-        ordine6.setMetodoPagamento(MetodoPagamento.CARTA_DI_DEBITO);
-        ordine6.setScontoPercentuale(0);
-        ordine6.aggiungiVoce(new VoceOrdine(succoArancia, 1));
-        ordine6.aggiungiVoce(new VoceOrdine(muffinMirtilli, 1));
-        ordine6.setImportoRicevuto(0.0);
+        // // Ordine 6 - oggi
+        // Ordine ordine6 = new Ordine(6);
+        // ordine6.setdata(LocalDate.now());
+        // ordine6.setMetodoPagamento(MetodoPagamento.CARTA_DI_DEBITO);
+        // ordine6.setScontoPercentuale(0);
+        // ordine6.aggiungiVoce(new VoceOrdine(succoArancia, 1));
+        // ordine6.aggiungiVoce(new VoceOrdine(muffinMirtilli, 1));
+        // ordine6.setImportoRicevuto(0.0);
         
-        // Ordine 7 - ieri
-        Ordine ordine7 = new Ordine(7);
-        ordine7.setdata(LocalDate.now().minusDays(1));
-        ordine7.setMetodoPagamento(MetodoPagamento.CARTA_DI_CREDITO);
-        ordine7.setScontoPercentuale(5);
-        ordine7.aggiungiVoce(new VoceOrdine(acquaNaturale, 2));
-        ordine7.aggiungiVoce(new VoceOrdine(caffeAmericano, 1));
-        ordine7.setImportoRicevuto(0.0);
+        // // Ordine 7 - ieri
+        // Ordine ordine7 = new Ordine(7);
+        // ordine7.setdata(LocalDate.now().minusDays(1));
+        // ordine7.setMetodoPagamento(MetodoPagamento.CARTA_DI_CREDITO);
+        // ordine7.setScontoPercentuale(5);
+        // ordine7.aggiungiVoce(new VoceOrdine(acquaNaturale, 2));
+        // ordine7.aggiungiVoce(new VoceOrdine(caffeAmericano, 1));
+        // ordine7.setImportoRicevuto(0.0);
         
-        // Ordine 8 - oggi
-        Ordine ordine8 = new Ordine(8);
-        ordine8.setdata(LocalDate.now());
-        ordine8.setMetodoPagamento(MetodoPagamento.CONTANTI);
-        ordine8.setScontoPercentuale(0);
-        ordine8.aggiungiVoce(new VoceOrdine(espresso, 1));
-        ordine8.aggiungiVoce(new VoceOrdine(cappuccino, 1));
-        ordine8.aggiungiVoce(new VoceOrdine(muffinMirtilli, 1));
-        ordine8.setImportoRicevuto(5.0);
+        // // Ordine 8 - oggi
+        // Ordine ordine8 = new Ordine(8);
+        // ordine8.setdata(LocalDate.now());
+        // ordine8.setMetodoPagamento(MetodoPagamento.CONTANTI);
+        // ordine8.setScontoPercentuale(0);
+        // ordine8.aggiungiVoce(new VoceOrdine(espresso, 1));
+        // ordine8.aggiungiVoce(new VoceOrdine(cappuccino, 1));
+        // ordine8.aggiungiVoce(new VoceOrdine(muffinMirtilli, 1));
+        // ordine8.setImportoRicevuto(5.0);
         
-        // Aggiungi tutti gli ordini
-        ordini.addAll(ordine1, ordine2, ordine3, ordine4, ordine5, ordine6, ordine7, ordine8);
+        // // Aggiungi tutti gli ordini
+        // ordini.addAll(ordine1, ordine2, ordine3, ordine4, ordine5, ordine6, ordine7, ordine8);
     }
 
     /**

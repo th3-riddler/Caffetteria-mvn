@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import it.unife.lp.MainApp;
 import it.unife.lp.model.Articolo;
+import it.unife.lp.model.VoceOrdine;
 import it.unife.lp.util.AlertsUtil;
 import it.unife.lp.util.StatisticsUtil;
 import javafx.collections.FXCollections;
