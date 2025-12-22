@@ -98,11 +98,11 @@ public class ItemEditDialogController {
             }
         }
 
-        for (Articolo articolo : mainApp.getArticoli()) {
-            if (articolo.getNome().toLowerCase().equals(nomeField.getText().toLowerCase())) {
-                errorMessage += "Articolo già presente!";
-            }
-        }
+        // for (Articolo articolo : mainApp.getArticoli()) {
+        //     if (articolo.getNome().toLowerCase().equals(nomeField.getText().toLowerCase())) {
+        //         errorMessage += "Articolo già presente!";
+        //     }
+        // }
 
         if (errorMessage.length() == 0) {
             return true;
