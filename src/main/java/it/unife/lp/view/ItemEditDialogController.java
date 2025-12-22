@@ -1,5 +1,6 @@
 package it.unife.lp.view;
 
+import it.unife.lp.MainApp;
 import it.unife.lp.model.Articolo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -23,6 +24,8 @@ public class ItemEditDialogController {
     private Stage dialogStage;
     private Articolo articolo;
     private boolean okClicked = false;
+
+    private MainApp mainApp;
 
     @FXML
     private void initialize() {}
@@ -64,6 +67,10 @@ public class ItemEditDialogController {
         dialogStage.close();
     }
 
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
+
     private boolean isInputValid() {
         String errorMessage = "";
         if (nomeField.getText() == null || nomeField.getText().length() == 0) {
@@ -88,6 +95,12 @@ public class ItemEditDialogController {
                 Integer.parseInt(stoccaggioField.getText());
             } catch (NumberFormatException e) {
                 errorMessage += "Lo stoccaggio deve essere un numero intero!\n";
+            }
+        }
+
+        for (Articolo articolo : mainApp.getArticoli()) {
+            if (articolo.getNome().toLowerCase().equals(nomeField.getText().toLowerCase())) {
+                errorMessage += "Articolo già presente!";
             }
         }
 

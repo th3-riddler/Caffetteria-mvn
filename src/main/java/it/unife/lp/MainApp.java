@@ -329,13 +329,14 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            scene.getStylesheets().add(
-                    MainApp.class.getResource("/it/unife/lp/css/Style.css").toExternalForm());
-
+            
+            scene.getStylesheets().add(MainApp.class.getResource("/it/unife/lp/css/Style.css").toExternalForm());
+            
             ItemEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setItem(articolo);
             controller.setDescrizionDialog(descrizioneDialog);
+            controller.setMainApp(this);
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
             return controller.isOkClicked();
